@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distortion Entertainment Ultimate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+--primary: #ffd700;
+--dark: #1a1a1a;
+--light: #f5f5f5;
+--accent: #25D366;
+--card-bg: rgba(255,255,255,0.08);
+}
+
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+color:white;
+overflow-x:hidden;
+background:#1a1a1a;
+transition:background 0.3s;
+}
+
+body.light-mode{
+background:#f5f5f5;
+color:#333;
+}
+
+/* BACKGROUND LAYER */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background-size:cover;
+background-position:center;
+z-index:-2;
+transition:opacity 1.5s ease-in-out;
+animation:bgZoom 20s infinite;
+}
+
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+z-index:-1;
+transition:background 0.3s;
+}
+
+body.light-mode .overlay{
+background:rgba(255,255,255,0.85);
+}
+
+/* HEADER */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+color:gold;
+font-weight:bold;
+font-size:24px;
+}
+
+.header-buttons{
+display:flex;
+gap:10px;
+}
+
+.btn-icon{
+background:rgba(255,255,255,0.2);
+border:none;
+color:white;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+}
+
+.btn-icon:hover{
+background:rgba(255,255,255,0.4);
+transform:scale(1.1);
+}
+
+h1{text-align:center;margin:20px 0;color:gold;animation:fadeIn 2s;}
+h2{text-align:center;color:gold;margin-top:40px;border-bottom:2px solid gold;padding-bottom:10px;}
+p{text-align:center;}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:var(--card-bg);
+backdrop-filter:blur(12px);
+border-radius:20px;
+padding:25px;
+text-align:center;
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:0.4s;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+body.light-mode .card{
+background:rgba(0,0,0,0.05);
+border:1px solid rgba(0,0,0,0.1);
+color:#333;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 0 25px gold;
+}
+
+/* PRICING SECTION */
+.pricing-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.pricing-card{
+background:var(--card-bg);
+border-radius:15px;
+padding:30px;
+text-align:center;
+border:2px solid transparent;
+transition:0.3s;
+position:relative;
+}
+
+body.light-mode .pricing-card{
+background:rgba(0,0,0,0.05);
+}
+
+.pricing-card:hover{
+border-color:gold;
+box-shadow:0 0 20px rgba(255,215,0,0.5);
+}
+
+.pricing-card h3{
+color:gold;
+font-size:22px;
+margin:0;
+}
+
+.price{
+font-size:32px;
+color:gold;
+font-weight:bold;
+margin:15px 0;
+}
+
+.price-features{
+list-style:none;
+padding:15px 0;
+text-align:left;
+}
+
+.price-features li{
+padding:8px 0;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+body.light-mode .price-features li{
+border-bottom:1px solid rgba(0,0,0,0.1);
+}
+
+/* BOOKING FORM */
+.booking{
+text-align:center;
+padding:20px;
+background:rgba(0,0,0,0.3);
+border-radius:15px;
+margin:20px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+body.light-mode .booking{
+background:rgba(0,0,0,0.05);
+}
+
+.form-group{
+margin:15px 0;
+}
+
+.booking input,.booking select,.booking textarea{
+padding:12px;
+margin:8px;
+border:none;
+border-radius:10px;
+font-family:'Poppins',sans-serif;
+width:90%;
+max-width:500px;
+}
+
+.booking textarea{
+resize:vertical;
+min-height:100px;
+}
+
+.booking button{
+padding:12px 30px;
+background:gold;
+color:#000;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+}
+
+.booking button:hover{
+background:#ffed4e;
+transform:scale(1.05);
+}
+
+.checkbox-group{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+margin:15px 0;
+}
+
+.checkbox-group input[type="checkbox"]{
+width:20px;
+height:20px;
+cursor:pointer;
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.gallery-item{
+position:relative;
+overflow:hidden;
+border-radius:15px;
+cursor:pointer;
+height:250px;
+}
+
+.gallery-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.4s;
+}
+
+.gallery-item:hover img{
+transform:scale(1.1);
+}
+
+.gallery-filter{
+text-align:center;
+padding:20px;
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.filter-btn{
+padding:10px 20px;
+background:rgba(255,255,255,0.2);
+border:2px solid transparent;
+color:white;
+border-radius:25px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.filter-btn.active{
+background:gold;
+color:#000;
+border-color:gold;
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+}
+
+.modal.active{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal-content{
+max-width:800px;
+max-height:80vh;
+overflow-y:auto;
+position:relative;
+}
+
+.modal-content img{
+width:100%;
+border-radius:10px;
+}
+
+.modal-close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:40px;
+cursor:pointer;
+color:white;
+background:none;
+border:none;
+}
+
+/* TEAM SECTION */
+.team-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.team-card{
+background:var(--card-bg);
+border-radius:15px;
+padding:20px;
+text-align:center;
+backdrop-filter:blur(12px);
+transition:0.4s;
+}
+
+body.light-mode .team-card{
+background:rgba(0,0,0,0.05);
+}
+
+.team-card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px gold;
+}
+
+.team-avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+margin:0 auto 15px;
+background:gold;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+}
+
+.team-card h3{
+color:gold;
+margin:10px 0;
+}
+
+.social-links{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:15px;
+}
+
+.social-links a{
+color:white;
+font-size:20px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.social-links a:hover{
+color:gold;
+transform:scale(1.2);
+}
+
+/* REVIEWS */
+.reviews-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.review-card{
+background:var(--card-bg);
+border-radius:15px;
+padding:20px;
+backdrop-filter:blur(12px);
+}
+
+body.light-mode .review-card{
+background:rgba(0,0,0,0.05);
+}
+
+.stars{
+color:gold;
+font-size:18px;
+margin:10px 0;
+}
+
+.review-text{
+font-size:14px;
+font-style:italic;
+margin:15px 0;
+line-height:1.6;
+}
+
+.reviewer-name{
+color:gold;
+font-weight:bold;
+margin-top:10px;
+}
+
+/* DASHBOARD */
+.dashboard{
+padding:20px;
+background:rgba(0,0,0,0.3);
+border-radius:15px;
+margin:20px;
+}
+
+body.light-mode .dashboard{
+background:rgba(0,0,0,0.05);
+}
+
+.dashboard-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin:20px 0;
+}
+
+.stat-box{
+background:var(--card-bg);
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.stat-number{
+font-size:32px;
+color:gold;
+font-weight:bold;
+}
+
+.dashboard-search{
+margin:15px 0;
+}
+
+.dashboard-search input{
+padding:10px;
+border:none;
+border-radius:8px;
+width:300px;
+max-width:100%;
+}
+
+.dashboard ul{
+list-style:none;
+padding:0;
+max-height:400px;
+overflow-y:auto;
+}
+
+.dashboard li{
+background:rgba(255,255,255,0.1);
+margin:8px 0;
+padding:15px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+body.light-mode .dashboard li{
+background:rgba(0,0,0,0.1);
+}
+
+.delete-btn{
+background:#ff4444;
+color:white;
+border:none;
+padding:5px 10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* NOTIFICATIONS */
+.notification{
+position:fixed;
+top:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:8px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+animation:slideIn 0.3s;
+z-index:10000;
+max-width:300px;
+}
+
+.notification.error{
+background:#ff4444;
+}
+
+.notification.info{
+background:#0066cc;
+}
+
+@keyframes slideIn{
+from{transform:translateX(400px);opacity:0;}
+to{transform:translateX(0);opacity:1;}
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50px;
+text-decoration:none;
+box-shadow:0 0 15px #25D366;
+animation:pulse 2s infinite;
+font-size:20px;
+z-index:99;
+}
+
+/* YOUTUBE */
+.youtube{
+text-align:center;
+padding:20px;
+}
+
+iframe{
+border-radius:15px;
+width:90%;
+max-width:500px;
+height:250px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(-20px);}
+to{opacity:1;}
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #25D366;}
+50%{box-shadow:0 0 25px #25D366;}
+100%{box-shadow:0 0 10px #25D366;}
+}
+
+@keyframes bgZoom{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.container,.pricing-container,.gallery,.team-container,.reviews-container{
+grid-template-columns:1fr;
+}
+
+.booking input,.booking select,.booking textarea{
+width:95%;
+}
+
+iframe{
+width:95%;
+}
+
+.dashboard-search input{
+width:100%;
+}
+
+header{
+flex-direction:column;
+gap:10px;
+}
+
+.notification{
+right:10px;
+left:10px;
+max-width:none;
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg" id="bg"></div>
+<div class="overlay"></div>
+
+<!-- HEADER -->
+<header>
+<div class="logo">🎧 Distortion Entertainment</div>
+<div class="header-buttons">
+<button class="btn-icon" onclick="toggleAdminDashboard()">📊 Admin</button>
+<button class="btn-icon" onclick="toggleDarkMode()">🌙 Theme</button>
+</div>
+</header>
+
+<h1>Ultimate Booking & Services Hub</h1>
+<p>Professional DJ, Photography, Graphic Design & Cyber Security Services</p>
+
+<!-- MAIN SERVICES CARDS -->
+<div class="container">
+<a href="https://djzeks.github.io/deh" class="card">🌐 Main Website</a>
+<a href="https://djzeks.github.io/hde" class="card">🏢 Company</a>
+<a href="https://djzeks.github.io/deh-dj-services-/" class="card">🎧 DJ Services</a>
+<a href="https://djzeks.github.io/deh-photographic-services-/" class="card">📸 Photography</a>
+<a href="https://djzeks.github.io/deh-cyber-security-/" class="card">🔐 Cyber Security</a>
+<a href="https://djzeks.github.io/hgd" class="card">🎨 Graphic Design</a>
+</div>
+
+<!-- YOUTUBE -->
+<div class="youtube">
+<h2>🎥 Live Mix</h2>
+<iframe src="https://www.youtube.com/embed/0OBI13wcnKU" allowfullscreen></iframe>
+</div>
+
+<!-- PRICING SECTION -->
+<h2>💰 Our Pricing</h2>
+<div class="pricing-container" id="pricingContainer"></div>
+
+<!-- GALLERY -->
+<h2>🎨 Portfolio Gallery</h2>
+<div class="gallery-filter">
+<button class="filter-btn active" onclick="filterGallery('all')">All</button>
+<button class="filter-btn" onclick="filterGallery('dj')">DJ</button>
+<button class="filter-btn" onclick="filterGallery('photography')">Photography</button>
+<button class="filter-btn" onclick="filterGallery('design')">Design</button>
+</div>
+<div class="gallery" id="gallery"></div>
+
+<!-- MODAL FOR GALLERY -->
+<div class="modal" id="imageModal">
+<span class="modal-close" onclick="closeModal()">&times;</span>
+<div class="modal-content">
+<img id="modalImage" src="" alt="Gallery Image">
+</div>
+</div>
+
+<!-- TEAM SECTION -->
+<h2>👥 Meet Our Team</h2>
+<div class="team-container" id="teamContainer"></div>
+
+<!-- REVIEWS -->
+<h2>⭐ Client Reviews</h2>
+<div class="reviews-container" id="reviewsContainer"></div>
+
+<!-- BOOKING FORM -->
+<h2>📅 Book Our Services</h2>
+<div class="booking">
+<div class="form-group">
+<input type="text" id="name" placeholder="Your Full Name" required>
+</div>
+<div class="form-group">
+<input type="email" id="email" placeholder="Your Email" required>
+</div>
+<div class="form-group">
+<input type="tel" id="phone" placeholder="Your Phone Number" required>
+</div>
+<div class="form-group">
+<input type="date" id="date" required>
+</div>
+<div class="form-group">
+<input type="time" id="time" required>
+</div>
+<div class="form-group">
+<select id="service" required>
+<option value="">-- Select Service --</option>
+<option value="DJ Services">DJ Services</option>
+<option value="Photography">Photography</option>
+<option value="Graphic Design">Graphic Design</option>
+<option value="Cyber Security">Cyber Security</option>
+</select>
+</div>
+<div class="form-group">
+<select id="tier" required>
+<option value="">-- Select Package --</option>
+<option value="Basic">Basic Package</option>
+<option value="Standard">Standard Package</option>
+<option value="Premium">Premium Package</option>
+</select>
+</div>
+<div class="form-group">
+<textarea id="requirements" placeholder="Special Requirements (Optional)"></textarea>
+</div>
+<div class="form-group">
+<div class="checkbox-group">
+<input type="checkbox" id="terms" required>
+<label for="terms">I agree to the terms and conditions</label>
+</div>
+</div>
+<button onclick="bookNow()">📱 Book + Pay via M-Pesa</button>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="dashboard" id="adminDashboard" style="display:none;">
+<h2>📊 Admin Dashboard</h2>
+<div class="dashboard-stats">
+<div class="stat-box">
+<div class="stat-number" id="totalBookings">0</div>
+<div>Total Bookings</div>
+</div>
+<div class="stat-box">
+<div class="stat-number" id="todayBookings">0</div>
+<div>Today's Bookings</div>
+</div>
+<div class="stat-box">
+<div class="stat-number" id="totalRevenue">KES 0</div>
+<div>Estimated Revenue</div>
+</div>
+</div>
+<div class="dashboard-search">
+<input type="text" id="searchBooking" placeholder="Search by name..." onkeyup="searchBookings()">
+</div>
+<select id="filterService" onchange="filterBookings()" style="padding:10px;border-radius:8px;border:none;margin:10px;">
+<option value="">All Services</option>
+<option value="DJ Services">DJ Services</option>
+<option value="Photography">Photography</option>
+<option value="Graphic Design">Graphic Design</option>
+<option value="Cyber Security">Cyber Security</option>
+</select>
+<h3>All Bookings:</h3>
+<ul id="bookingsList"></ul>
+</div>
+
+<a href="https://wa.me/254742438180" class="whatsapp">💬 WhatsApp</a>
+
+<script>
+// ============= DARK MODE =============
+function toggleDarkMode(){
+document.body.classList.toggle('light-mode');
+localStorage.setItem('darkMode',document.body.classList.contains('light-mode')?'light':'dark');
+}
+
+if(localStorage.getItem('darkMode')==='light'){
+document.body.classList.add('light-mode');
+}
+
+// ============= BACKGROUND SLIDESHOW =============
+const backgrounds = [
+"https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
+"https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+"https://images.unsplash.com/photo-1518779578993-ec3579fee39f"
+];
+
+let bgIndex = 0;
+const bg = document.getElementById("bg");
+
+function changeBackground(){
+bg.style.opacity = 0;
+setTimeout(()=>{
+bg.style.backgroundImage = `url(${backgrounds[bgIndex]})`;
+bg.style.opacity = 1;
+bgIndex = (bgIndex + 1) % backgrounds.length;
+}, 800);
+}
+
+changeBackground();
+setInterval(changeBackground, 5000);
+
+// ============= PRICING DATA =============
+const pricingData = {
+'DJ Services': {Basic: 5000, Standard: 8000, Premium: 12000},
+'Photography': {Basic: 3000, Standard: 6000, Premium: 10000},
+'Graphic Design': {Basic: 2000, Standard: 4000, Premium: 7000},
+'Cyber Security': {Basic: 4000, Standard: 8000, Premium: 15000}
+};
+
+function loadPricing(){
+const container = document.getElementById('pricingContainer');
+container.innerHTML = '';
+Object.entries(pricingData).forEach(([service, tiers]) => {
+const card = document.createElement('div');
+card.className = 'pricing-card';
+card.innerHTML = `
+<h3>${service}</h3>
+<div style="border-top:2px solid gold;margin:15px 0;"></div>
+${['Basic','Standard','Premium'].map(tier => `
+<div style="text-align:left;margin:15px 0;">
+<strong>${tier}</strong><br>
+<span class="price">KES ${tiers[tier].toLocaleString()}</span>
+<ul class="price-features">
+<li>✓ ${tier} Support</li>
+<li>✓ 4-hour Duration</li>
+<li>✓ Equipment Included</li>
+${tier==='Standard'?'<li>✓ Extra Hour Available</li>':''}
+${tier==='Premium'?'<li>✓ Unlimited Duration</li><li>✓ Premium Equipment</li>':''}
+</ul>
+</div>
+`).join('')}
+`;
+container.appendChild(card);
+});
+}
+
+// ============= GALLERY DATA =============
+const galleryData = [
+{src: 'https://images.unsplash.com/photo-1501649686526-96bf05700efb', category: 'dj', title: 'DJ Setup'},
+{src: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745', category: 'dj', title: 'Live Performance'},
+{src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30', category: 'photography', title: 'Event Photography'},
+{src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18', category: 'photography', title: 'Professional Portrait Shoot'},
+{src: 'https://images.unsplash.com/photo-1502634503288-8a176ba32444', category: 'photography', title: 'Wedding Photography'},
+{src: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352', category: 'photography', title: 'Professional Photoshoot'},
+{src: 'https://images.unsplash.com/photo-1561070791-2526d30994b5', category: 'design', title: 'Graphic Design'},
+{src: 'https://images.unsplash.com/photo-1561070791-2526d30994b5', category: 'design', title: 'Brand Design'}
+];
+
+function loadGallery(filter = 'all'){
+const gallery = document.getElementById('gallery');
+gallery.innerHTML = '';
+galleryData.filter(item => filter === 'all' || item.category === filter).forEach(item => {
+const div = document.createElement('div');
+div.className = 'gallery-item';
+div.onclick = () => openModal(item.src);
+div.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
+gallery.appendChild(div);
+});
+}
+
+function filterGallery(category){
+loadGallery(category);
+document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+event.target.classList.add('active');
+}
+
+function openModal(src){
+document.getElementById('imageModal').classList.add('active');
+document.getElementById('modalImage').src = src;
+}
+
+function closeModal(){
+document.getElementById('imageModal').classList.remove('active');
+}
+
+// ============= TEAM DATA =============
+const teamData = [
+{name: 'DJ Zeks', role: 'Head DJ & Founder', emoji: '🎧', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Sarah Johnson', role: 'Lead Photographer', emoji: '📸', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Marcus Design', role: 'Creative Director', emoji: '🎨', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}
+];
+
+function loadTeam(){
+const container = document.getElementById('teamContainer');
+container.innerHTML = '';
+teamData.forEach(member => {
+const card = document.createElement('div');
+card.className = 'team-card';
+card.innerHTML = `
+<div class="team-avatar">${member.emoji}</div>
+<h3>${member.name}</h3>
+<p>${member.role}</p>
+<div class="social-links">
+<a href="${member.instagram}" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="${member.tiktok}" title="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+<a href="${member.youtube}" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+`;
+container.appendChild(card);
+});
+}
+
+// ============= REVIEWS DATA =============
+const reviewsData = [
+{name: 'Alex Mwangi', rating: 5, text: 'Best DJ service in town! Amazing music selection and crowd engagement.'},
+{name: 'Lisa Kariuki', rating: 5, text: 'Professional photography team. Great quality photos from our event.'},
+{name: 'John Smith', rating: 4, text: 'Great graphic design work. Very creative and responsive team.'},
+{name: 'Diana Ochieng', rating: 5, text: 'Excellent cybersecurity consultation. Very knowledgeable.'}
+];
+
+function loadReviews(){
+const container = document.getElementById('reviewsContainer');
+container.innerHTML = '';
+reviewsData.forEach(review => {
+const card = document.createElement('div');
+card.className = 'review-card';
+card.innerHTML = `
+<div class="stars">${'⭐'.repeat(review.rating)}</div>
+<div class="review-text">"${review.text}"</div>
+<div class="reviewer-name">- ${review.name}</div>
+`;
+container.appendChild(card);
+});
+}
+
+// ============= NOTIFICATIONS =============
+function showNotification(message, type = 'success'){
+const notification = document.createElement('div');
+notification.className = `notification ${type}`;
+notification.textContent = message;
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 4000);
+}
+
+// ============= BOOKING SYSTEM =============
+function bookNow(){
+const name = document.getElementById('name').value.trim();
+const email = document.getElementById('email').value.trim();
+const phone = document.getElementById('phone').value.trim();
+const date = document.getElementById('date').value;
+const time = document.getElementById('time').value;
+const service = document.getElementById('service').value;
+const tier = document.getElementById('tier').value;
+const requirements = document.getElementById('requirements').value;
+const terms = document.getElementById('terms').checked;
+
+if(!name || !email || !phone || !date || !time || !service || !tier){
+showNotification('Please fill all required fields', 'error');
+return;
+}
+
+if(!terms){
+showNotification('Please agree to terms and conditions', 'error');
+return;
+}
+
+const price = pricingData[service][tier];
+const booking = {id: Date.now(), name, email, phone, date, time, service, tier, requirements, price, status: 'Pending', timestamp: new Date().toLocaleString()};
+let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+bookings.push(booking);
+localStorage.setItem('bookings', JSON.stringify(bookings));
+
+showNotification(`✅ Booking confirmed! Total: KES ${price.toLocaleString()}`, 'success');
+
+const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}%0DDate:${date}%0DTime:${time}%0DPrice:KES${price}%0DRequirements:${requirements}`;
+setTimeout(() => window.location.href = mailLink, 1500);
+
+document.getElementById('name').value = '';
+document.getElementById('email').value = '';
+document.getElementById('phone').value = '';
+document.getElementById('date').value = '';
+document.getElementById('time').value = '';
+document.getElementById('service').value = '';
+document.getElementById('tier').value = '';
+document.getElementById('requirements').value = '';
+document.getElementById('terms').checked = false;
+
+loadBookings();
+}
+
+// ============= DASHBOARD =============
+function toggleAdminDashboard(){
+const dashboard = document.getElementById('adminDashboard');
+dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
+if(dashboard.style.display === 'block') loadBookings();
+}
+
+function loadBookings(){
+const list = document.getElementById('bookingsList');
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+list.innerHTML = '';
+
+bookings.forEach(b => {
+const li = document.createElement('li');
+li.innerHTML = `
+<div>
+<strong>${b.name}</strong><br>
+${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
+</div>
+<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
+`;
+list.appendChild(li);
+});
+
+updateDashboardStats();
+}
+
+function deleteBooking(id){
+let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+bookings = bookings.filter(b => b.id !== id);
+localStorage.setItem('bookings', JSON.stringify(bookings));
+loadBookings();
+showNotification('Booking deleted', 'info');
+}
+
+function searchBookings(){
+const query = document.getElementById('searchBooking').value.toLowerCase();
+const list = document.getElementById('bookingsList');
+Array.from(list.children).forEach(li => {
+li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+});
+}
+
+function filterBookings(){
+const service = document.getElementById('filterService').value;
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+const list = document.getElementById('bookingsList');
+list.innerHTML = '';
+
+bookings.filter(b => !service || b.service === service).forEach(b => {
+const li = document.createElement('li');
+li.innerHTML = `
+<div>
+<strong>${b.name}</strong><br>
+${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
+</div>
+<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
+`;
+list.appendChild(li);
+});
+}
+
+function updateDashboardStats(){
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+const today = new Date().toISOString().split('T')[0];
+const todayBookings = bookings.filter(b => b.date === today).length;
+const totalRevenue = bookings.reduce((sum, b) => sum + b.price, 0);
+
+document.getElementById('totalBookings').textContent = bookings.length;
+document.getElementById('todayBookings').textContent = todayBookings;
+document.getElementById('totalRevenue').textContent = `KES ${totalRevenue.toLocaleString()}`;
+}
+
+// ============= INIT =============
+window.addEventListener('load', () => {
+loadPricing();
+loadGallery();
+loadTeam();
+loadReviews();
+loadBookings();
+});
+</script>
+
+</body>
+</html>
