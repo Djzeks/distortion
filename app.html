@@ -160,6 +160,7 @@
 
         .install-prompt.show {
             display: block;
+            animation: slideIn 0.3s ease-out;
         }
 
         .install-prompt-text {
@@ -192,6 +193,7 @@
         .install-btn-secondary {
             background: rgba(255,255,255,0.1);
             color: var(--text);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .services-grid {
@@ -494,6 +496,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
 
         .modal-content img,
@@ -594,8 +597,8 @@
                 <div class="install-prompt" id="installPrompt">
                     <div class="install-prompt-text">📲 Install Distortion app for quick access</div>
                     <div class="install-buttons">
-                        <button class="install-btn install-btn-primary" onclick="installApp()">Install</button>
-                        <button class="install-btn install-btn-secondary" onclick="dismissInstall()">Not Now</button>
+                        <button class="install-btn install-btn-primary" onclick="installApp()">📥 Install</button>
+                        <button class="install-btn install-btn-secondary" onclick="dismissInstall()">Later</button>
                     </div>
                 </div>
 
@@ -722,7 +725,7 @@
                 </div>
 
                 <div class="contact-buttons">
-                    <a href="https://wa.me/254" class="contact-btn" target="_blank">
+                    <a href="https://wa.me/254742438180" class="contact-btn" target="_blank">
                         <span>💬</span>
                         <span class="nav-item-label">WhatsApp</span>
                     </a>
@@ -737,6 +740,17 @@
             <div class="screen" id="screen-settings">
                 <div style="padding: 16px;">
                     <div class="profile-section">
+                        <div class="profile-section-title">📱 Installation Help</div>
+                        <div class="profile-section-content" style="margin: 12px 0;">
+                            <strong style="display: block; margin-bottom: 8px;">Android (Chrome, Firefox, Samsung Internet):</strong>
+                            <p style="margin-bottom: 12px;">1. Tap the menu icon (⋮)<br>2. Select "Install app"<br>3. Tap "Install" to confirm</p>
+                            
+                            <strong style="display: block; margin-bottom: 8px;">iPhone/iPad (Safari):</strong>
+                            <p>1. Tap Share button ⬆️<br>2. Select "Add to Home Screen"<br>3. Tap "Add" to confirm</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
                         <div class="profile-section-title">App Settings</div>
                         <div style="margin: 12px 0;">
                             <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; margin: 12px 0;">
@@ -750,7 +764,7 @@
                         <div class="profile-section-title">About App</div>
                         <div class="profile-section-content">
                             <div style="margin: 8px 0;">
-                                <strong>Version:</strong> 1.1.0
+                                <strong>Version:</strong> 1.2.0
                             </div>
                             <div style="margin: 8px 0;">
                                 <strong>Type:</strong> Progressive Web App (PWA)
@@ -759,19 +773,11 @@
                                 <strong>Developer:</strong> Distortion Entertainment
                             </div>
                             <div style="margin: 8px 0;">
+                                <strong>Contact:</strong> +254 742 438 180
+                            </div>
+                            <div style="margin: 8px 0;">
                                 <strong>Website:</strong> djzeks.github.io/distortion
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-section">
-                        <div class="profile-section-title">Installation</div>
-                        <div class="profile-section-content">
-                            <p style="margin-bottom: 12px;">📲 Install this app on your home screen for easy access!</p>
-                            <p style="font-size: 12px; line-height: 1.6;">
-                                <strong>iOS:</strong> Tap Share → Add to Home Screen<br>
-                                <strong>Android:</strong> Tap Menu (⋮) → Install app
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -814,16 +820,24 @@
     <script>
         // PWA INSTALLATION HANDLER
         let deferredPrompt;
+        let installPromptShown = false;
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            document.getElementById('installPrompt').classList.add('show');
-            console.log('Install prompt ready');
+            
+            // Show install prompt after a short delay
+            setTimeout(() => {
+                if (!installPromptShown) {
+                    document.getElementById('installPrompt').classList.add('show');
+                    installPromptShown = true;
+                    console.log('Install prompt displayed');
+                }
+            }, 2000);
         });
 
         window.addEventListener('appinstalled', () => {
-            showNotification('✅ App installed successfully!');
+            showNotification('✅ App installed successfully!', 'success');
             deferredPrompt = null;
             document.getElementById('installPrompt').classList.remove('show');
             console.log('PWA was installed');
@@ -835,11 +849,16 @@
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the install prompt');
+                        showNotification('📥 Installing app...', 'success');
                     } else {
                         console.log('User dismissed the install prompt');
                     }
                     deferredPrompt = null;
+                    document.getElementById('installPrompt').classList.remove('show');
                 });
+            } else {
+                // Fallback for browsers that don't support install prompt
+                showNotification('📱 Use your browser menu to install this app', 'info');
             }
         }
 
@@ -849,10 +868,12 @@
 
         // SERVICE WORKER REGISTRATION
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(registration => {
-                console.log('Service Worker registered successfully:', registration);
-            }).catch(err => {
-                console.log('Service Worker registration failed:', err);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(registration => {
+                    console.log('✅ Service Worker registered:', registration);
+                }).catch(err => {
+                    console.log('❌ Service Worker registration failed:', err);
+                });
             });
         }
 
@@ -893,17 +914,17 @@
             const budget = document.getElementById('budgetRange').value;
 
             if (!name || !phone || !email || !date || !desc || !budget) {
-                showNotification('Please fill all fields', 'error');
+                showNotification('⚠️ Please fill all fields', 'error');
                 return;
             }
 
-            const message = `Booking Request:\nService: ${service}\nDate: ${date}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nBudget: ${budget}\nDetails: ${desc}`;
+            const message = `🎉 *Booking Request from Distortion App*\n\n📋 *Service:* ${service}\n📅 *Date:* ${date}\n👤 *Name:* ${name}\n📱 *Phone:* ${phone}\n📧 *Email:* ${email}\n💰 *Budget:* ${budget}\n\n📝 *Details:*\n${desc}`;
             
-            // Send to WhatsApp
-            const whatsappUrl = `https://wa.me/254?text=${encodeURIComponent(message)}`;
+            // Send to WhatsApp with correct number
+            const whatsappUrl = `https://wa.me/254742438180?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             
-            showNotification('Booking request sent! 🎉', 'success');
+            showNotification('✅ Booking request sent to WhatsApp!', 'success');
             
             // Reset form
             document.getElementById('eventDate').value = '';
@@ -933,7 +954,7 @@
                 if (item.type === 'image') {
                     return `
                         <div class="portfolio-item" onclick="openMedia('${item.src}', 'image')">
-                            <img src="${item.src}" alt="Portfolio">
+                            <img src="${item.src}" alt="Portfolio" loading="lazy">
                         </div>
                     `;
                 } else {
@@ -957,7 +978,7 @@
             if (type === 'image') {
                 content.innerHTML = `<img src="${src}" alt="Portfolio">`;
             } else {
-                content.innerHTML = `<video width="100%" controls><source src="${src}"></video>`;
+                content.innerHTML = `<video width="100%" controls autoplay><source src="${src}"></video>`;
             }
             
             modal.classList.add('active');
@@ -971,7 +992,15 @@
         function showNotification(message, type = 'success') {
             const notif = document.createElement('div');
             notif.className = 'notification';
-            notif.style.background = type === 'success' ? '#25D366' : '#ff4444';
+            
+            if (type === 'error') {
+                notif.style.background = '#ff4444';
+            } else if (type === 'info') {
+                notif.style.background = '#0066cc';
+            } else {
+                notif.style.background = '#25D366';
+            }
+            
             notif.textContent = message;
             document.body.appendChild(notif);
             
@@ -979,7 +1008,7 @@
         }
 
         function toggleNotifications() {
-            showNotification('🔔 Notifications enabled');
+            showNotification('🔔 Notifications enabled', 'info');
         }
 
         function openSettings() {
@@ -988,9 +1017,7 @@
         }
 
         // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            console.log('Distortion Entertainment App Loaded ✨');
-        });
+        console.log('✨ Distortion Entertainment App Loaded');
     </script>
 </body>
 
