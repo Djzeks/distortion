@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffd700">
+    <title>Distortion Entertainment - Mobile App</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffd700;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+            --accent: #25D366;
+            --card-bg: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: var(--dark);
+        }
+
+        /* MOBILE APP HEADER */
+        .app-header {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+            backdrop-filter: blur(10px);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .app-header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .app-header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .icon-btn:active {
+            background: rgba(255,215,0,0.3);
+            transform: scale(0.95);
+        }
+
+        /* CONTENT AREA */
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .screen {
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HOME SCREEN */
+        .home-banner {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(37,211,102,0.1));
+            padding: 20px 16px;
+            margin: 16px;
+            border-radius: 12px;
+            border: var(--border);
+            text-align: center;
+        }
+
+        .home-banner h2 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .home-banner p {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            border: var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .service-card:active {
+            background: rgba(255,215,0,0.15);
+            transform: scale(0.95);
+        }
+
+        .service-card-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .service-card-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* BOOKING SCREEN */
+        .booking-form {
+            padding: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: var(--border);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            background: rgba(255,255,255,0.12);
+            border-color: var(--primary);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary), #ffed4e);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .form-button:active {
+            transform: scale(0.98);
+        }
+
+        /* PORTFOLIO/GALLERY SCREEN */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 180px;
+            background: rgba(255,255,255,0.05);
+            border: var(--border);
+        }
+
+        .portfolio-item img,
+        .portfolio-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .portfolio-item:active img,
+        .portfolio-item:active video {
+            transform: scale(1.05);
+        }
+
+        .portfolio-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        /* PROFILE/ABOUT SCREEN */
+        .profile-header {
+            text-align: center;
+            padding: 24px 16px 16px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, var(--primary), #ffed4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border: 3px solid var(--primary);
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 16px;
+        }
+
+        .profile-section {
+            margin: 20px 16px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: var(--border);
+        }
+
+        .profile-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .profile-section-content {
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            margin: 20px 16px;
+        }
+
+        .contact-btn {
+            flex: 1;
+            padding: 12px;
+            background: var(--card-bg);
+            border: var(--border);
+            color: var(--text);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .contact-btn:active {
+            background: rgba(255,215,0,0.2);
+        }
+
+        /* NAVIGATION BAR */
+        .app-navbar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            padding: 8px 8px 16px;
+            border-top: 1px solid rgba(255,215,0,0.2);
+            background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+            backdrop-filter: blur(10px);
+            position: sticky;
+            bottom: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            font-size: 10px;
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+
+        .nav-item.active {
+            background: rgba(255,215,0,0.15);
+            color: var(--primary);
+        }
+
+        .nav-item-icon {
+            font-size: 20px;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            border-radius: 12px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content img,
+        .modal-content video {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 2000;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translate(-50%, -30px);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        /* SCROLLBAR */
+        .app-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .app-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .app-content::-webkit-scrollbar-thumb {
+            background: rgba(255,215,0,0.3);
+            border-radius: 3px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .app-header-title {
+                font-size: 16px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .app-navbar {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .nav-item-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <div class="app-header">
+            <div class="app-header-title">📊 Distortion</div>
+            <div class="app-header-icons">
+                <button class="icon-btn" onclick="toggleNotifications()">🔔</button>
+                <button class="icon-btn" onclick="openSettings()">⚙️</button>
+            </div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="app-content">
+            
+            <!-- HOME SCREEN -->
+            <div class="screen active" id="screen-home">
+                <div class="home-banner">
+                    <h2>Welcome to Distortion</h2>
+                    <p>Creative Excellence & Digital Innovation</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('graphic-design')">
+                        <div class="service-card-icon">🎨</div>
+                        <div class="service-card-name">Graphic Design</div>
+                    </div>
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('dj-services')">
+                        <div class="service-card-icon">🎧</div>
+                        <div class="service-card-name">DJ Services</div>
+                    </div>
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('photography')">
+                        <div class="service-card-icon">📸</div>
+                        <div class="service-card-name">Photography</div>
+                    </div>
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('web-dev')">
+                        <div class="service-card-icon">💻</div>
+                        <div class="service-card-name">Web Dev</div>
+                    </div>
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('branding')">
+                        <div class="service-card-icon">🏷️</div>
+                        <div class="service-card-name">Branding</div>
+                    </div>
+                    <div class="service-card" onclick="switchScreen('screen-booking'); selectService('cyber-security')">
+                        <div class="service-card-icon">🔐</div>
+                        <div class="service-card-name">Cyber Security</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOOKING SCREEN -->
+            <div class="screen" id="screen-booking">
+                <div class="booking-form">
+                    <div class="form-group">
+                        <label class="form-label">Service Type</label>
+                        <select class="form-select" id="serviceType">
+                            <option value="graphic-design">🎨 Graphic Design</option>
+                            <option value="dj-services">🎧 DJ Services</option>
+                            <option value="photography">📸 Photography</option>
+                            <option value="web-dev">💻 Web Development</option>
+                            <option value="branding">🏷️ Branding</option>
+                            <option value="cyber-security">🔐 Cyber Security</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Event Date</label>
+                        <input type="date" class="form-input" id="eventDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your name" id="userName">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your phone" id="userPhone">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="Enter your email" id="userEmail">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Event Description</label>
+                        <textarea class="form-textarea" placeholder="Tell us about your event..." id="eventDesc"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Budget Range</label>
+                        <select class="form-select" id="budgetRange">
+                            <option value="">Select budget range</option>
+                            <option value="1000-5000">KES 1,000 - 5,000</option>
+                            <option value="5000-10000">KES 5,000 - 10,000</option>
+                            <option value="10000-50000">KES 10,000 - 50,000</option>
+                            <option value="50000+">KES 50,000+</option>
+                        </select>
+                    </div>
+
+                    <button class="form-button" onclick="submitBooking()">📤 Submit Booking Request</button>
+                </div>
+            </div>
+
+            <!-- PORTFOLIO SCREEN -->
+            <div class="screen" id="screen-portfolio">
+                <div style="padding: 16px;">
+                    <div class="profile-section-title" style="margin: 0;">Recent Works</div>
+                </div>
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Portfolio items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- PROFILE SCREEN -->
+            <div class="screen" id="screen-profile">
+                <div class="profile-header">
+                    <div class="profile-avatar">DJ Z</div>
+                    <div class="profile-name">DJ Zeks</div>
+                    <div class="profile-title">Founder & Creative Director</div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">About</div>
+                    <div class="profile-section-content">
+                        Distortion Entertainment is a Creative and Technology Company dedicated to delivering high-quality services including graphic design, DJ entertainment, photography, branding, web development, and cyber security.
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">Company Info</div>
+                    <div class="profile-section-content">
+                        📍 Based in Kenya<br>
+                        🎂 Founded: June 9, 2020<br>
+                        👥 100+ Happy Clients
+                    </div>
+                </div>
+
+                <div class="contact-buttons">
+                    <a href="https://wa.me/254" class="contact-btn" target="_blank">
+                        <span>💬</span>
+                        <span class="nav-item-label">WhatsApp</span>
+                    </a>
+                    <a href="mailto:contact@distortion.com" class="contact-btn">
+                        <span>✉️</span>
+                        <span class="nav-item-label">Email</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SETTINGS SCREEN -->
+            <div class="screen" id="screen-settings">
+                <div style="padding: 16px;">
+                    <div class="profile-section">
+                        <div class="profile-section-title">App Settings</div>
+                        <div style="margin: 12px 0;">
+                            <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; margin: 12px 0;">
+                                <input type="checkbox" id="notificationToggle" checked>
+                                <span style="font-size: 13px;">Enable Notifications</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="profile-section-title">About App</div>
+                        <div class="profile-section-content">
+                            <div style="margin: 8px 0;">
+                                <strong>Version:</strong> 1.0.0
+                            </div>
+                            <div style="margin: 8px 0;">
+                                <strong>Developer:</strong> Distortion Entertainment
+                            </div>
+                            <div style="margin: 8px 0;">
+                                <strong>Website:</strong> djzeks.github.io/distortion
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION BAR -->
+        <div class="app-navbar">
+            <button class="nav-item active" onclick="switchScreen('screen-home'); updateNav(0)">
+                <span class="nav-item-icon">🏠</span>
+                <span class="nav-item-label">Home</span>
+            </button>
+            <button class="nav-item" onclick="switchScreen('screen-booking'); updateNav(1)">
+                <span class="nav-item-icon">📅</span>
+                <span class="nav-item-label">Book</span>
+            </button>
+            <button class="nav-item" onclick="switchScreen('screen-portfolio'); updateNav(2); loadPortfolio()">
+                <span class="nav-item-icon">🖼️</span>
+                <span class="nav-item-label">Works</span>
+            </button>
+            <button class="nav-item" onclick="switchScreen('screen-profile'); updateNav(3)">
+                <span class="nav-item-icon">👤</span>
+                <span class="nav-item-label">Profile</span>
+            </button>
+            <button class="nav-item" onclick="switchScreen('screen-settings'); updateNav(4)">
+                <span class="nav-item-icon">⚙️</span>
+                <span class="nav-item-label">More</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="mediaModal">
+        <div style="position: relative; width: 90vw; max-height: 80vh;">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // SCREEN NAVIGATION
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            document.querySelector('.app-content').scrollTop = 0;
+        }
+
+        function updateNav(index) {
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+
+        // SERVICES
+        function selectService(service) {
+            const serviceMap = {
+                'graphic-design': 'graphic-design',
+                'dj-services': 'dj-services',
+                'photography': 'photography',
+                'web-dev': 'web-dev',
+                'branding': 'branding',
+                'cyber-security': 'cyber-security'
+            };
+            document.getElementById('serviceType').value = serviceMap[service];
+        }
+
+        // BOOKING
+        function submitBooking() {
+            const service = document.getElementById('serviceType').value;
+            const date = document.getElementById('eventDate').value;
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const email = document.getElementById('userEmail').value;
+            const desc = document.getElementById('eventDesc').value;
+            const budget = document.getElementById('budgetRange').value;
+
+            if (!name || !phone || !email || !date || !desc || !budget) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            const message = `Booking Request:\nService: ${service}\nDate: ${date}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nBudget: ${budget}\nDetails: ${desc}`;
+            
+            // Send to WhatsApp
+            const whatsappUrl = `https://wa.me/254?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            showNotification('Booking request sent! 🎉', 'success');
+            
+            // Reset form
+            document.getElementById('eventDate').value = '';
+            document.getElementById('userName').value = '';
+            document.getElementById('userPhone').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('eventDesc').value = '';
+            document.getElementById('budgetRange').value = '';
+        }
+
+        // PORTFOLIO
+        function loadPortfolio() {
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            const portfolioItems = [
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg' },
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0003.jpg' },
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0004.jpg' },
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0009.jpg' },
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0010.jpg' },
+                { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0011.jpg' },
+                { type: 'video', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4' },
+            ];
+
+            portfolioGrid.innerHTML = portfolioItems.map(item => {
+                if (item.type === 'image') {
+                    return `
+                        <div class="portfolio-item" onclick="openMedia('${item.src}', 'image')">
+                            <img src="${item.src}" alt="Portfolio">
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="portfolio-item" onclick="openMedia('${item.src}', 'video')">
+                            <video>
+                                <source src="${item.src}">
+                            </video>
+                            <div class="portfolio-play">▶️</div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        // MODAL
+        function openMedia(src, type) {
+            const modal = document.getElementById('mediaModal');
+            const content = document.getElementById('modalContent');
+            
+            if (type === 'image') {
+                content.innerHTML = `<img src="${src}" alt="Portfolio">`;
+            } else {
+                content.innerHTML = `<video width="100%" controls><source src="${src}"></video>`;
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('mediaModal').classList.remove('active');
+        }
+
+        // NOTIFICATIONS
+        function showNotification(message, type = 'success') {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.style.background = type === 'success' ? '#25D366' : '#ff4444';
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            
+            setTimeout(() => notif.remove(), 3000);
+        }
+
+        function toggleNotifications() {
+            showNotification('🔔 Notifications enabled');
+        }
+
+        function openSettings() {
+            switchScreen('screen-settings');
+            updateNav(4);
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Distortion Entertainment App Loaded ✨');
+        });
+    </script>
+</body>
+
+</html>
