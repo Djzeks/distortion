@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Distortion">
     <meta name="theme-color" content="#ffd700">
+    <meta name="description" content="Distortion Entertainment - Creative Excellence & Digital Innovation. Graphic Design, DJ Services, Photography, Web Development, Branding & Cyber Security.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23ffd700' width='192' height='192'/><text x='50%' y='50%' font-size='80' font-weight='bold' text-anchor='middle' dominant-baseline='central' font-family='Arial' fill='%231a1a1a'>📊</text></svg>">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23ffd700' width='180' height='180' rx='40'/><text x='90' y='90' font-size='90' font-weight='bold' text-anchor='middle' dominant-baseline='central' font-family='Arial' fill='%231a1a1a'>📊</text></svg>">
+    
     <title>Distortion Entertainment - Mobile App</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -135,6 +146,52 @@
         .home-banner p {
             color: rgba(255,255,255,0.7);
             font-size: 13px;
+        }
+
+        .install-prompt {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+            padding: 16px;
+            margin: 0 16px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.3);
+            text-align: center;
+            display: none;
+        }
+
+        .install-prompt.show {
+            display: block;
+        }
+
+        .install-prompt-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
+        }
+
+        .install-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .install-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .install-btn-primary {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .install-btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
         }
 
         .services-grid {
@@ -534,6 +591,14 @@
             
             <!-- HOME SCREEN -->
             <div class="screen active" id="screen-home">
+                <div class="install-prompt" id="installPrompt">
+                    <div class="install-prompt-text">📲 Install Distortion app for quick access</div>
+                    <div class="install-buttons">
+                        <button class="install-btn install-btn-primary" onclick="installApp()">Install</button>
+                        <button class="install-btn install-btn-secondary" onclick="dismissInstall()">Not Now</button>
+                    </div>
+                </div>
+
                 <div class="home-banner">
                     <h2>Welcome to Distortion</h2>
                     <p>Creative Excellence & Digital Innovation</p>
@@ -685,7 +750,10 @@
                         <div class="profile-section-title">About App</div>
                         <div class="profile-section-content">
                             <div style="margin: 8px 0;">
-                                <strong>Version:</strong> 1.0.0
+                                <strong>Version:</strong> 1.1.0
+                            </div>
+                            <div style="margin: 8px 0;">
+                                <strong>Type:</strong> Progressive Web App (PWA)
                             </div>
                             <div style="margin: 8px 0;">
                                 <strong>Developer:</strong> Distortion Entertainment
@@ -693,6 +761,17 @@
                             <div style="margin: 8px 0;">
                                 <strong>Website:</strong> djzeks.github.io/distortion
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="profile-section-title">Installation</div>
+                        <div class="profile-section-content">
+                            <p style="margin-bottom: 12px;">📲 Install this app on your home screen for easy access!</p>
+                            <p style="font-size: 12px; line-height: 1.6;">
+                                <strong>iOS:</strong> Tap Share → Add to Home Screen<br>
+                                <strong>Android:</strong> Tap Menu (⋮) → Install app
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -733,6 +812,50 @@
     </div>
 
     <script>
+        // PWA INSTALLATION HANDLER
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').classList.add('show');
+            console.log('Install prompt ready');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            showNotification('✅ App installed successfully!');
+            deferredPrompt = null;
+            document.getElementById('installPrompt').classList.remove('show');
+            console.log('PWA was installed');
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        function dismissInstall() {
+            document.getElementById('installPrompt').classList.remove('show');
+        }
+
+        // SERVICE WORKER REGISTRATION
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(registration => {
+                console.log('Service Worker registered successfully:', registration);
+            }).catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+
         // SCREEN NAVIGATION
         function switchScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -794,6 +917,8 @@
         // PORTFOLIO
         function loadPortfolio() {
             const portfolioGrid = document.getElementById('portfolioGrid');
+            if (portfolioGrid.innerHTML.trim()) return; // Already loaded
+
             const portfolioItems = [
                 { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg' },
                 { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0003.jpg' },
