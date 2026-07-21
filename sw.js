@@ -1,4 +1,4 @@
-const CACHE_NAME = 'distortion-v1';
+const CACHE_NAME = 'distortion-v2';
 const urlsToCache = [
   '/distortion/',
   '/distortion/app.html',
@@ -11,9 +11,9 @@ const urlsToCache = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
+      console.log('✅ Opened cache:', CACHE_NAME);
       return cache.addAll(urlsToCache).catch((err) => {
-        console.log('Cache addAll error:', err);
+        console.log('❌ Cache addAll error:', err);
       });
     })
   );
@@ -28,6 +28,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('🗑️ Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -35,6 +36,59 @@ self.addEventListener('activate', (event) => {
     })
   );
   self.clients.claim();
+});
+
+// Fetch event - serve from cache, fallback to network
+self.addEventListener('fetch', (event) => {
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Skip chrome extensions and other non-http(s) requests
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      // Return cached version if available
+      if (response) {
+        return response;
+      }
+
+      // Clone the request
+      const fetchRequest = event.request.clone();
+
+      return fetch(fetchRequest).then((response) => {
+        // Check if valid response
+        if (!response || response.status !== 200 || response.type === 'error') {
+          return response;
+        }
+
+        // Clone the response
+        const responseToCache = response.clone();
+
+        // Cache the new response
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseToCache);
+        });
+
+        return response;
+      }).catch(() => {
+        // Return offline page or cached response
+        return caches.match('/distortion/app.html');
+      });
+    })
+  );
+});
+
+// Handle messages from clients
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});  self.clients.claim();
 });
 
 // Fetch event - serve from cache, fallback to network
