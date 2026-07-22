@@ -932,73 +932,11 @@
             document.getElementById('userPhone').value = '';
             document.getElementById('userEmail').value = '';
             document.getElementById('eventDesc').value = '';
-            document.getElementById('budgetRange').value = '';
-        }
-
-        // PORTFOLIO
-function loadPortfolio() {
-    const portfolioGrid = document.getElementById('portfolioGrid');
-    if (portfolioGrid.innerHTML.trim()) return; // Already loaded
-
-    const portfolioItems = [
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/01d6170f-342b-465e-8b2f-2aeb05844c6a.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/191a117f-1e36-46c4-b550-8acc2e49d379.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/08d8d607-d66f-4359-9bd5-23ffc3d830b8.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/17f794f9-6a4f-43d2-98d2-1f5d0f7051f3.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/18d68553-21f3-4823-a3a9-45f1f75482fb.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/1f664b80-9206-40d6-b2b4-44bedfb419d8.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/20f51ae0-30f8-4100-8dff-c70b2dd5bdb1.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/263c107c-a65f-4cfa-859e-a6f849f68270.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/2f5536da-1daf-47b5-99f3-41f8019a8bf7.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/301588b9-aaa2-476e-8f59-211ff812c108.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/3170d023-ca53-425e-abba-eb2a643d2f25.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/31eba134-f9d7-48a4-8892-ef28681e572d.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/42902b63-b62a-4811-b4e3-7e00167589ae.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/4e6ec383-1086-4779-b13b-40813536ba60.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/5569cea0-0bab-4c39-b6dd-47d48b36fdd6.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/55716e49-b6d5-4e72-9228-d9f846afbfed.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/62178f6a-4543-493d-969f-a2e4effb7c97.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/6ab9d72d-678b-4c3c-a079-574560691f98.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/7238c89c-c4b4-40eb-a306-8c6f96eb9571.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/79e7edec-328e-44fc-88d6-731addc6be89.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/803fcef5-c16a-4e42-b340-b6fdd2c4a319.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/837199e4-a628-4fda-979f-0e922359c2a9.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8c8a9e20-0c9f-47e6-8941-4385643f5ec7.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8e9cb9eb-5816-4ff0-a68f-9510bbb1e441.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/907e98bd-a885-4947-ad4c-89f7dcd7deb8.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0003.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0004.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0008.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0009.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0010.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0029.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0007.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0009.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0010.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0011.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0012.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0013.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0014.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0015.jpg' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/Jun%203%2C%202026%2C%2001_30_14%20PM.png' },
-        { type: 'video', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/a58c6c6f-d411-4581-bc60-10b3dbaee241.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ac0c8955-6c36-4683-a2b4-0c5aa20644bb.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bd14015f-005c-416f-a2c3-746b24f5ac2c.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/be95a5fb-695d-48a2-bf1b-c133b1136641.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bee05245-46e5-4dbf-a5dc-f8b78653c488.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca556e92-ec9f-4b40-91af-9d7853574fe8.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca615d69-972f-42b1-b20c-1a9d8a429cb1.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d0474107-90f2-4c40-a032-2145ef397eeb.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d3fb5813-69f1-4285-afea-78c5cb54943a.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d796a11e-00dc-4937-9396-9b924b5c20e6.png.webp' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/da8aeb3a-ed4b-4617-b4fb-d6fd877f4dc5.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/e609ae6e-80fd-4e88-87a5-67f8ec358555.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/12ab4156-a9b8-442e-8343-a47696ecd3c7.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/79f1dada-76ec-47ec-b1d6-4f3b0e00f859.png' },
-        { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/7d517b85-a299-4c91-84b4-076bc7eea4bc.png' },
-// PORTFOLIO
+            document.getElementById('budgetRange').value = ''
+            
+    }
+            
+            // PORTFOLIO
 function loadPortfolio() {
     const portfolioGrid = document.getElementById('portfolioGrid');
     if (portfolioGrid.innerHTML.trim()) return; // Already loaded
@@ -1082,7 +1020,7 @@ function loadPortfolio() {
         }
     }).join('');
 }
-
+            
         // MODAL
         function openMedia(src, type) {
             const modal = document.getElementById('mediaModal');
