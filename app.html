@@ -351,6 +351,14 @@
             justify-content: center;
             font-size: 40px;
             border: 3px solid var(--primary);
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .profile-name {
@@ -633,6 +641,34 @@
                         <div class="service-card-name">Cyber Security</div>
                     </div>
                 </div>
+
+                <!-- RECENT WORKS PREVIEW -->
+                <div style="padding: 16px 16px 8px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <div class="profile-section-title" style="margin:0;">Recent Works</div>
+                        <button onclick="switchScreen('screen-portfolio'); updateNav(1);" style="background:none;border:none;color:var(--primary);font-size:12px;cursor:pointer;">See all →</button>
+                    </div>
+                    <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; scrollbar-width:none;">
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/191a117f-1e36-46c4-b550-8acc2e49d379.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/08d8d607-d66f-4359-9bd5-23ffc3d830b8.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/42902b63-b62a-4811-b4e3-7e00167589ae.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/ca615d69-972f-42b1-b20c-1a9d8a429cb1.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                        <div style="flex:0 0 120px;height:120px;border-radius:10px;overflow:hidden;border:var(--border);cursor:pointer;" onclick="switchScreen('screen-portfolio'); updateNav(1);">
+                            <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/7d517b85-a299-4c91-84b4-076bc7eea4bc.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background='#222'">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- BOOKING SCREEN -->
@@ -686,7 +722,7 @@
                         </select>
                     </div>
 
-                    <button class="form-button" onclick="submitBooking()">📤 Submit Booking Request</button>
+                    <button type="button" id="bookingSubmitButton" class="form-button" onclick="submitBooking()">📲 Send Booking to WhatsApp</button>
                 </div>
             </div>
 
@@ -703,7 +739,9 @@
             <!-- PROFILE SCREEN -->
             <div class="screen" id="screen-profile">
                 <div class="profile-header">
-                    <div class="profile-avatar">DJ Z</div>
+                    <div class="profile-avatar">
+                        <img src="https://raw.githubusercontent.com/Djzeks/distortion/main/191a117f-1e36-46c4-b550-8acc2e49d379.png" alt="DJ Zeks" onerror="this.parentElement.innerHTML='DJ Z'">
+                    </div>
                     <div class="profile-name">DJ Zeks</div>
                     <div class="profile-title">Founder & Creative Director</div>
                 </div>
@@ -794,7 +832,7 @@
                 <span class="nav-item-icon">📅</span>
                 <span class="nav-item-label">Book</span>
             </button>
-            <button class="nav-item" onclick="switchScreen('screen-portfolio'); updateNav(2); loadPortfolio()">
+            <button class="nav-item" onclick="switchScreen('screen-portfolio'); updateNav(2); loadPortfolio(true)">
                 <span class="nav-item-icon">🖼️</span>
                 <span class="nav-item-label">Works</span>
             </button>
@@ -907,39 +945,52 @@
         function submitBooking() {
             const service = document.getElementById('serviceType').value;
             const date = document.getElementById('eventDate').value;
-            const name = document.getElementById('userName').value;
-            const phone = document.getElementById('userPhone').value;
-            const email = document.getElementById('userEmail').value;
-            const desc = document.getElementById('eventDesc').value;
+            const name = document.getElementById('userName').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const desc = document.getElementById('eventDesc').value.trim();
             const budget = document.getElementById('budgetRange').value;
 
             if (!name || !phone || !email || !date || !desc || !budget) {
-                showNotification('⚠️ Please fill all fields', 'error');
+                showNotification('⚠️ Please fill in all booking fields', 'error');
                 return;
             }
 
-            const message = `🎉 *Booking Request from Distortion App*\n\n📋 *Service:* ${service}\n📅 *Date:* ${date}\n👤 *Name:* ${name}\n📱 *Phone:* ${phone}\n📧 *Email:* ${email}\n💰 *Budget:* ${budget}\n\n📝 *Details:*\n${desc}`;
-            
-            // Send to WhatsApp with correct number
-            const whatsappUrl = `https://wa.me/254717140103?text=${encodeURIComponent(message)}`;
+            // WhatsApp: 0717140103 converted to international format
+            const whatsappNumber = '254717140103';
+
+            const message = `🎉 NEW BOOKING REQUEST - DISTORTION ENTERTAINMENT
+
+📋 Service: ${service}
+📅 Event Date: ${date}
+👤 Name: ${name}
+📱 Phone: ${phone}
+📧 Email: ${email}
+💰 Budget: ${budget}
+
+📝 Event Description:
+${desc}`;
+
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Open WhatsApp with all booking details filled in.
             window.open(whatsappUrl, '_blank');
-            
-            showNotification('✅ Booking request sent to WhatsApp!', 'success');
-            
-            // Reset form
+
+            showNotification('✅ Booking prepared for WhatsApp!', 'success');
+
+            // Clear the form after sending.
             document.getElementById('eventDate').value = '';
             document.getElementById('userName').value = '';
             document.getElementById('userPhone').value = '';
             document.getElementById('userEmail').value = '';
             document.getElementById('eventDesc').value = '';
-            document.getElementById('budgetRange').value = ''
-            
-    }
-            
-            // PORTFOLIO
-function loadPortfolio() {
+            document.getElementById('budgetRange').value = '';
+        }
+
+        // PORTFOLIO
+function loadPortfolio(forceReload = false) {
     const portfolioGrid = document.getElementById('portfolioGrid');
-    if (portfolioGrid.innerHTML.trim()) return; // Already loaded
+    if (!forceReload && portfolioGrid.dataset.loaded === 'true') return;
 
     const portfolioItems = [
         { type: 'image', src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/01d6170f-342b-465e-8b2f-2aeb05844c6a.png.webp' },
@@ -1005,7 +1056,7 @@ function loadPortfolio() {
         if (item.type === 'image') {
             return `
                 <div class="portfolio-item" onclick="openMedia('${item.src}', 'image')">
-                    <img src="${item.src}" alt="Portfolio" loading="lazy" onerror="this.style.display='none'">
+                    <img src="${item.src}" alt="Portfolio" loading="lazy" onerror="this.parentElement.classList.add('media-error'); this.style.opacity='0.15'; this.onerror=null;">
                 </div>
             `;
         } else {
@@ -1019,6 +1070,7 @@ function loadPortfolio() {
             `;
         }
     }).join('');
+    portfolioGrid.dataset.loaded = 'true';
 }
             
         // MODAL
@@ -1068,6 +1120,9 @@ function loadPortfolio() {
         }
 
         // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPortfolio();
+        });
         console.log('✨ Distortion Entertainment App Loaded');
     </script>
 </body>
