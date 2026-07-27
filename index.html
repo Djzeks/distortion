@@ -24,7 +24,7 @@ margin:0;
 font-family:'Poppins',sans-serif;
 color:white;
 overflow-x:hidden;
-background:#1a1a1a;
+background:transparent;
 transition:background 0.3s;
 }
 
@@ -33,31 +33,17 @@ background:#f5f5f5;
 color:#333;
 }
 
-/* BACKGROUND LAYER */
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-background-size:cover;
-background-position:center;
-z-index:-2;
-transition:opacity 1.5s ease-in-out;
-animation:bgZoom 20s infinite;
-}
-
 .overlay{
 position:fixed;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.35);
 z-index:-1;
 transition:background 0.3s;
 }
 
 body.light-mode .overlay{
-background:rgba(255,255,255,0.85);
+background:rgba(255,255,255,0.55);
 }
 
 /* HEADER */
@@ -819,11 +805,7 @@ to{opacity:1;}
 100%{box-shadow:0 0 10px #25D366;}
 }
 
-@keyframes bgZoom{
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
-}
+
 
 /* RESPONSIVE */
 @media(max-width:1024px){
@@ -933,8 +915,8 @@ padding:20px;
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg" id="bg"></div>
+<!-- ANIMATED BACKGROUND CANVAS -->
+<canvas id="distortion-bg-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;"></canvas>
 <div class="overlay"></div>
 
 <!-- HEADER -->
@@ -1161,397 +1143,247 @@ padding:20px;
 
 <a href="https://wa.me/254742438180" class="whatsapp">💬 WhatsApp</a>
 
+<!-- ========== ZEKS CHAT BUTTON + PANEL ========== -->
+<style>
+#zeks-fab{
+  position:fixed;bottom:90px;right:20px;
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;z-index:200;
+  box-shadow:0 4px 20px rgba(124,58,237,0.5);
+  animation:zeksPulse 2.5s infinite;
+  transition:transform 0.2s;
+}
+#zeks-fab:hover{transform:scale(1.1);}
+@keyframes zeksPulse{0%,100%{box-shadow:0 4px 20px rgba(124,58,237,0.5);}50%{box-shadow:0 4px 32px rgba(168,85,247,0.8);}}
+
+#zeks-tooltip{
+  position:fixed;bottom:102px;right:84px;
+  background:#1a1a2e;color:#f1f0ff;
+  font-family:'Poppins',sans-serif;font-size:12px;
+  padding:6px 12px;border-radius:20px;
+  border:1px solid rgba(168,85,247,0.3);
+  white-space:nowrap;z-index:200;
+  pointer-events:none;
+  animation:tooltipFade 3s ease-in-out forwards;
+}
+@keyframes tooltipFade{0%{opacity:0;}10%{opacity:1;}80%{opacity:1;}100%{opacity:0;display:none;}}
+
+#zeks-panel{
+  position:fixed;bottom:160px;right:20px;
+  width:370px;max-height:580px;
+  border-radius:20px;overflow:hidden;
+  display:none;flex-direction:column;
+  z-index:300;
+  box-shadow:0 8px 40px rgba(0,0,0,0.6);
+  border:1px solid rgba(168,85,247,0.25);
+  font-family:'Poppins',sans-serif;
+}
+#zeks-panel.open{display:flex;}
+
+@media(max-width:420px){
+  #zeks-panel{width:calc(100vw - 20px);right:10px;bottom:140px;}
+}
+
+.zph{background:#1a1a2e;padding:14px 16px;border-bottom:1px solid rgba(168,85,247,0.2);display:flex;align-items:center;gap:10px;}
+.zpav{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.zpn{font-size:13px;font-weight:600;color:#f1f0ff;}
+.zpst{font-size:10px;color:#a855f7;display:flex;align-items:center;gap:4px;margin-top:1px;}
+.zpdt{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:zpulse 2s infinite;}
+@keyframes zpulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.zpcl{margin-left:auto;background:none;border:none;color:#9ca3af;font-size:20px;cursor:pointer;line-height:1;padding:2px 6px;}
+.zpcl:hover{color:#f1f0ff;}
+
+.zpmsgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;background:#0f0f0f;min-height:300px;max-height:360px;scrollbar-width:thin;scrollbar-color:rgba(168,85,247,.3) transparent;}
+.zmr{display:flex;gap:7px;align-items:flex-end;}
+.zmr.user{flex-direction:row-reverse;}
+.zmav{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:11px;}
+.zmb{max-width:83%;padding:9px 13px;border-radius:16px;font-size:12.5px;line-height:1.5;color:#f1f0ff;white-space:pre-line;}
+.zmr.bot .zmb{background:#1a1a2e;border:1px solid rgba(168,85,247,0.2);border-bottom-left-radius:3px;}
+.zmr.user .zmb{background:linear-gradient(135deg,#7c3aed,#a855f7);border-bottom-right-radius:3px;color:#fff;}
+.zmg{display:flex;flex-direction:column;max-width:88%;}
+.zmr.user .zmg{align-items:flex-end;}
+.zmt{font-size:9px;color:#9ca3af;margin-top:2px;padding:0 3px;}
+.zmr.user .zmt{text-align:right;}
+.zog{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
+.zob{background:transparent;border:1px solid rgba(168,85,247,.4);border-radius:18px;color:#a855f7;font-size:11.5px;padding:4px 11px;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif;}
+.zob:hover{background:rgba(168,85,247,.15);border-color:#a855f7;}
+.zpia{padding:10px 13px;background:#111;border-top:1px solid rgba(168,85,247,0.2);display:flex;gap:8px;align-items:center;}
+.zpi{flex:1;background:#1a1a2e;border:1px solid rgba(168,85,247,0.2);border-radius:20px;padding:8px 13px;font-size:12.5px;color:#f1f0ff;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s;}
+.zpi:focus{border-color:#a855f7;}
+.zpi::placeholder{color:#9ca3af;}
+.zpsb{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s,transform .1s;flex-shrink:0;}
+.zpsb:hover{opacity:.85;}.zpsb:active{transform:scale(.93);}
+.zpw{text-align:center;font-size:9px;color:rgba(156,163,175,.4);padding:5px;background:#0a0a0a;}
+.zty{display:flex;gap:3px;padding:9px 12px;background:#1a1a2e;border:1px solid rgba(168,85,247,0.2);border-radius:16px;border-bottom-left-radius:3px;width:fit-content;}
+.ztd{width:5px;height:5px;border-radius:50%;background:#a855f7;animation:ztyp 1.2s infinite;}
+.ztd:nth-child(2){animation-delay:.2s;}.ztd:nth-child(3){animation-delay:.4s;}
+@keyframes ztyp{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+</style>
+
+<!-- Tooltip -->
+<div id="zeks-tooltip">💬 Ask Zeks anything!</div>
+
+<!-- FAB Button -->
+<button id="zeks-fab" onclick="toggleZeks()" aria-label="Open Zeks assistant">🎧</button>
+
+<!-- Chat Panel -->
+<div id="zeks-panel">
+  <div class="zph">
+    <div class="zpav">🎧</div>
+    <div style="flex:1">
+      <div class="zpn">Zeks</div>
+      <div class="zpst"><span class="zpdt"></span>Distortion Entertainment Assistant</div>
+    </div>
+    <button class="zpcl" onclick="toggleZeks()" aria-label="Close">✕</button>
+  </div>
+  <div class="zpmsgs" id="zmsgs"></div>
+  <div class="zpia">
+    <input class="zpi" id="zinp" placeholder="Ask Zeks anything..." autocomplete="off"/>
+    <button class="zpsb" onclick="zHandleInput()" aria-label="Send">
+      <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+  <div class="zpw">Zeks v2.0 · Distortion Entertainment · Making Ordinary Extra Ordinary</div>
+</div>
+
 <script>
-// ============= DARK MODE =============
-function toggleDarkMode(){
-document.body.classList.toggle('light-mode');
-localStorage.setItem('darkMode',document.body.classList.contains('light-mode')?'light':'dark');
-}
-
-if(localStorage.getItem('darkMode')==='light'){
-document.body.classList.add('light-mode');
-}
-
-// ============= BACKGROUND SLIDESHOW =============
-const backgrounds = [
-"https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
-"https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
-"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-"https://images.unsplash.com/photo-1518779578993-ec3579fee39f"
-];
-
-let bgIndex = 0;
-const bg = document.getElementById("bg");
-
-function changeBackground(){
-bg.style.opacity = 0;
-setTimeout(()=>{
-bg.style.backgroundImage = `url(${backgrounds[bgIndex]})`;
-bg.style.opacity = 1;
-bgIndex = (bgIndex + 1) % backgrounds.length;
-}, 800);
-}
-
-changeBackground();
-setInterval(changeBackground, 5000);
-
-// ============= PRICING DATA =============
-const pricingData = {
-'DJ Services': {Basic: 5000, Standard: 8000, Premium: 12000},
-'Photography': {Basic: 3000, Standard: 6000, Premium: 10000},
-'Graphic Design': {Basic: 2000, Standard: 4000, Premium: 7000},
-'Cyber Security': {Basic: 4000, Standard: 8000, Premium: 15000}
+// ===== ZEKS KNOWLEDGE BASE =====
+const ZKB = {
+  brand:{name:"Distortion Entertainment",tagline:"Making Ordinary Extra Ordinary",sub:"We don't just design your future, we defend it.",about:"Distortion Entertainment is a creative and digital solutions brand helping individuals, businesses, organizations, and events stand out through creativity, technology, entertainment, and professional digital services. We combine graphic design, branding, web development, DJ entertainment, photography, videography, cybersecurity, digital marketing, and more under one roof.",phone:"0742 438 180",email:"distortionentertainment1@gmail.com",website:"djzeks.github.io/distortion"},
+  services:{
+    "Graphic Design":{icon:"🎨",detail:`We create professional, eye-catching designs for businesses and individuals.\n\nWHAT WE DESIGN:\n• Logo Design & Brand Identity\n• Business Cards & Letterheads\n• Flyers, Posters & Banners\n• Brochures & Company Profiles\n• Invitation Cards & Wedding Invitations\n• Social Media Graphics & Posters\n• Advertising & Promotional Designs\n• Event & Birthday Posters\n• Certificate, Menu & Calendar Design\n• T-Shirt & Apparel Designs\n• Billboard & Signage Designs\n• Album & Mixtape Covers\n• YouTube Thumbnails\n• Custom Digital Artwork\n• Motion Graphics & 3D Visuals`,opts:["Branding","Web Design","Book Graphic Design","All services"]},
+    "Branding":{icon:"✨",detail:`We build strong, professional, recognizable brands.\n\nBRANDING SERVICES:\n• Logo Creation & Development\n• Brand Identity Packages\n• Brand Color & Typography Selection\n• Business Card & Letterhead Design\n• Company Profile Design\n• Social Media Branding\n• Brand Guidelines Document\n• Corporate Identity Packages\n• Rebranding & Personal Branding\n• Business Naming & Brand Concept`,opts:["Graphic Design","Web Design","Book Branding","All services"]},
+    "Web Design":{icon:"💻",detail:`Modern, mobile-friendly websites for businesses and individuals.\n\nWEB SERVICES:\n• Business & Portfolio Websites\n• E-Commerce & Landing Pages\n• Booking & Client Portal Systems\n• Custom Web Applications\n• Website Redesign & Maintenance\n• Domain & Hosting Assistance\n• Website Security & SEO Setup\n• WhatsApp, Maps & Payment Integration\n• Online Booking Systems`,opts:["Business Solutions","Graphic Design","Book Web Design","All services"]},
+    "DJ Services":{icon:"🎧",detail:`Professional DJ entertainment for any occasion.\n\nEVENTS WE COVER:\n• Weddings & Anniversaries\n• Birthday & Graduation Parties\n• Corporate Events & Functions\n• Private, House & Club Events\n• Product Launches & Concerts\n• Church & Community Events\n• Outdoor Events & Special Celebrations\n\nWHAT'S INCLUDED:\n• Professional DJ Performance & Music Mixing\n• Event Music Curation (genre-tailored)\n• MC & Event Hosting\n• Crowd Entertainment\n• Themed Music Sessions\n• Sound & Entertainment Coordination\n\nPRICING:\n• Basic — KES 5,000\n• Standard — KES 8,000\n• Premium — KES 12,000`,opts:["Photography","Event Solutions","Book DJ Services","All services"]},
+    "Photography":{icon:"📸",detail:`Creative, professional photography for all occasions.\n\nPHOTOGRAPHY TYPES:\n• Event & Wedding Photography\n• Birthday & Graduation Photography\n• Corporate & Business Photography\n• Portrait & Lifestyle Photography\n• Product & Brand Photography\n• Fashion & Family Photography\n• Social Media & Promotional Photography\n\nPRICING:\n• Basic — KES 3,000\n• Standard — KES 6,000\n• Premium — KES 10,000`,opts:["Videography","Event Solutions","Book Photography","All services"]},
+    "Videography":{icon:"🎬",detail:`Engaging video production for events, brands, and social media.\n\nVIDEO SERVICES:\n• Event & Wedding Videography\n• Promotional & Advertisement Videos\n• Social Media & YouTube Videos\n• Music Videos\n• Product & Brand Videos\n• Short-Form Video Content\n• Video Editing & Cinematic Production\n• Motion Graphics & Logo Animations`,opts:["Photography","Motion Graphics","Book Videography","All services"]},
+    "Cybersecurity":{icon:"🔒",detail:`We protect your digital assets, websites, apps, networks, and online identity from cyber threats.\n\nOUR 17 CYBERSECURITY SERVICES:\n• Website Security Audit\n• Web Application Security Testing\n• Network Security Assessment\n• Vulnerability Assessment\n• Penetration Testing\n• Cybersecurity Consulting\n• Security Hardening\n• Website Malware Scanning & Cleanup\n• Cyber Incident Response\n• Phishing & Social Engineering Awareness\n• Employee Cybersecurity Training\n• Password & Account Security\n• Cloud Security Assessment\n• API Security Assessment\n• Mobile App Security Testing\n• Digital Forensics & Cyber Investigation\n• Security Monitoring & Maintenance\n\nAsk me about any specific service for full details & pricing!\n\n⚠️ All testing done with proper written authorization only.`,opts:["Website Security Audit","Penetration Testing","Malware Scanning & Cleanup","Cybersecurity Packages","Web App Security","Network Security","Vulnerability Assessment","Incident Response","All services"]},
+    "Digital Marketing":{icon:"📣",detail:`Help businesses grow their online presence.\n\nSERVICES:\n• Social Media Graphics & Content Creation\n• Promotional Campaign Designs\n• Facebook, Instagram, TikTok & YouTube Content\n• Social Media Branding\n• Advertising Creative Design\n• Content Planning & Online Brand Promotion`,opts:["Graphic Design","Content Creation","Book Digital Marketing","All services"]},
+    "Printing":{icon:"🖨️",detail:`Print-ready design for physical marketing materials.\n\nPRINTING SERVICES:\n• Business Cards & Stickers\n• Flyers, Posters & Brochures\n• Banners, Labels & Invitations\n• Certificates & Calendars\n• Menus & Branded Documents\n• Promotional & Event Materials\n\nFrom design concept to final print-ready artwork.`,opts:["Graphic Design","Branding","Book Printing","All services"]},
+    "Motion Graphics":{icon:"⚡",detail:`Animated content to make your brand dynamic.\n\nMOTION SERVICES:\n• Logo Animation\n• Animated Advertisements\n• Social Media Animations\n• 2D Motion Graphics\n• Animated Intros & Outros\n• YouTube Intros\n• Event Screen & Brand Animations`,opts:["Videography","Graphic Design","Book Motion Graphics","All services"]},
+    "Content Creation":{icon:"✍️",detail:`Professional digital content for all platforms.\n\nCONTENT SERVICES:\n• Social Media & Promotional Content\n• YouTube & TikTok Content\n• Short Videos & Advertising Content\n• Creative Campaigns & Brand Storytelling\n• Visual & Educational Content`,opts:["Digital Marketing","Videography","Book Content Creation","All services"]},
+    "Business Solutions":{icon:"⚙️",detail:`Custom digital systems built around your business.\n\nSOLUTIONS:\n• Online Booking Systems\n• Client Management Portals\n• Business & Admin Dashboards\n• Online Payment Integration\n• Customer Support Systems\n• WhatsApp Business Integration\n• Automated Responses & Email Notifications\n• Custom Web Applications`,opts:["Web Design","Cybersecurity","Book a Solution","All services"]},
+    "Event Solutions":{icon:"🎉",detail:`Full creative and entertainment support for events.\n\nEVENT SERVICES:\n• DJ Entertainment & Event Music\n• Event Branding & Posters\n• Event Photography & Videography\n• Social Media Event Content\n• Promotional Campaigns\n• Digital Invitations\n• Entertainment Coordination`,opts:["DJ Services","Photography","Book Event Package","All services"]}
+  }
 };
 
-function loadPricing(){
-const container = document.getElementById('pricingContainer');
-container.innerHTML = '';
-Object.entries(pricingData).forEach(([service, tiers]) => {
-const card = document.createElement('div');
-card.className = 'pricing-card';
-card.innerHTML = `
-<h3>${service}</h3>
-<div style="border-top:2px solid gold;margin:15px 0;"></div>
-${['Basic','Standard','Premium'].map(tier => `
-<div style="text-align:left;margin:15px 0;">
-<strong>${tier}</strong><br>
-<span class="price">KES ${tiers[tier].toLocaleString()}</span>
-<ul class="price-features">
-<li>✓ ${tier} Support</li>
-<li>✓ 4-hour Duration</li>
-<li>✓ Equipment Included</li>
-${tier==='Standard'?'<li>✓ Extra Hour Available</li>':''}
-${tier==='Premium'?'<li>✓ Unlimited Duration</li><li>✓ Premium Equipment</li>':''}
-</ul>
-</div>
-`).join('')}
-`;
-container.appendChild(card);
-});
-}
+const ZMAIN=["Graphic Design 🎨","DJ Services 🎷","Photography 📸","Cybersecurity 🔒","Cyber Threats ⚠️","More services","Pricing","About us","Contact us"];
+const ZALL=["Graphic Design 🎨","Branding ✨","Web Design 💻","DJ Services 🎧","Photography 📸","Videography 🎬","Cybersecurity 🔒","Digital Marketing 📣","Printing 🖨️","Motion Graphics ⚡","Content Creation ✍️","Business Solutions ⚙️","Event Solutions 🎉","Main menu"];
 
-// ============= GALLERY DATA (images + videos from your repo) =============
-const galleryData = [
-  // PNG/WebP assets -> category: design
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/01d6170f-342b-465e-8b2f-2aeb05844c6a.png.webp', category: 'design', title: '01d6170f', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/08d8d607-d66f-4359-9bd5-23ffc3d830b8.png', category: 'design', title: '08d8d607', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/17f794f9-6a4f-43d2-98d2-1f5d0f7051f3.png', category: 'design', title: '17f794f9', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/18d68553-21f3-4823-a3a9-45f1f75482fb.png', category: 'design', title: '18d68553', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/1f664b80-9206-40d6-b2b4-44bedfb419d8.png', category: 'design', title: '1f664b80', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/20f51ae0-30f8-4100-8dff-c70b2dd5bdb1.png.webp', category: 'design', title: '20f51ae0', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/263c107c-a65f-4cfa-859e-a6f849f68270.png', category: 'design', title: '263c107c', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/2f5536da-1daf-47b5-99f3-41f8019a8bf7.png', category: 'design', title: '2f5536da', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/301588b9-aaa2-476e-8f59-211ff812c108.png.webp', category: 'design', title: '301588b9', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/3170d023-ca53-425e-abba-eb2a643d2f25.png.webp', category: 'design', title: '3170d023', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/31eba134-f9d7-48a4-8892-ef28681e572d.png', category: 'design', title: '31eba134', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/42902b63-b62a-4811-b4e3-7e00167589ae.png', category: 'design', title: '42902b63', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/4e6ec383-1086-4779-b13b-40813536ba60.png', category: 'design', title: '4e6ec383', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/5569cea0-0bab-4c39-b6dd-47d48b36fdd6.png', category: 'design', title: '5569cea0', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/55716e49-b6d5-4e72-9228-d9f846afbfed.png', category: 'design', title: '55716e49', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/62178f6a-4543-493d-969f-a2e4effb7c97.png.webp', category: 'design', title: '62178f6a', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/6ab9d72d-678b-4c3c-a079-574560691f98.png', category: 'design', title: '6ab9d72d', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/7238c89c-c4b4-40eb-a306-8c6f96eb9571.png', category: 'design', title: '7238c89c', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/79e7edec-328e-44fc-88d6-731addc6be89.png', category: 'design', title: '79e7edec', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/803fcef5-c16a-4e42-b340-b6fdd2c4a319.png', category: 'design', title: '803fcef5', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/837199e4-a628-4fda-979f-0e922359c2a9.png.webp', category: 'design', title: '837199e4', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8c8a9e20-0c9f-47e6-8941-4385643f5ec7.png.webp', category: 'design', title: '8c8a9e20', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8e9cb9eb-5816-4ff0-a68f-9510bbb1e441.png.webp', category: 'design', title: '8e9cb9eb', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/907e98bd-a885-4947-ad4c-89f7dcd7deb8.png', category: 'design', title: '907e98bd', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/a58c6c6f-d411-4581-bc60-10b3dbaee241.png.webp', category: 'design', title: 'a58c6c6f', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ac0c8955-6c36-4683-a2b4-0c5aa20644bb.png', category: 'design', title: 'ac0c8955', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bd14015f-005c-416f-a2c3-746b24f5ac2c.png', category: 'design', title: 'bd14015f', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/be95a5fb-695d-48a2-bf1b-c133b1136641.png', category: 'design', title: 'be95a5fb', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bee05245-46e5-4dbf-a5dc-f8b78653c488.png', category: 'design', title: 'bee05245', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca556e92-ec9f-4b40-91af-9d7853574fe8.png', category: 'design', title: 'ca556e92', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca615d69-972f-42b1-b20c-1a9d8a429cb1.png', category: 'design', title: 'ca615d69', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d0474107-90f2-4c40-a032-2145ef397eeb.png', category: 'design', title: 'd0474107', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d3fb5813-69f1-4285-afea-78c5cb54943a.png', category: 'design', title: 'd3fb5813', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d796a11e-00dc-4937-9396-9b924b5c20e6.png.webp', category: 'design', title: 'd796a11e', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/da8aeb3a-ed4b-4617-b4fb-d6fd877f4dc5.png', category: 'design', title: 'da8aeb3a', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/e609ae6e-80fd-4e88-87a5-67f8ec358555.png', category: 'design', title: 'e609ae6e', type: 'image' },
+let zOpened=false;
 
-  // IMG_*.jpg assets -> category: photography
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg', category: 'photography', title: 'IMG-20260605-WA0002', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0003.jpg', category: 'photography', title: 'IMG-20260605-WA0003', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0004.jpg', category: 'photography', title: 'IMG-20260605-WA0004', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0008.jpg', category: 'photography', title: 'IMG-20260605-WA0008', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0009.jpg', category: 'photography', title: 'IMG-20260605-WA0009', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0010.jpg', category: 'photography', title: 'IMG-20260605-WA0010', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0029.jpg', category: 'photography', title: 'IMG-20260605-WA0029', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0007.jpg', category: 'photography', title: 'IMG-20260618-WA0007', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0009.jpg', category: 'photography', title: 'IMG-20260618-WA0009', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0010.jpg', category: 'photography', title: 'IMG-20260618-WA0010', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0011.jpg', category: 'photography', title: 'IMG-20260618-WA0011', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0012.jpg', category: 'photography', title: 'IMG-20260618-WA0012', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0013.jpg', category: 'photography', title: 'IMG-20260618-WA0013', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0014.jpg', category: 'photography', title: 'IMG-20260618-WA0014', type: 'image' },
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0015.jpg', category: 'photography', title: 'IMG-20260618-WA0015', type: 'image' },
-
-  // one oddly named PNG (kept as design)
-  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/Jun%203%2C%202026%2C%2001_30_14%20PM.png', category: 'design', title: 'Jun 3 2026 snapshot', type: 'image' },
-
-  // Video entry (your provided mp4)
-  {
-    src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4',
-    poster: 'https://raw.githubusercontent.com/Djzeks/distortion/main/3170d023-ca53-425e-abba-eb2a643d2f25.png.webp',
-    category: 'dj',
-    title: 'VID-20260701-WA0026',
-    type: 'video',
-    videoSrc: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4'
+function toggleZeks(){
+  const panel=document.getElementById('zeks-panel');
+  zOpened=!zOpened;
+  if(zOpened){
+    panel.classList.add('open');
+    if(!document.getElementById('zmsgs').hasChildNodes()){
+      setTimeout(()=>zBot(`Hey! 👋 Welcome to Distortion Entertainment.\n\n"${ZKB.brand.tagline}"\n\nI'm Zeks, your digital assistant. What can I help you with?`,ZMAIN),300);
+    }
+    setTimeout(()=>document.getElementById('zinp').focus(),400);
+  } else {
+    panel.classList.remove('open');
   }
-];
-
-function loadGallery(filter = 'all'){
-const gallery = document.getElementById('gallery');
-gallery.innerHTML = '';
-galleryData.filter(item => filter === 'all' || item.category === filter).forEach(item => {
-const div = document.createElement('div');
-div.className = 'gallery-item';
-if(item.type === 'video'){
-  // video thumbnail with play icon
-  div.onclick = () => openModal(item);
-  div.innerHTML = `
-    <img src="${item.poster || item.src}" alt="${item.title}">
-    <div class="play-icon"><i class="fa fa-play-circle"></i></div>
-  `;
-} else {
-  div.onclick = () => openModal(item);
-  div.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
-}
-gallery.appendChild(div);
-});
 }
 
-function filterGallery(category, btnEl){
-loadGallery(category);
-document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-if(btnEl) btnEl.classList.add('active');
+function zTs(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+
+function zAddMsg(text,type,opts){
+  const msgs=document.getElementById('zmsgs');
+  const row=document.createElement('div');row.className=`zmr ${type}`;
+  const grp=document.createElement('div');grp.className='zmg';
+  const bub=document.createElement('div');bub.className='zmb';bub.textContent=text;
+  grp.appendChild(bub);
+  const tm=document.createElement('div');tm.className='zmt';tm.textContent=zTs();
+  grp.appendChild(tm);
+  if(opts&&opts.length){
+    const og=document.createElement('div');og.className='zog';
+    opts.forEach(o=>{const b=document.createElement('button');b.className='zob';b.textContent=o;b.onclick=()=>zHandleOpt(o);og.appendChild(b);});
+    grp.appendChild(og);
+  }
+  if(type==='bot'){const av=document.createElement('div');av.className='zmav';av.textContent='🎧';row.appendChild(av);}
+  row.appendChild(grp);msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
 }
 
-function openModal(item){
-const modal = document.getElementById('imageModal');
-const img = document.getElementById('modalImage');
-const vid = document.getElementById('modalVideo');
+function zShowTyping(){
+  const msgs=document.getElementById('zmsgs');
+  const row=document.createElement('div');row.className='zmr bot';row.id='ztyp';
+  const av=document.createElement('div');av.className='zmav';av.textContent='🎧';
+  const ind=document.createElement('div');ind.className='zty';
+  for(let i=0;i<3;i++){const d=document.createElement('div');d.className='ztd';ind.appendChild(d);}
+  row.appendChild(av);row.appendChild(ind);
+  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
+}
+function zRmTyping(){const t=document.getElementById('ztyp');if(t)t.remove();}
 
-// reset
-img.style.display = 'none';
-vid.style.display = 'none';
-try { vid.pause(); } catch(e){}
-vid.removeAttribute('src'); // stop previous video
-
-if(item.type === 'video'){
-  vid.src = item.videoSrc;
-  if(item.poster) vid.setAttribute('poster', item.poster);
-  vid.style.display = 'block';
-  // wait a tick to load
-  setTimeout(()=> { try{ vid.load(); }catch(e){} }, 50);
-} else {
-  img.src = item.src;
-  img.style.display = 'block';
+function zBot(text,opts,delay=750){
+  zShowTyping();
+  setTimeout(()=>{zRmTyping();zAddMsg(text,'bot',opts);},delay);
 }
 
-modal.classList.add('active');
-}
+// ===== SPECIFIC DESIGN KNOWLEDGE BASE =====
 
-function closeModal(){
-const modal = document.getElementById('imageModal');
-const vid = document.getElementById('modalVideo');
-modal.classList.remove('active');
-if(vid){
-  vid.pause();
-  vid.removeAttribute('src');
-}
-}
-
-// ============= TEAM DATA =============
-const teamData = [
-{name: 'DJ Zeks', role: 'Head DJ & Founder', emoji: '🎧', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
-{name: 'Sarah Johnson', role: 'Lead Photographer', emoji: '📸', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
-{name: 'Marcus Design', role: 'Creative Director', emoji: '🎨', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}
-];
-
-function loadTeam(){
-const container = document.getElementById('teamContainer');
-container.innerHTML = '';
-teamData.forEach(member => {
-const card = document.createElement('div');
-card.className = 'team-card';
-card.innerHTML = `
-<div class="team-avatar">${member.emoji}</div>
-<h3>${member.name}</h3>
-<p>${member.role}</p>
-<div class="social-links">
-<a href="${member.instagram}" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-<a href="${member.tiktok}" title="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
-<a href="${member.youtube}" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>
-`;
-container.appendChild(card);
-});
-}
-
-// ============= REVIEWS DATA =============
-const reviewsData = [
-{name: 'Alex Mwangi', rating: 5, text: 'Best DJ service in town! Amazing music selection and crowd engagement.'},
-{name: 'Lisa Kariuki', rating: 5, text: 'Professional photography team. Great quality photos from our event.'},
-{name: 'John Smith', rating: 4, text: 'Great graphic design work. Very creative and responsive team.'},
-{name: 'Diana Ochieng', rating: 5, text: 'Excellent cybersecurity consultation. Very knowledgeable.'}
-];
-
-function loadReviews(){
-const container = document.getElementById('reviewsContainer');
-container.innerHTML = '';
-reviewsData.forEach(review => {
-const card = document.createElement('div');
-card.className = 'review-card';
-card.innerHTML = `
-<div class="stars">${'⭐'.repeat(review.rating)}</div>
-<div class="review-text">"${review.text}"</div>
-<div class="reviewer-name">- ${review.name}</div>
-`;
-container.appendChild(card);
-});
-}
-
-// ============= NOTIFICATIONS =============
-function showNotification(message, type = 'success'){
-const notification = document.createElement('div');
-notification.className = `notification ${type}`;
-notification.textContent = message;
-document.body.appendChild(notification);
-setTimeout(() => notification.remove(), 4000);
-}
-
-// ============= BOOKING SYSTEM =============
-function bookNow(){
-const name = document.getElementById('name').value.trim();
-const email = document.getElementById('email').value.trim();
-const phone = document.getElementById('phone').value.trim();
-const date = document.getElementById('date').value;
-const time = document.getElementById('time').value;
-const service = document.getElementById('service').value;
-const tier = document.getElementById('tier').value;
-const requirements = document.getElementById('requirements').value;
-const terms = document.getElementById('terms').checked;
-
-if(!name || !email || !phone || !date || !time || !service || !tier){
-showNotification('Please fill all required fields', 'error');
-return;
-}
-
-if(!terms){
-showNotification('Please agree to terms and conditions', 'error');
-return;
-}
-
-const price = pricingData[service][tier];
-const booking = {id: Date.now(), name, email, phone, date, time, service, tier, requirements, price, status: 'Pending', timestamp: new Date().toLocaleString()};
-let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-bookings.push(booking);
-localStorage.setItem('bookings', JSON.stringify(bookings));
-
-showNotification(`✅ Booking confirmed! Total: KES ${price.toLocaleString()}`, 'success');
-
-const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}%0DDate:${date}%0DTime:${time}%0DPrice:KES${price}%0DRequirements:${requirements}`;
-setTimeout(() => window.location.href = mailLink, 1500);
-
-document.getElementById('name').value = '';
-document.getElementById('email').value = '';
-document.getElementById('phone').value = '';
-document.getElementById('date').value = '';
-document.getElementById('time').value = '';
-document.getElementById('service').value = '';
-document.getElementById('tier').value = '';
-document.getElementById('requirements').value = '';
-document.getElementById('terms').checked = false;
-
-loadBookings();
-}
-
-// ============= DASHBOARD =============
-function toggleAdminDashboard(){
-const dashboard = document.getElementById('adminDashboard');
-dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
-if(dashboard.style.display === 'block') loadBookings();
-}
-
-function loadBookings(){
-const list = document.getElementById('bookingsList');
-const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-list.innerHTML = '';
-
-bookings.forEach(b => {
-const li = document.createElement('li');
-li.innerHTML = `
-<div>
-<strong>${b.name}</strong><br>
-${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
-<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
-</div>
-<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
-`;
-list.appendChild(li);
-});
-
-updateDashboardStats();
-}
-
-function deleteBooking(id){
-let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-bookings = bookings.filter(b => b.id !== id);
-localStorage.setItem('bookings', JSON.stringify(bookings));
-loadBookings();
-showNotification('Booking deleted', 'info');
-}
-
-function searchBookings(){
-const query = document.getElementById('searchBooking').value.toLowerCase();
-const list = document.getElementById('bookingsList');
-Array.from(list.children).forEach(li => {
-li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
-});
-}
-
-function filterBookings(){
-const service = document.getElementById('filterService').value;
-const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-const list = document.getElementById('bookingsList');
-list.innerHTML = '';
-
-bookings.filter(b => !service || b.service === service).forEach(b => {
-const li = document.createElement('li');
-li.innerHTML = `
-<div>
-<strong>${b.name}</strong><br>
-${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
-<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
-</div>
-<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
-`;
-list.appendChild(li);
-});
-}
-
-function updateDashboardStats(){
-const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-const today = new Date().toISOString().split('T')[0];
-const todayBookings = bookings.filter(b => b.date === today).length;
-const totalRevenue = bookings.reduce((sum, b) => sum + b.price, 0);
-
-document.getElementById('totalBookings').textContent = bookings.length;
-document.getElementById('todayBookings').textContent = todayBookings;
-document.getElementById('totalRevenue').textContent = `KES ${totalRevenue.toLocaleString()}`;
-}
-
-// ============= INIT =============
-window.addEventListener('load', () => {
-loadPricing();
-loadGallery();
-loadTeam();
-loadReviews();
-loadBookings();
-});
-</script>
-
-</body>
-</html>
+// ===== CYBERSECURITY DEEP KNOWLEDGE BASE =====
+const ZCYBER = {
+  'website security audit':{
+    title:"Website Security Audit",
+    price:"From KES 5,000",
+    detail:"A comprehensive security review of your website to find weaknesses before attackers do.\n\nWHAT WE CHECK:\n\u2022 SSL/TLS configuration review\n\u2022 Security headers assessment (CSP, HSTS, X-Frame-Options etc.)\n\u2022 Authentication & access-control review\n\u2022 Common vulnerability identification (XSS, SQLi, misconfigs)\n\u2022 Website configuration review\n\u2022 Sensitive data exposure check\n\u2022 Professional security report with recommendations\n\nBEST FOR: Businesses, online stores, personal websites, blogs\nPRICING: From KES 5,000"
+  },
+  'web app security':{
+    title:"Web Application Security Testing",
+    price:"From KES 15,000",
+    detail:"Deep security testing of web applications for vulnerabilities that could expose data or allow unauthorized access.\n\nWHAT WE TEST:\n\u2022 SQL Injection (SQLi) \u2014 attackers manipulating your database\n\u2022 Cross-Site Scripting (XSS) \u2014 malicious scripts injected into pages\n\u2022 Cross-Site Request Forgery (CSRF)\n\u2022 Broken Authentication & Session Management\n\u2022 Insecure Direct Object References (IDOR)\n\u2022 Security Misconfiguration\n\u2022 Sensitive Data Exposure\n\u2022 API Security Review\n\u2022 Input validation & sanitization\n\u2022 Authorization & access-control testing\n\nDELIVERABLES:\n\u2022 Security findings with risk classification (Critical/High/Medium/Low)\n\u2022 Detailed remediation recommendations\n\u2022 Professional report\n\nBEST FOR: Business portals, booking systems, e-commerce, custom web apps\nPRICING: From KES 15,000"
+  },
+  'sql injection':{
+    title:"SQL Injection (SQLi)",
+    price:"Covered in Web App Testing \u2014 From KES 15,000",
+    detail:"SQL Injection is one of the most dangerous web vulnerabilities. It allows attackers to manipulate your website's database.\n\nWHAT IT CAN DO:\n\u2022 Steal all usernames, passwords, and customer data\n\u2022 Bypass login pages without a password\n\u2022 Delete or modify your entire database\n\u2022 Access admin panels without credentials\n\u2022 Expose confidential business data\n\nHOW IT HAPPENS:\nWhen user input (forms, search boxes, URLs) is not properly sanitized before being sent to the database.\n\nEXAMPLE:\nA login form vulnerable to SQLi can be bypassed by typing:\n' OR '1'='1 \u2014 giving access without a real password.\n\nHOW WE HELP:\n\u2022 Test all input fields and parameters for SQLi\n\u2022 Identify vulnerable endpoints\n\u2022 Provide remediation steps (parameterized queries, input validation)\n\u2022 Retest after fixes\n\nCOVERED IN: Web Application Security Testing\nPRICING: From KES 15,000"
+  },
+  'xss':{
+    title:"Cross-Site Scripting (XSS)",
+    price:"Covered in Web App Testing \u2014 From KES 15,000",
+    detail:"XSS allows attackers to inject malicious scripts into your website that run in visitors' browsers.\n\nTYPES OF XSS:\n\u2022 Stored XSS \u2014 malicious script saved in your database, runs for every visitor\n\u2022 Reflected XSS \u2014 script delivered via a crafted link\n\u2022 DOM-based XSS \u2014 manipulation of the browser's DOM\n\nWHAT ATTACKERS CAN DO:\n\u2022 Steal session cookies and hijack user accounts\n\u2022 Redirect users to phishing sites\n\u2022 Capture keystrokes and form data\n\u2022 Deface your website\n\u2022 Deliver malware to your visitors\n\nHOW WE HELP:\n\u2022 Test all input/output points for XSS\n\u2022 Identify vulnerable parameters\n\u2022 Recommend output encoding, CSP headers, and sanitization\n\nCOVERED IN: Web Application Security Testing\nPRICING: From KES 15,000"
+  },
+  'malware':{
+    title:"Website Malware Scanning & Cleanup",
+    price:"From KES 7,500",
+    detail:"If your website has been hacked, infected, or is behaving strangely, we investigate and clean it up.\n\nSIGNS YOUR SITE MAY BE INFECTED:\n\u2022 Website redirecting visitors to strange sites\n\u2022 Google showing 'This site may be hacked' warning\n\u2022 Antivirus flagging your website URL\n\u2022 Unknown files or code appearing in your site\n\u2022 Hosting provider suspended your account\n\u2022 Unusual traffic or bandwidth spikes\n\u2022 Admin account locked out\n\n MALWARE TYPES WE DEAL WITH:\n\u2022 Backdoors \u2014 hidden access points left by hackers\n\u2022 Web shells \u2014 scripts giving remote control of your server\n\u2022 Redirects \u2014 code sending your visitors to malicious sites\n\u2022 Cryptominers \u2014 using your server to mine cryptocurrency\n\u2022 Spam injectors \u2014 inserting spam links into your pages\n\u2022 Defacement \u2014 hackers replacing your homepage\n\nWHAT WE DO:\n\u2022 Full malware scan of your website files\n\u2022 Suspicious file identification\n\u2022 Security investigation of the compromise\n\u2022 Malware removal where possible\n\u2022 Security configuration review\n\u2022 Post-cleanup recommendations to prevent reinfection\n\nBEST FOR: WordPress, business websites, blogs, online platforms\nPRICING: From KES 7,500"
+  },
+  'penetration testing':{
+    title:"Penetration Testing",
+    price:"From KES 30,000",
+    detail:"We simulate real cyberattacks against your authorized systems to find exploitable weaknesses before real attackers do.\n\nWHAT WE TEST:\n\u2022 Web applications & websites\n\u2022 APIs & backend systems\n\u2022 Networks & infrastructure\n\u2022 Cloud environments\n\u2022 Mobile applications\n\u2022 External-facing systems\n\nWHAT'S INCLUDED:\n\u2022 Pre-engagement planning & scope definition\n\u2022 Reconnaissance & information gathering\n\u2022 Vulnerability identification & exploitation\n\u2022 Privilege escalation attempts\n\u2022 Post-exploitation analysis\n\u2022 Risk assessment & impact analysis\n\u2022 Detailed professional pentest report\n\u2022 Remediation recommendations\n\u2022 Retesting after fixes\n\nVULNERABILITIES WE LOOK FOR:\n\u2022 SQL Injection, XSS, CSRF, IDOR\n\u2022 Broken authentication\n\u2022 Misconfigured servers & services\n\u2022 Exposed sensitive data\n\u2022 Insecure APIs\n\u2022 Privilege escalation paths\n\u2022 Open ports & services\n\n\u26a0\ufe0f Performed ONLY with explicit written authorization.\n\nPRICING: From KES 30,000"
+  },
+  'network security':{
+    title:"Network Security Assessment",
+    price:"From KES 15,000",
+    detail:"We evaluate your organization's network to identify weaknesses that could expose your systems and data.\n\nWHAT WE ASSESS:\n\u2022 Network architecture review\n\u2022 Firewall rules & configuration review\n\u2022 Wi-Fi security assessment (WPA2/WPA3, rogue APs)\n\u2022 Network device security (routers, switches)\n\u2022 Access-control & segmentation review\n\u2022 Open ports & exposed services\n\u2022 Vulnerability identification\n\nCOMMON NETWORK THREATS WE CHECK FOR:\n\u2022 Man-in-the-Middle (MitM) attacks\n\u2022 Unsecured Wi-Fi access points\n\u2022 Weak firewall configurations\n\u2022 Exposed RDP, SSH, Telnet ports\n\u2022 Unpatched network devices\n\u2022 Lack of network segmentation\n\nDELIVERABLES:\n\u2022 Network security report\n\u2022 Risk-prioritized findings\n\u2022 Security improvement recommendations\n\nBEST FOR: Offices, companies, schools, institutions with internal networks\nPRICING: From KES 15,000"
+  },
+  'vulnerability assessment':{
+    title:"Vulnerability Assessment",
+    price:"From KES 10,000",
+    detail:"We scan and assess your authorized systems to identify known security vulnerabilities and prioritize fixes.\n\nWHAT'S INCLUDED:\n\u2022 Automated & manual vulnerability scanning\n\u2022 Risk identification across systems\n\u2022 Vulnerability classification (CVEs, OWASP Top 10)\n\u2022 Severity prioritization (Critical/High/Medium/Low/Informational)\n\u2022 Detailed security report\n\u2022 Recommended remediation steps\n\nCOMMON VULNERABILITIES WE FIND:\n\u2022 Outdated software & unpatched systems\n\u2022 Default credentials on devices/services\n\u2022 Exposed admin panels\n\u2022 Weak SSL/TLS configurations\n\u2022 Missing security headers\n\u2022 Open ports running unnecessary services\n\u2022 Known CVEs in installed software\n\nBEST FOR: Businesses wanting to understand their security exposure\nPRICING: From KES 10,000"
+  },
+  'incident response':{
+    title:"Cyber Incident Response",
+    price:"From KES 15,000",
+    detail:"We assist businesses experiencing a cyberattack or security breach.\n\nINCIDENTS WE RESPOND TO:\n\u2022 Website compromise or defacement\n\u2022 Unauthorized account access\n\u2022 Malware infection\n\u2022 Ransomware attack\n\u2022 Data breach\n\u2022 Business email compromise (BEC)\n\u2022 Phishing attack\n\u2022 Suspicious system activity\n\nWHAT WE DO:\n\u2022 Initial incident assessment\n\u2022 Containment guidance\n\u2022 Investigation support\n\u2022 Evidence preservation guidance\n\u2022 Recovery recommendations\n\u2022 Security improvement plan\n\u2022 Post-incident report\n\n\u26a0\ufe0f Emergency response pricing may vary depending on urgency and scope.\n\nPRICING: From KES 15,000"
+  },
+  'phishing':{
+    title:"Phishing & Social Engineering Awareness",
+    price:"From KES 10,000",
+    detail:"We help organizations protect their staff from social engineering attacks.\n\nWHAT IS PHISHING?\nPhishing is when attackers disguise themselves as trusted entities (banks, Google, your boss) to trick people into revealing passwords, clicking malicious links, or transferring money.\n\nTYPES WE COVER:\n\u2022 Email Phishing \u2014 fake emails that look legitimate\n\u2022 Spear Phishing \u2014 targeted attacks on specific individuals\n\u2022 Smishing \u2014 phishing via SMS/WhatsApp\n\u2022 Vishing \u2014 phishing via phone calls\n\u2022 Business Email Compromise (BEC)\n\u2022 Social media impersonation\n\nWHAT'S INCLUDED:\n\u2022 Phishing awareness training\n\u2022 How to identify suspicious emails & links\n\u2022 Password security education\n\u2022 Safe email & browsing practices\n\u2022 Account security best practices\n\u2022 Security awareness materials\n\nBEST FOR: Companies, schools, NGOs, organizations with employees\nPRICING: From KES 10,000"
+  },
+  'security hardening':{
+    title:"Security Hardening",
+    price:"From KES 10,000",
+    detail:"We reduce your attack surface by tightening security configurations across your systems.\n\nWHAT WE HARDEN:\n\u2022 Web server configuration (Apache, Nginx)\n\u2022 Website CMS security (WordPress, etc.)\n\u2022 Database security settings\n\u2022 Account & access controls\n\u2022 Firewall rules\n\u2022 SSL/TLS configuration\n\u2022 Security headers implementation\n\u2022 File permissions review\n\u2022 Unnecessary services & ports closure\n\nSECURITY HEADERS WE IMPLEMENT:\n\u2022 Content Security Policy (CSP)\n\u2022 HTTP Strict Transport Security (HSTS)\n\u2022 X-Frame-Options\n\u2022 X-Content-Type-Options\n\u2022 Referrer-Policy\n\nBEST FOR: Businesses wanting to strengthen existing systems\nPRICING: From KES 10,000"
+  },
+  'consulting':{
+    title:"Cybersecurity Consulting",
+    price:"From KES 5,000 per session",
+    detail:"Expert guidance to help you understand your risks and build a practical security strategy.\n\nWHAT WE COVER:\n\u2022 Security strategy development\n\u2022 Cybersecurity risk assessment\n\u2022 Security architecture guidance\n\u2022 Security policy recommendations\n\u2022 Business security planning\n\u2022 Technology security advice\n\u2022 Security best-practice guidance\n\u2022 Compliance guidance\n\nBEST FOR: Startups, SMEs, organizations building or improving their security program\nPRICING: From KES 5,000 per session"
