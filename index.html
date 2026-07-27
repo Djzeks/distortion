@@ -1387,3 +1387,816 @@ const ZCYBER = {
     title:"Cybersecurity Consulting",
     price:"From KES 5,000 per session",
     detail:"Expert guidance to help you understand your risks and build a practical security strategy.\n\nWHAT WE COVER:\n\u2022 Security strategy development\n\u2022 Cybersecurity risk assessment\n\u2022 Security architecture guidance\n\u2022 Security policy recommendations\n\u2022 Business security planning\n\u2022 Technology security advice\n\u2022 Security best-practice guidance\n\u2022 Compliance guidance\n\nBEST FOR: Startups, SMEs, organizations building or improving their security program\nPRICING: From KES 5,000 per session"
+  },
+  'cloud security':{
+    title:"Cloud Security Assessment",
+    price:"From KES 20,000",
+    detail:"We review your cloud environment to identify misconfigurations and security risks.\n\nCLOUD THREATS WE ASSESS:\n\u2022 Misconfigured S3 buckets / public storage exposing data\n\u2022 Overly permissive IAM roles & policies\n\u2022 Exposed cloud management consoles\n\u2022 Unencrypted data at rest or in transit\n\u2022 Insecure cloud API configurations\n\u2022 Logging & monitoring gaps\n\nWHAT'S INCLUDED:\n\u2022 Cloud configuration review\n\u2022 Identity & access management (IAM) review\n\u2022 Storage security review\n\u2022 Access & permissions assessment\n\u2022 Risk identification\n\u2022 Security recommendations\n\nBEST FOR: Businesses using AWS, Google Cloud, Azure, or other cloud platforms\nPRICING: From KES 20,000"
+  },
+  'api security':{
+    title:"API Security Assessment",
+    price:"From KES 15,000",
+    detail:"We test your APIs for vulnerabilities that could expose business data or allow unauthorized actions.\n\nCOMMON API VULNERABILITIES:\n\u2022 Broken Object Level Authorization (BOLA/IDOR)\n\u2022 Broken Authentication\n\u2022 Excessive Data Exposure\n\u2022 Lack of Rate Limiting (brute force, DDoS risk)\n\u2022 Broken Function Level Authorization\n\u2022 Mass Assignment vulnerabilities\n\u2022 Security Misconfiguration\n\u2022 Injection in API parameters\n\nWHAT'S INCLUDED:\n\u2022 Authentication & authorization testing\n\u2022 Access-control assessment\n\u2022 Input validation review\n\u2022 Rate-limiting review\n\u2022 API endpoint security assessment\n\u2022 Security recommendations\n\nBEST FOR: Mobile apps, fintech platforms, booking systems, business applications\nPRICING: From KES 15,000"
+  },
+  'mobile security':{
+    title:"Mobile Application Security Testing",
+    price:"From KES 25,000",
+    detail:"We assess Android and iOS applications for security weaknesses.\n\nWHAT WE TEST:\n\u2022 Insecure data storage (passwords, tokens saved in plain text)\n\u2022 Weak authentication & session management\n\u2022 Insecure communication (no SSL pinning, HTTP traffic)\n\u2022 API security issues\n\u2022 Code reverse engineering risks\n\u2022 Improper platform usage\n\u2022 Client-side injection\n\u2022 Insufficient cryptography\n\nBASED ON: OWASP Mobile Security Testing Guide (MSTG)\n\nDELIVERABLES:\n\u2022 Security findings report\n\u2022 Risk classification\n\u2022 Remediation recommendations\n\nAVAILABLE FOR: Android & iOS\nPRICING: From KES 25,000"
+  },
+  'forensics':{
+    title:"Digital Forensics & Cyber Investigation",
+    price:"From KES 20,000",
+    detail:"Technical investigation support for cybersecurity incidents and suspicious digital activity.\n\nSERVICES:\n\u2022 Digital evidence review\n\u2022 Incident investigation support\n\u2022 Account compromise investigation\n\u2022 Malware investigation & analysis\n\u2022 Timeline & activity analysis\n\u2022 Technical findings report\n\nCOMMON CASES:\n\u2022 Who accessed my system without permission?\n\u2022 Was my data stolen?\n\u2022 How did the attacker get in?\n\u2022 What did the attacker do once inside?\n\n\u26a0\ufe0f Services involving legal evidence may require specialized procedures and legal authorization.\n\nPRICING: From KES 20,000"
+  },
+  'monitoring':{
+    title:"Security Monitoring & Maintenance",
+    price:"From KES 10,000/month",
+    detail:"Ongoing security support to help businesses maintain a strong security posture.\n\nWHAT'S INCLUDED:\n\u2022 Regular website security checks\n\u2022 Vulnerability monitoring\n\u2022 Security updates guidance\n\u2022 Incident alerts\n\u2022 Monthly security reports\n\u2022 Security recommendations\n\nWHY YOU NEED IT:\n\u2022 New vulnerabilities are discovered daily\n\u2022 Attackers scan the web 24/7\n\u2022 One missed update can expose your entire system\n\u2022 Early detection = less damage\n\nBEST FOR: Businesses needing continuous cybersecurity support\nPRICING: From KES 10,000/month"
+  },
+  'password security':{
+    title:"Password & Account Security",
+    price:"From KES 3,000",
+    detail:"We help individuals and businesses secure their online accounts and digital identities.\n\nWHAT'S INCLUDED:\n\u2022 Account security assessment\n\u2022 Password security guidance\n\u2022 Multi-factor authentication (MFA) setup guidance\n\u2022 Account recovery configuration\n\u2022 Security settings review\n\u2022 Login protection recommendations\n\nCOMMON ACCOUNT THREATS:\n\u2022 Credential stuffing \u2014 attackers trying leaked passwords\n\u2022 Brute force attacks \u2014 guessing passwords automatically\n\u2022 Phishing \u2014 tricking you into revealing your password\n\u2022 Password reuse \u2014 one breach exposes all your accounts\n\nBEST PRACTICES WE TEACH:\n\u2022 Use strong, unique passwords for every account\n\u2022 Enable 2FA/MFA on all important accounts\n\u2022 Use a password manager\n\u2022 Monitor for account breaches\n\nBEST FOR: Individuals, professionals, businesses, online creators\nPRICING: From KES 3,000"
+  },
+  'training':{
+    title:"Employee Cybersecurity Training",
+    price:"From KES 15,000/session",
+    detail:"Practical cybersecurity education to help your team recognize and respond to digital threats.\n\nTOPICS COVERED:\n\u2022 Password security & management\n\u2022 Multi-factor authentication (MFA)\n\u2022 Phishing & email scams awareness\n\u2022 Social engineering attacks\n\u2022 Safe browsing habits\n\u2022 Device & endpoint security\n\u2022 Data protection & privacy\n\u2022 Incident reporting procedures\n\u2022 Working securely remotely\n\nWHY IT MATTERS:\n95% of cybersecurity breaches involve human error.\nYour team is your first line of defense.\n\nFORMAT: Can be customized for your organization's size and needs.\n\nBEST FOR: Companies, schools, NGOs, organizations with employees\nPRICING: From KES 15,000/session"
+  },
+  'ransomware':{
+    title:"Ransomware — What It Is & How We Help",
+    price:"Covered under Incident Response & Security Hardening",
+    detail:"Ransomware is malware that encrypts your files and demands payment to restore access.\n\nHOW IT WORKS:\n1. Attacker gains access (phishing email, weak password, unpatched system)\n2. Malware spreads across your system/network\n3. All files are encrypted \u2014 you lose access\n4. Ransom demand appears (usually in Bitcoin)\n5. Paying does NOT guarantee file recovery\n\nWHAT WE DO:\n\u2022 Help you assess the incident (Incident Response \u2014 KES 15,000+)\n\u2022 Investigate how the attacker got in\n\u2022 Guide containment to stop the spread\n\u2022 Recovery recommendations\n\u2022 Harden your systems to prevent future attacks\n\nPREVENTION IS KEY:\n\u2022 Keep systems patched and updated\n\u2022 Regular backups (offline & offsite)\n\u2022 Strong email security\n\u2022 Network segmentation\n\u2022 Employee training\n\nRELATED SERVICES: Incident Response, Security Hardening, Employee Training"
+  },
+  'ddos':{
+    title:"DDoS Attacks — What They Are & How We Help",
+    price:"Covered under Consulting & Network Security",
+    detail:"A DDoS (Distributed Denial of Service) attack floods your website or server with massive traffic, making it unavailable to real users.\n\nHOW IT AFFECTS YOU:\n\u2022 Website goes offline\n\u2022 Lost revenue and business disruption\n\u2022 Damaged reputation\n\u2022 Sometimes used as a distraction for a bigger attack\n\nTYPES:\n\u2022 Volumetric attacks \u2014 overwhelming bandwidth\n\u2022 Protocol attacks \u2014 exploiting server resources\n\u2022 Application layer (Layer 7) attacks \u2014 targeting your web app\n\nHOW WE HELP:\n\u2022 Assess your current DDoS resilience\n\u2022 Recommend DDoS protection services (Cloudflare, etc.)\n\u2022 Network security hardening\n\u2022 Incident response during an active attack\n\nRELATED SERVICES: Network Security Assessment, Consulting, Incident Response"
+  },
+  'csrf':{
+    title:"CSRF (Cross-Site Request Forgery)",
+    price:"Covered in Web App Testing \u2014 From KES 15,000",
+    detail:"CSRF tricks an authenticated user into unknowingly submitting a malicious request.\n\nEXAMPLE:\nYou're logged into your bank. You visit a malicious site. Without knowing, your browser sends a transfer request to the bank using your session.\n\nWHAT ATTACKERS CAN DO:\n\u2022 Transfer money from your account\n\u2022 Change your email/password\n\u2022 Delete your data\n\u2022 Perform actions on your behalf\n\nHOW WE HELP:\n\u2022 Test all state-changing requests for CSRF vulnerabilities\n\u2022 Recommend CSRF token implementation\n\u2022 SameSite cookie configuration\n\nCOVERED IN: Web Application Security Testing \u2014 From KES 15,000"
+  },
+  'packages':{
+    title:"Cybersecurity Packages",
+    price:"KES 10,000 \u2014 KES 100,000+",
+    detail:"We offer bundled packages for different business needs.\n\nSTARTER PACKAGE \u2014 KES 10,000\nPerfect for small businesses & individuals:\n\u2022 Basic website security assessment\n\u2022 Vulnerability assessment\n\u2022 SSL/security configuration review\n\u2022 Account security recommendations\n\u2022 Professional security report\n\nBUSINESS PACKAGE \u2014 KES 30,000\nFor small and medium-sized businesses:\n\u2022 Website security assessment\n\u2022 Vulnerability assessment\n\u2022 Network security review\n\u2022 Account security review\n\u2022 Security hardening recommendations\n\u2022 Cybersecurity consultation\n\u2022 Detailed security report\n\nPROFESSIONAL PACKAGE \u2014 KES 60,000\nFor organizations needing comprehensive assessment:\n\u2022 Web application security testing\n\u2022 Network security assessment\n\u2022 Vulnerability assessment\n\u2022 API security assessment\n\u2022 Security configuration review\n\u2022 Risk assessment\n\u2022 Detailed professional report\n\u2022 Remediation recommendations\n\u2022 Post-remediation review\n\nENTERPRISE PACKAGE \u2014 From KES 100,000\nCustomized for large organizations:\n\u2022 Comprehensive security assessment\n\u2022 Penetration testing\n\u2022 Web app, network, API & cloud testing\n\u2022 Security awareness training\n\u2022 Incident response planning\n\u2022 Security policy guidance\n\u2022 Executive security report\n\nCustom packages available for any scope."
+  }
+};
+
+// Detect specific cyber topic
+function zDetectCyber(lc){
+  if(lc.includes('website security audit')||lc.includes('site audit'))return'website security audit';
+  if(lc.includes('web app')||(lc.includes('web application')&&lc.includes('security')))return'web app security';
+  if(lc.includes('sql injection')||lc.includes('sqli')||lc.includes('sql attack'))return'sql injection';
+  if(lc.includes('xss')||lc.includes('cross-site scripting')||lc.includes('cross site scripting'))return'xss';
+  if(lc.includes('malware')||lc.includes('hacked')||lc.includes('virus')||lc.includes('infected')||lc.includes('backdoor')||lc.includes('web shell')||lc.includes('defaced')||lc.includes('defacement'))return'malware';
+  if(lc.includes('pentest')||lc.includes('penetration test')||lc.includes('pen test')||lc.includes('ethical hack'))return'penetration testing';
+  if(lc.includes('network security')||lc.includes('wifi security')||lc.includes('wi-fi security')||lc.includes('firewall'))return'network security';
+  if(lc.includes('vulnerability assessment')||lc.includes('vulnerability scan'))return'vulnerability assessment';
+  if(lc.includes('incident response')||lc.includes('been hacked')||lc.includes('data breach')||lc.includes('breach'))return'incident response';
+  if(lc.includes('phishing')||lc.includes('social engineering')||lc.includes('smishing')||lc.includes('vishing'))return'phishing';
+  if(lc.includes('hardening')||lc.includes('security hardening')||lc.includes('harden'))return'security hardening';
+  if(lc.includes('consulting')||lc.includes('consult')||(lc.includes('cyber')&&lc.includes('advice')))return'consulting';
+  if(lc.includes('cloud security')||lc.includes('aws security')||lc.includes('azure security')||(lc.includes('cloud')&&lc.includes('security')))return'cloud security';
+  if(lc.includes('api security')||(lc.includes('api')&&lc.includes('security')))return'api security';
+  if(lc.includes('mobile security')||lc.includes('mobile app security')||lc.includes('android security')||lc.includes('ios security'))return'mobile security';
+  if(lc.includes('forensic')||lc.includes('cyber investigation')||lc.includes('digital forensic'))return'forensics';
+  if(lc.includes('monitoring')||(lc.includes('security')&&lc.includes('monitor')))return'monitoring';
+  if(lc.includes('password security')||lc.includes('account security')||(lc.includes('account')&&lc.includes('hack')))return'password security';
+  if(lc.includes('training')||(lc.includes('employee')&&lc.includes('security')))return'training';
+  if(lc.includes('ransomware'))return'ransomware';
+  if(lc.includes('ddos')||lc.includes('denial of service'))return'ddos';
+  if(lc.includes('csrf')||lc.includes('cross-site request')||lc.includes('cross site request'))return'csrf';
+  if(lc.includes('package')||(lc.includes('cyber')&&lc.includes('package')))return'packages';
+  return null;
+}
+
+const ZCYBER_MENU = ["Website Security Audit","Web App Security Testing","Penetration Testing","Vulnerability Assessment","Malware Scanning & Cleanup","Network Security","Phishing Awareness","Security Hardening","Cloud Security","API Security","Mobile App Security","Incident Response","Digital Forensics","Security Monitoring","Employee Training","Cybersecurity Packages","Back to main menu"];
+
+const ZCYBER_THREATS = ["SQL Injection (SQLi)","XSS (Cross-Site Scripting)","Phishing & Social Engineering","Ransomware","DDoS Attacks","CSRF Attacks","Malware & Backdoors","Password & Account Security","Back to Cybersecurity menu"];
+
+
+const ZDESIGNS = {
+  'logo':{title:"Logo Design",detail:"A logo is the face of your brand.\n\nWHAT'S INCLUDED:\n\u2022 Custom concept tailored to your brand\n\u2022 Multiple initial concepts\n\u2022 Unlimited revisions\n\u2022 Final files: PNG, JPG, SVG, PDF\n\u2022 Transparent background version\n\u2022 Black & white version\n\u2022 Print-ready & social media sizes\n\nSTYLES:\n\u2022 Minimalist & Modern\n\u2022 Vintage & Retro\n\u2022 3D & Gradient\n\u2022 Mascot & Illustrative\n\u2022 Lettermark & Wordmark\n\u2022 Combination Marks\n\nTURNAROUND: 1\u20133 business days\nPRICING: From KES 2,000",opts:["Brand Identity","Business Card Design","Book Logo Design","More Design Services"]},
+  'flyer':{title:"Flyer Design",detail:"Eye-catching flyers that grab attention and drive action.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout and design\n\u2022 Your logo, photos & text incorporated\n\u2022 Bold, attractive typography\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for WhatsApp & social media\n\u2022 Revisions included\n\nFLYER TYPES:\n\u2022 Event Flyers (parties, concerts, clubs)\n\u2022 Business Promotional Flyers\n\u2022 Product Launch Flyers\n\u2022 Church & Community Flyers\n\u2022 Sale & Discount Flyers\n\u2022 Job Vacancy Flyers\n\u2022 Double-sided Flyers\n\nSIZES: A4, A5, A6 or custom\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Poster Design","Banner Design","Book Flyer Design","More Design Services"]},
+  'poster':{title:"Poster Design",detail:"Bold, striking posters designed to make a statement.\n\nWHAT'S INCLUDED:\n\u2022 Professional creative layout\n\u2022 High-resolution print & digital versions\n\u2022 Custom color scheme\n\u2022 Typography selection\n\u2022 Photo editing if needed\n\u2022 Revisions included\n\nPOSTER TYPES:\n\u2022 Event Posters (concerts, parties, weddings)\n\u2022 Birthday & Graduation Posters\n\u2022 Business & Corporate Posters\n\u2022 Motivational & Quote Posters\n\u2022 Product Promotional Posters\n\u2022 Movie & Music Posters\n\u2022 Social Media Posters\n\nSIZES: A3, A2, A1 or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Flyer Design","Banner Design","Book Poster Design","More Design Services"]},
+  'banner':{title:"Banner Design",detail:"Professional banners for events, businesses, and online platforms.\n\nWHAT'S INCLUDED:\n\u2022 Custom design with your branding\n\u2022 High-resolution print file\n\u2022 Digital versions for social media & websites\n\u2022 Multiple size formats\n\u2022 Revisions included\n\nBANNER TYPES:\n\u2022 Outdoor Pull-Up / Roll-Up Banners\n\u2022 Event & Stage Banners\n\u2022 Birthday & Wedding Banners\n\u2022 Business Advertising Banners\n\u2022 Social Media Banners (Facebook, YouTube, Twitter)\n\u2022 Website Header Banners\n\u2022 Vinyl & Flex Banners\n\u2022 X-Stand Banners\n\nSIZES: 2x6ft, 3x6ft, 8x3ft or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,000",opts:["Poster Design","Flyer Design","Book Banner Design","More Design Services"]},
+  'business card':{title:"Business Card Design",detail:"Professional business cards that make a lasting first impression.\n\nWHAT'S INCLUDED:\n\u2022 Front and back design\n\u2022 Your logo, contact info & branding\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for sharing\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Standard Professional\n\u2022 Minimalist & Clean\n\u2022 Bold & Colorful\n\u2022 Premium Luxury Feel\n\u2022 QR Code Integration\n\nSIZE: 3.5 x 2 inches (85 x 55mm)\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Logo Design","Branding Package","Book Business Card","More Design Services"]},
+  'brochure':{title:"Brochure Design",detail:"Informative, professional brochures for businesses and organizations.\n\nWHAT'S INCLUDED:\n\u2022 Multi-page professional layout\n\u2022 Your content, images & branding\n\u2022 Print-ready PDF & digital version\n\u2022 Revisions included\n\nTYPES:\n\u2022 Bi-fold (4 panels)\n\u2022 Tri-fold (6 panels)\n\u2022 Z-fold Brochure\n\u2022 Company Profile Brochure\n\u2022 Product Catalog Brochure\n\u2022 Event Program Brochure\n\nTURNAROUND: 2\u20134 business days\nPRICING: From KES 2,500",opts:["Company Profile Design","Flyer Design","Book Brochure Design","More Design Services"]},
+  'invitation':{title:"Invitation Card Design",detail:"Beautiful custom invitation cards for any occasion.\n\nWHAT'S INCLUDED:\n\u2022 Custom design matching your event theme\n\u2022 Front & back design\n\u2022 Print-ready & digital versions\n\u2022 WhatsApp-ready digital invite\n\u2022 Revisions included\n\nTYPES:\n\u2022 Wedding Invitations\n\u2022 Birthday Party Invitations\n\u2022 Graduation Invitations\n\u2022 Corporate Event Invitations\n\u2022 Baby Shower Invitations\n\u2022 Anniversary Invitations\n\u2022 Church Event Invitations\n\u2022 Save-the-Date Cards\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Wedding Photography","Event Solutions","Book Invitation Design","More Design Services"]},
+  'certificate':{title:"Certificate Design",detail:"Professional, elegant certificates for schools and organizations.\n\nWHAT'S INCLUDED:\n\u2022 Custom design with your branding\n\u2022 Editable template for multiple recipients\n\u2022 Print-ready & digital versions\n\u2022 Revisions included\n\nTYPES:\n\u2022 Academic Certificates\n\u2022 Completion & Achievement Certificates\n\u2022 Participation Certificates\n\u2022 Award Certificates\n\u2022 Corporate & Training Certificates\n\nTURNAROUND: 24 hours\nPRICING: From KES 1,000",opts:["More Design Services","Book Certificate Design","Main menu"]},
+  'social media':{title:"Social Media Graphics",detail:"Consistent, eye-catching graphics that make your pages stand out.\n\nPLATFORMS:\n\u2022 Instagram (Posts, Stories, Reels covers)\n\u2022 Facebook (Posts, Cover photos, Ads)\n\u2022 TikTok (Thumbnails, Graphics)\n\u2022 YouTube (Thumbnails, Banners)\n\u2022 Twitter/X (Posts, Header)\n\u2022 WhatsApp Status\n\u2022 LinkedIn Posts & Banners\n\nPACKAGES:\n\u2022 Single post \u2014 From KES 300\n\u2022 5-post pack \u2014 From KES 1,200\n\u2022 Monthly package (20 posts) \u2014 From KES 4,000\n\nTURNAROUND: Same day \u2013 24 hours",opts:["Digital Marketing","YouTube Thumbnail","Book Social Media Graphics","More Design Services"]},
+  'thumbnail':{title:"YouTube Thumbnail Design",detail:"Click-worthy thumbnails that boost your views.\n\nWHAT'S INCLUDED:\n\u2022 Custom thumbnail design\n\u2022 Bold text overlay\n\u2022 Attention-grabbing colors\n\u2022 Your photo/image incorporated\n\u2022 High resolution 1280x720px\n\u2022 Revisions included\n\nWHY OURS WORK:\n\u2022 Maximize click-through rate\n\u2022 Clear, readable at any size\n\u2022 Consistent branded style\n\u2022 Face + text + color contrast formula\n\nTURNAROUND: Same day\nPRICING: From KES 300\nBULK: 5 thumbnails from KES 1,200",opts:["Social Media Graphics","Content Creation","Book Thumbnail Design","More Design Services"]},
+  'album cover':{title:"Album & Mixtape Cover Design",detail:"Professional covers that represent your music.\n\nWHAT'S INCLUDED:\n\u2022 Custom artwork for your genre\n\u2022 Streaming platform ready (3000x3000px)\n\u2022 Physical print-ready version\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Afrobeats / Afropop\n\u2022 Hip Hop & Trap\n\u2022 R&B & Soul\n\u2022 Gospel & Christian\n\u2022 Electronic & House\n\u2022 Custom artistic concept\n\nTURNAROUND: 1\u20132 business days\nPRICING: From KES 1,500",opts:["More Design Services","Book Album Cover Design","Main menu"]},
+  'tshirt':{title:"T-Shirt & Apparel Design",detail:"Creative, print-ready designs for branded merchandise.\n\nWHAT'S INCLUDED:\n\u2022 Custom design concept\n\u2022 Print-ready vector file (SVG/AI/PNG)\n\u2022 Multiple color versions\n\u2022 Front and back if needed\n\u2022 Revisions included\n\nWE DESIGN FOR:\n\u2022 Corporate Branded Uniforms\n\u2022 Event T-Shirts\n\u2022 Team & Group T-Shirts\n\u2022 Merchandise for Artists & Brands\n\u2022 School & Club T-Shirts\n\u2022 Promotional Giveaway Items\n\nTURNAROUND: 1\u20132 business days\nPRICING: From KES 1,500",opts:["Branding","More Design Services","Book Apparel Design","Main menu"]},
+  'billboard':{title:"Billboard & Signage Design",detail:"Large-format, high-impact outdoor designs.\n\nWHAT'S INCLUDED:\n\u2022 Large-format print-ready file\n\u2022 High resolution for any size\n\u2022 Bold, readable from a distance\n\u2022 Your branding incorporated\n\u2022 Revisions included\n\nTYPES:\n\u2022 Roadside Billboards\n\u2022 Shop Signage & Fascia Boards\n\u2022 Wall Murals\n\u2022 Vehicle Wraps\n\u2022 Outdoor Advertising Boards\n\u2022 Directional Signage\n\u2022 Street Pole Ads\n\nTURNAROUND: 2\u20133 business days\nPRICING: From KES 3,000",opts:["Banner Design","More Design Services","Book Billboard Design","Main menu"]},
+  'web design':{title:"Web Design & Development",detail:"Modern, responsive, professional websites.\n\nWEBSITES WE BUILD:\n\u2022 Business & Company Websites\n\u2022 Portfolio & Personal Websites\n\u2022 E-Commerce & Online Stores\n\u2022 Landing Pages & Sales Pages\n\u2022 Event & Booking Websites\n\u2022 Client Portal Systems\n\u2022 Custom Web Applications\n\nFEATURES INCLUDED:\n\u2022 Mobile-responsive design\n\u2022 Contact forms & WhatsApp integration\n\u2022 Google Maps integration\n\u2022 Basic SEO setup\n\u2022 Fast loading & security\n\u2022 Domain & hosting guidance\n\nADVANCED OPTIONS:\n\u2022 M-Pesa & card payment integration\n\u2022 Admin dashboard\n\u2022 Booking management\n\u2022 Client login portals\n\u2022 Automated email notifications\n\nTURNAROUND: 3\u201314 days\n\nPRICING:\n\u2022 Basic website \u2014 from KES 8,000\n\u2022 Standard business site \u2014 from KES 15,000\n\u2022 E-commerce / advanced \u2014 from KES 25,000",opts:["Business Solutions","Cybersecurity","Book Web Design","Main menu"]},
+  'motion graphics':{title:"Motion Graphics & Animation",detail:"Dynamic animated content that makes your brand come alive.\n\nWHAT WE CREATE:\n\u2022 Logo Animations (2D & 3D)\n\u2022 Animated Intros & Outros\n\u2022 Social Media Animations\n\u2022 Promotional Animated Ads\n\u2022 Kinetic Typography\n\u2022 Event Screen Animations\n\u2022 Brand Story Animations\n\u2022 Product Demo Animations\n\nFORMATS: MP4, GIF, MOV\n\nPRICING:\n\u2022 Logo animation \u2014 from KES 2,500\n\u2022 Intro/Outro \u2014 from KES 2,000\n\u2022 Full promo animation \u2014 from KES 5,000\n\nTURNAROUND: 2\u20135 business days",opts:["Videography","More Design Services","Book Motion Graphics","Main menu"]},
+  'company profile':{title:"Company Profile Design",detail:"A professional profile that builds credibility and trust.\n\nWHAT'S INCLUDED:\n\u2022 Full multi-page document design\n\u2022 About, Services, Team, Portfolio sections\n\u2022 Your full branding throughout\n\u2022 Print-ready PDF & digital version\n\u2022 Editable version available\n\u2022 Revisions included\n\nTYPICAL SECTIONS:\n\u2022 Cover Page\n\u2022 About the Company\n\u2022 Mission, Vision & Values\n\u2022 Our Services\n\u2022 Why Choose Us\n\u2022 Our Team\n\u2022 Portfolio\n\u2022 Testimonials\n\u2022 Contact Information\n\nPAGES: 8\u201316 pages\nTURNAROUND: 3\u20135 business days\nPRICING: From KES 4,000",opts:["Branding","Brochure Design","Book Company Profile","Main menu"]},
+  'menu design':{title:"Menu Design",detail:"Professional, appetizing menus for restaurants, cafes, and events.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout matching your brand\n\u2022 Food categories well organized\n\u2022 Print-ready & digital versions\n\u2022 QR Code menu option\n\u2022 Revisions included\n\nTYPES:\n\u2022 Restaurant & Cafe Menus\n\u2022 Hotel & Bar Menus\n\u2022 Event Catering Menus\n\u2022 Digital Menus (for screens & WhatsApp)\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,500",opts:["More Design Services","Book Menu Design","Main menu"]}
+};
+
+const ZGFX_MENU=["Logo Design","Flyer Design","Poster Design","Banner Design","Business Card","Brochure Design","Invitation Card","Social Media Graphics","YouTube Thumbnail","Album/Mixtape Cover","T-Shirt Design","Billboard Design","Web Design","Motion Graphics","Company Profile","Back to main menu"];
+
+function zDetectDesign(lc){
+  if(lc.includes('logo'))return 'logo';
+  if(lc.includes('flyer')||lc.includes('flier'))return 'flyer';
+  if(lc.includes('poster'))return 'poster';
+  if(lc.includes('banner'))return 'banner';
+  if(lc.includes('business card')||lc.includes('visiting card'))return 'business card';
+  if(lc.includes('brochure'))return 'brochure';
+  if(lc.includes('invitation')||lc.includes('invite card')||lc.includes('wedding card'))return 'invitation';
+  if(lc.includes('certificate'))return 'certificate';
+  if((lc.includes('social media')&&(lc.includes('design')||lc.includes('graphic')||lc.includes('post')))||(lc.includes('instagram')&&lc.includes('design'))||(lc.includes('facebook')&&lc.includes('design')))return 'social media';
+  if(lc.includes('thumbnail'))return 'thumbnail';
+  if(lc.includes('album cover')||lc.includes('mixtape cover')||lc.includes('ep cover'))return 'album cover';
+  if(lc.includes('t-shirt')||lc.includes('tshirt')||lc.includes('t shirt')||lc.includes('apparel')||lc.includes('hoodie'))return 'tshirt';
+  if(lc.includes('billboard')||lc.includes('signage'))return 'billboard';
+  if((lc.includes('web')&&(lc.includes('design')||lc.includes('site')||lc.includes('build')||lc.includes('develop')))||lc.includes('website'))return 'web design';
+  if(lc.includes('motion graphic')||lc.includes('logo animation')||lc.includes('animated logo')||(lc.includes('animation')&&(lc.includes('logo')||lc.includes('intro')||lc.includes('brand'))))return 'motion graphics';
+  if(lc.includes('company profile'))return 'company profile';
+  if(lc.includes('menu design')||(lc.includes('menu')&&(lc.includes('restaurant')||lc.includes('cafe')||lc.includes('design'))))return 'menu design';
+  return null;
+}
+
+function zSvcKey(lc){
+  const map={'brand':['Branding'],'rebrand':['Branding'],'identity':['Branding'],'dj':['DJ Services'],'music':['DJ Services'],'wedding':['DJ Services'],'party':['DJ Services'],'event':['Event Solutions'],'concert':['DJ Services'],'photo':['Photography'],'portrait':['Photography'],'fashion':['Photography'],'graduation':['Photography'],'video':['Videography'],'film':['Videography'],'cinematic':['Videography'],'music video':['Videography'],'cyber':['Cybersecurity'],'security':['Cybersecurity'],'pentest':['Cybersecurity'],'penetration':['Cybersecurity'],'audit':['Cybersecurity'],'hack':['Cybersecurity'],'vulnerability':['Cybersecurity'],'marketing':['Digital Marketing'],'sticker':['Printing'],'content':['Content Creation'],'booking system':['Business Solutions'],'dashboard':['Business Solutions']};
+  for(const[k,v]of Object.entries(map)){if(lc.includes(k))return v[0];}
+  return null;
+}
+
+function zHandleOpt(opt){
+  zAddMsg(opt,'user');
+  const clean=opt.replace(/[^\x00-\x7F]/g,'');
+  const lc=clean.toLowerCase().trim();
+  if(lc.includes('main menu')||lc.includes('back to main')){zBot("What can I help you with?",ZMAIN);return;}
+  if(lc.includes('back to cyber')||lc.includes('cybersecurity menu')){zBot("Explore our cybersecurity services:",ZCYBER_MENU);return;}
+  if(lc.includes('all services')||lc.includes('more services')){zBot("Here are all our services:",ZALL);return;}
+  if(lc.includes('more design')||lc.includes('graphic design service')){zBot("Which specific design are you interested in?",ZGFX_MENU);return;}
+  if(lc.includes('cyber threat')||lc.includes('common threat')||lc.includes('types of attack')){zBot("Common cyber threats we help protect against:",ZCYBER_THREATS);return;}
+  if(lc.includes('cybersecurity package')||lc.includes('security package')){const p=ZCYBER['packages'];zBot(p.title+'\n\n'+p.detail,["Book Cybersecurity","Contact us","Back to Cybersecurity menu"],900);return;}
+  // Cyber routing
+  const ck=zDetectCyber(lc);
+  if(ck&&ZCYBER[ck]){const c=ZCYBER[ck];zBot(c.title+'\n\n'+c.detail,["Book this service","Cybersecurity Packages","Back to Cybersecurity menu"],900);return;}
+  // Cybersecurity general menu triggers
+  if(lc.includes('cyber threat')||lc.includes('common threat')||lc.includes('types of attack')||lc.includes('attack type')){zBot("Common cyber threats we protect against:",ZCYBER_THREATS);return;}
+  if(lc.includes('cybersecurity')||lc.includes('cyber security')||(lc.includes('security')&&!lc.includes('design'))){zBot("Explore our cybersecurity services:",ZCYBER_MENU);return;}
+  if(lc.includes('book')||lc.includes('quote')){zBot("Ready to book? Reach us here:\n\n\u{1F4DE} "+ZKB.brand.phone+"\n\u{1F4E7} "+ZKB.brand.email+"\n\u{1F310} "+ZKB.brand.website+"\n\nMon-Sat, 8am-8pm.",["View our services","Main menu"]);return;}
+  if(lc.includes('contact')){zBot("\u{1F4DE} "+ZKB.brand.phone+"\n\u{1F4E7} "+ZKB.brand.email+"\n\u{1F310} "+ZKB.brand.website,["Book a service","Main menu"]);return;}
+  if(lc.includes('about')){zBot(ZKB.brand.about+'\n\n"'+ZKB.brand.tagline+'"',["View our services","Contact us","Main menu"]);return;}
+  if(lc.includes('pricing')){zBot("Our pricing:\n\n DJ Services: Basic 5K - Standard 8K - Premium 12K\n Photography: Basic 3K - Standard 6K - Premium 10K\n Graphic Design: Logos from 2K - Flyers from 500 - Posters from 800\n Cybersecurity: Starter 10K - Business 30K - Pro 60K\n Web Design: Basic from 8K\n\nContact us for a custom quote!",["Book a service","Cybersecurity Packages","Main menu"]);return;}
+  const dk=zDetectDesign(lc);
+  if(dk&&ZDESIGNS[dk]){const d=ZDESIGNS[dk];zBot(d.title+'\n\n'+d.detail,d.opts,900);return;}
+  for(const[name,svc]of Object.entries(ZKB.services)){
+    const nl=name.toLowerCase();
+    if(lc.includes(nl)||nl.split(' ').some(w=>w.length>3&&lc.includes(w))){
+      zBot(svc.icon+' '+name+'\n\n'+svc.detail,svc.opts,900);return;
+    }
+  }
+  zBot("Here's what Zeks can help with:",ZMAIN);
+}
+
+function zHandleInput(){
+  const inp=document.getElementById('zinp');
+  const text=inp.value.trim();if(!text)return;
+  inp.value='';zAddMsg(text,'user');
+  const lc=text.toLowerCase();
+  // Greetings
+  if(lc.match(/^(hi|hello|hey|halo|habari|sasa|wassup|yo|sup)/)){zBot("Hey! I'm Zeks.\n\n\""+ZKB.brand.tagline+"\"\n\nHow can I help you today?",ZMAIN);return;}
+  // Cyber threats first
+  const ck=zDetectCyber(lc);
+  if(ck&&ZCYBER[ck]){const c=ZCYBER[ck];zBot(c.title+'\n\n'+c.detail,["Book this service","Cybersecurity Packages","Back to Cybersecurity menu"],900);return;}
+  // Cybersecurity general
+  if(lc.includes('cybersecurity')||lc.includes('cyber security')||lc.includes('cyber threat')||(lc.includes('security')&&(lc.includes('service')||lc.includes('help')||lc.includes('protect')||lc.includes('website')))){zBot("Explore our cybersecurity services:",ZCYBER_MENU);return;}
+  // Design types
+  const dk=zDetectDesign(lc);
+  if(dk&&ZDESIGNS[dk]){const d=ZDESIGNS[dk];zBot(d.title+'\n\n'+d.detail,d.opts,900);return;}
+  if((lc.includes('graphic design')||lc.includes('design service'))&&!dk){zBot("Which specific design are you interested in?",ZGFX_MENU);return;}
+  // General
+  if(lc.includes('service')||lc.includes('what do you offer')){zBot("Here are all our services:",ZALL);return;}
+  if(lc.includes('about')||lc.includes('who are you')){zBot(ZKB.brand.about,["View our services","Contact us"]);return;}
+  if(lc.includes('contact')||lc.includes('phone')||lc.includes('email')||lc.includes('reach')||lc.includes('number')){zBot("\u{1F4DE} "+ZKB.brand.phone+"\n\u{1F4E7} "+ZKB.brand.email+"\n\u{1F310} "+ZKB.brand.website,["Book a service","Main menu"]);return;}
+  if(lc.includes('book')||lc.includes('hire')||lc.includes('price')||lc.includes('cost')||lc.includes('how much')||lc.includes('quote')||lc.includes('bei')){zBot("Get in touch for a free quote!\n\n\u{1F4DE} "+ZKB.brand.phone+"\n\u{1F4E7} "+ZKB.brand.email+"\n\u{1F310} "+ZKB.brand.website,["View our services","Main menu"]);return;}
+  const match=zSvcKey(lc);
+  if(match&&ZKB.services[match]){const s=ZKB.services[match];zBot(s.icon+' '+match+'\n\n'+s.detail,s.opts,900);return;}
+  for(const[name,svc]of Object.entries(ZKB.services)){
+    if(name.toLowerCase().split(' ').some(w=>w.length>3&&lc.includes(w))){zBot(svc.icon+' '+name+'\n\n'+svc.detail,svc.opts,900);return;}
+  }
+  zBot("I'm not sure about that, but I can help with services, bookings, and pricing.",ZMAIN);
+}
+
+document.getElementById('zinp').addEventListener('keydown',e=>{if(e.key==='Enter')zHandleInput();});
+setTimeout(()=>{const t=document.getElementById('zeks-tooltip');if(t)setTimeout(()=>t.style.display='none',3500);},100);
+</script>
+
+<script>
+// ============= DARK MODE =============
+function toggleDarkMode(){
+document.body.classList.toggle('light-mode');
+localStorage.setItem('darkMode',document.body.classList.contains('light-mode')?'light':'dark');
+}
+
+if(localStorage.getItem('darkMode')==='light'){
+document.body.classList.add('light-mode');
+}
+
+// ============= ANIMATED CANVAS BACKGROUND =============
+(function(){
+  const canvas = document.getElementById('distortion-bg-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // --- SYMBOL SETS ---
+  const CYBER = [
+    '01','10','11','00','0x1A','0xFF',
+    'SSH','SQL','XSS','CVE','API','DNS',
+    '#!/','[*]','>>>','nmap','ping',
+    'root@','sudo','chmod','grep',
+    '{ }','||','&&','!=','==',
+    'HTTPS','TLS','JWT','AES','RSA',
+    '#!','/**/','</>','[ ]','{ }',
+    'iptables','netstat','traceroute',
+    'hash:','md5:','sha256','base64'
+  ];
+  const DESIGN = [
+    'RGB','HEX','#fff','#000','#7c3a',
+    'px','em','rem','vw','vh','%',
+    'font','flex','grid','var(','calc(',
+    'Aa','Bb','H1','H2','svg','png',
+    'CMYK','DPI','300','1080','4K',
+    'blend','layer','mask','opacity',
+    'kerning','leading','tracking',
+    '@media','::before','z-index',
+    'logo','brand','type','icon'
+  ];
+
+  // --- PARTICLES ---
+  const PTOTAL = 100;
+  const particles = [];
+
+  function randFrom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function mkParticle(fromBottom){
+    const cyber = Math.random() > 0.45;
+    const sym = cyber ? randFrom(CYBER) : randFrom(DESIGN);
+    return {
+      x: Math.random() * (window.innerWidth || 1200),
+      y: fromBottom ? (window.innerHeight||800) + 10 : Math.random() * (window.innerHeight||800),
+      vx: (Math.random()-0.5) * 0.5,
+      vy: -(Math.random() * 1.2 + 0.3),
+      sym, cyber,
+      size: Math.random()*10+12,
+      alpha: Math.random()*0.7+0.3,
+      maxLife: Math.random()*350+200,
+      age: fromBottom ? 0 : Math.floor(Math.random()*200),
+      pulse: Math.random()*Math.PI*2,
+    };
+  }
+  for(let i=0;i<PTOTAL;i++) particles.push(mkParticle(false));
+
+  // --- MATRIX RAIN ---
+  const COL_W = 26;
+  let cols = Math.floor(canvas.width/COL_W);
+  let drops = Array.from({length:cols},()=>Math.random()*-60);
+  const MCHARS = '01アイウエカキクSQLXSSAPIABCDEF0123456789#@!$';
+
+  window.addEventListener('resize',()=>{
+    cols = Math.floor(canvas.width/COL_W);
+    while(drops.length < cols) drops.push(0);
+    drops = drops.slice(0, cols);
+  });
+
+  // --- CIRCUIT LINES ---
+  const LINES = [];
+  for(let i=0;i<30;i++){
+    LINES.push({
+      x: Math.random()*(window.innerWidth||1200),
+      y: Math.random()*(window.innerHeight||800),
+      len: Math.random()*140+40,
+      dir: Math.floor(Math.random()*4),
+      speed: Math.random()*0.4+0.15,
+      prog: Math.random(),
+      alpha: Math.random()*0.5+0.25,
+      cyber: Math.random()>0.45,
+    });
+  }
+
+  // --- HEXAGONS ---
+  const HEXES = [];
+  for(let i=0;i<14;i++){
+    HEXES.push({
+      x: Math.random()*(window.innerWidth||1200),
+      y: Math.random()*(window.innerHeight||800),
+      r: Math.random()*28+12,
+      alpha: Math.random()*0.3+0.12,
+      rot: Math.random()*Math.PI*2,
+      rotSpd: (Math.random()-0.5)*0.005,
+      cyber: Math.random()>0.45,
+    });
+  }
+
+  // --- DESIGN SHAPES (triangles, circles, squares) ---
+  const SHAPES = [];
+  for(let i=0;i<10;i++){
+    SHAPES.push({
+      x: Math.random()*(window.innerWidth||1200),
+      y: Math.random()*(window.innerHeight||800),
+      size: Math.random()*18+8,
+      type: Math.floor(Math.random()*3), // 0=circle,1=tri,2=rect
+      alpha: Math.random()*0.25+0.1,
+      rot: Math.random()*Math.PI*2,
+      rotSpd: (Math.random()-0.5)*0.006,
+      vx:(Math.random()-0.5)*0.15,
+      vy:(Math.random()-0.5)*0.15,
+    });
+  }
+
+  function drawHex(cx,cy,r,rot){
+    ctx.beginPath();
+    for(let i=0;i<6;i++){
+      const a=rot+(Math.PI/3)*i;
+      i===0?ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+    }
+    ctx.closePath();
+  }
+
+  let frame=0;
+  function animate(){
+    frame++;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Dark base gradient
+    const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+    grad.addColorStop(0,'#07071a');
+    grad.addColorStop(0.5,'#0b0b1f');
+    grad.addColorStop(1,'#050510');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    // -- Matrix rain --
+    ctx.font = '14px monospace';
+    for(let c=0;c<Math.min(cols,drops.length);c++){
+      const char = MCHARS[Math.floor(Math.random()*MCHARS.length)];
+      const x = c*COL_W;
+      const y = drops[c]*18;
+      // bright head - very visible
+      ctx.fillStyle='rgba(168,85,247,0.9)';
+      ctx.fillText(char,x,y);
+      // trail chars
+      ctx.fillStyle='rgba(124,58,237,0.45)';
+      ctx.fillText(MCHARS[Math.floor(Math.random()*MCHARS.length)],x,y-18);
+      ctx.fillStyle='rgba(90,20,200,0.2)';
+      ctx.fillText(MCHARS[Math.floor(Math.random()*MCHARS.length)],x,y-36);
+      ctx.fillStyle='rgba(60,10,150,0.08)';
+      ctx.fillText(MCHARS[Math.floor(Math.random()*MCHARS.length)],x,y-54);
+      if(y>canvas.height && Math.random()>0.975) drops[c]=0;
+      drops[c]+=0.35;
+    }
+
+    // -- Circuit lines --
+    const DX=[1,0,-1,0], DY=[0,1,0,-1];
+    for(const ln of LINES){
+      ln.prog+=ln.speed*0.005;
+      if(ln.prog>1){ ln.prog=0; ln.x=Math.random()*canvas.width; ln.y=Math.random()*canvas.height; ln.dir=Math.floor(Math.random()*4); }
+      const col=ln.cyber?'124,58,237':'218,165,32';
+      ctx.strokeStyle=`rgba(${col},${ln.alpha})`;
+      ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(ln.x,ln.y);
+      ctx.lineTo(ln.x+DX[ln.dir]*ln.len*ln.prog, ln.y+DY[ln.dir]*ln.len*ln.prog);
+      ctx.stroke();
+      // dot at tip
+      ctx.beginPath();
+      ctx.arc(ln.x+DX[ln.dir]*ln.len*ln.prog, ln.y+DY[ln.dir]*ln.len*ln.prog, 2,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${col},${ln.alpha*3})`;
+      ctx.fill();
+    }
+
+    // -- Hexagons --
+    for(const h of HEXES){
+      h.rot+=h.rotSpd;
+      const col=h.cyber?'124,58,237':'218,165,32';
+      const a=h.alpha+0.06*Math.sin(frame*0.018+h.rot);
+      ctx.strokeStyle=`rgba(${col},${a})`;
+      ctx.lineWidth=1.5;
+      drawHex(h.x,h.y,h.r,h.rot);
+      ctx.stroke();
+    }
+
+    // -- Design shapes --
+    for(const s of SHAPES){
+      s.rot+=s.rotSpd;
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<-50)s.x=canvas.width+50;
+      if(s.x>canvas.width+50)s.x=-50;
+      if(s.y<-50)s.y=canvas.height+50;
+      if(s.y>canvas.height+50)s.y=-50;
+      const a=s.alpha+0.02*Math.sin(frame*0.022+s.rot);
+      ctx.strokeStyle=`rgba(218,165,32,${a})`;
+      ctx.lineWidth=1;
+      ctx.save();
+      ctx.translate(s.x,s.y);
+      ctx.rotate(s.rot);
+      ctx.beginPath();
+      if(s.type===0){ ctx.arc(0,0,s.size,0,Math.PI*2); }
+      else if(s.type===1){ ctx.moveTo(0,-s.size); ctx.lineTo(s.size,s.size); ctx.lineTo(-s.size,s.size); ctx.closePath(); }
+      else { ctx.rect(-s.size/2,-s.size/2,s.size,s.size); }
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // -- Floating text symbols --
+    for(let i=0;i<particles.length;i++){
+      const p=particles[i];
+      p.age++; p.x+=p.vx; p.y+=p.vy; p.pulse+=0.04;
+      const fade=Math.min(p.age/50,1)*Math.max(0,1-(p.age-(p.maxLife-50))/50);
+      const a=p.alpha*fade*(0.85+0.15*Math.sin(p.pulse));
+      if(a<=0.005||p.age>=p.maxLife){ particles[i]=mkParticle(true); continue; }
+      ctx.save();
+      ctx.globalAlpha=a;
+      const col=p.cyber?'168,85,247':'218,165,32';
+      ctx.fillStyle=`rgb(${col})`;
+      ctx.font=`${p.size}px 'Courier New',monospace`;
+      ctx.fillText(p.sym,p.x,p.y);
+      ctx.restore();
+    }
+
+    // -- Subtle scanline --
+    if(frame%240<3){
+      ctx.fillStyle='rgba(124,58,237,0.03)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ============= PRICING DATA =============
+const pricingData = {
+'DJ Services': {Basic: 5000, Standard: 8000, Premium: 12000},
+'Photography': {Basic: 3000, Standard: 6000, Premium: 10000},
+'Graphic Design': {Basic: 2000, Standard: 4000, Premium: 7000},
+'Cyber Security': {Basic: 4000, Standard: 8000, Premium: 15000}
+};
+
+function loadPricing(){
+const container = document.getElementById('pricingContainer');
+container.innerHTML = '';
+Object.entries(pricingData).forEach(([service, tiers]) => {
+const card = document.createElement('div');
+card.className = 'pricing-card';
+card.innerHTML = `
+<h3>${service}</h3>
+<div style="border-top:2px solid gold;margin:15px 0;"></div>
+${['Basic','Standard','Premium'].map(tier => `
+<div style="text-align:left;margin:15px 0;">
+<strong>${tier}</strong><br>
+<span class="price">KES ${tiers[tier].toLocaleString()}</span>
+<ul class="price-features">
+<li>✓ ${tier} Support</li>
+<li>✓ 4-hour Duration</li>
+<li>✓ Equipment Included</li>
+${tier==='Standard'?'<li>✓ Extra Hour Available</li>':''}
+${tier==='Premium'?'<li>✓ Unlimited Duration</li><li>✓ Premium Equipment</li>':''}
+</ul>
+</div>
+`).join('')}
+`;
+container.appendChild(card);
+});
+}
+
+// ============= GALLERY DATA (images + videos from your repo) =============
+const galleryData = [
+  // PNG/WebP assets -> category: design
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/01d6170f-342b-465e-8b2f-2aeb05844c6a.png.webp', category: 'design', title: '01d6170f', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/08d8d607-d66f-4359-9bd5-23ffc3d830b8.png', category: 'design', title: '08d8d607', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/17f794f9-6a4f-43d2-98d2-1f5d0f7051f3.png', category: 'design', title: '17f794f9', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/18d68553-21f3-4823-a3a9-45f1f75482fb.png', category: 'design', title: '18d68553', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/1f664b80-9206-40d6-b2b4-44bedfb419d8.png', category: 'design', title: '1f664b80', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/20f51ae0-30f8-4100-8dff-c70b2dd5bdb1.png.webp', category: 'design', title: '20f51ae0', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/263c107c-a65f-4cfa-859e-a6f849f68270.png', category: 'design', title: '263c107c', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/2f5536da-1daf-47b5-99f3-41f8019a8bf7.png', category: 'design', title: '2f5536da', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/301588b9-aaa2-476e-8f59-211ff812c108.png.webp', category: 'design', title: '301588b9', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/3170d023-ca53-425e-abba-eb2a643d2f25.png.webp', category: 'design', title: '3170d023', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/31eba134-f9d7-48a4-8892-ef28681e572d.png', category: 'design', title: '31eba134', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/42902b63-b62a-4811-b4e3-7e00167589ae.png', category: 'design', title: '42902b63', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/4e6ec383-1086-4779-b13b-40813536ba60.png', category: 'design', title: '4e6ec383', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/5569cea0-0bab-4c39-b6dd-47d48b36fdd6.png', category: 'design', title: '5569cea0', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/55716e49-b6d5-4e72-9228-d9f846afbfed.png', category: 'design', title: '55716e49', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/62178f6a-4543-493d-969f-a2e4effb7c97.png.webp', category: 'design', title: '62178f6a', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/6ab9d72d-678b-4c3c-a079-574560691f98.png', category: 'design', title: '6ab9d72d', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/7238c89c-c4b4-40eb-a306-8c6f96eb9571.png', category: 'design', title: '7238c89c', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/79e7edec-328e-44fc-88d6-731addc6be89.png', category: 'design', title: '79e7edec', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/803fcef5-c16a-4e42-b340-b6fdd2c4a319.png', category: 'design', title: '803fcef5', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/837199e4-a628-4fda-979f-0e922359c2a9.png.webp', category: 'design', title: '837199e4', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8c8a9e20-0c9f-47e6-8941-4385643f5ec7.png.webp', category: 'design', title: '8c8a9e20', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/8e9cb9eb-5816-4ff0-a68f-9510bbb1e441.png.webp', category: 'design', title: '8e9cb9eb', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/907e98bd-a885-4947-ad4c-89f7dcd7deb8.png', category: 'design', title: '907e98bd', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/a58c6c6f-d411-4581-bc60-10b3dbaee241.png.webp', category: 'design', title: 'a58c6c6f', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ac0c8955-6c36-4683-a2b4-0c5aa20644bb.png', category: 'design', title: 'ac0c8955', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bd14015f-005c-416f-a2c3-746b24f5ac2c.png', category: 'design', title: 'bd14015f', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/be95a5fb-695d-48a2-bf1b-c133b1136641.png', category: 'design', title: 'be95a5fb', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/bee05245-46e5-4dbf-a5dc-f8b78653c488.png', category: 'design', title: 'bee05245', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca556e92-ec9f-4b40-91af-9d7853574fe8.png', category: 'design', title: 'ca556e92', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/ca615d69-972f-42b1-b20c-1a9d8a429cb1.png', category: 'design', title: 'ca615d69', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d0474107-90f2-4c40-a032-2145ef397eeb.png', category: 'design', title: 'd0474107', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d3fb5813-69f1-4285-afea-78c5cb54943a.png', category: 'design', title: 'd3fb5813', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/d796a11e-00dc-4937-9396-9b924b5c20e6.png.webp', category: 'design', title: 'd796a11e', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/da8aeb3a-ed4b-4617-b4fb-d6fd877f4dc5.png', category: 'design', title: 'da8aeb3a', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/e609ae6e-80fd-4e88-87a5-67f8ec358555.png', category: 'design', title: 'e609ae6e', type: 'image' },
+
+  // IMG_*.jpg assets -> category: photography
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0002.jpg', category: 'photography', title: 'IMG-20260605-WA0002', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0003.jpg', category: 'photography', title: 'IMG-20260605-WA0003', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0004.jpg', category: 'photography', title: 'IMG-20260605-WA0004', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0008.jpg', category: 'photography', title: 'IMG-20260605-WA0008', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0009.jpg', category: 'photography', title: 'IMG-20260605-WA0009', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0010.jpg', category: 'photography', title: 'IMG-20260605-WA0010', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260605-WA0029.jpg', category: 'photography', title: 'IMG-20260605-WA0029', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0007.jpg', category: 'photography', title: 'IMG-20260618-WA0007', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0009.jpg', category: 'photography', title: 'IMG-20260618-WA0009', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0010.jpg', category: 'photography', title: 'IMG-20260618-WA0010', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0011.jpg', category: 'photography', title: 'IMG-20260618-WA0011', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0012.jpg', category: 'photography', title: 'IMG-20260618-WA0012', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0013.jpg', category: 'photography', title: 'IMG-20260618-WA0013', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0014.jpg', category: 'photography', title: 'IMG-20260618-WA0014', type: 'image' },
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/IMG-20260618-WA0015.jpg', category: 'photography', title: 'IMG-20260618-WA0015', type: 'image' },
+
+  // one oddly named PNG (kept as design)
+  { src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/Jun%203%2C%202026%2C%2001_30_14%20PM.png', category: 'design', title: 'Jun 3 2026 snapshot', type: 'image' },
+
+  // Video entry (your provided mp4)
+  {
+    src: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4',
+    poster: 'https://raw.githubusercontent.com/Djzeks/distortion/main/3170d023-ca53-425e-abba-eb2a643d2f25.png.webp',
+    category: 'dj',
+    title: 'VID-20260701-WA0026',
+    type: 'video',
+    videoSrc: 'https://raw.githubusercontent.com/Djzeks/distortion/main/VID-20260701-WA0026.mp4'
+  }
+];
+
+function loadGallery(filter = 'all'){
+const gallery = document.getElementById('gallery');
+gallery.innerHTML = '';
+galleryData.filter(item => filter === 'all' || item.category === filter).forEach(item => {
+const div = document.createElement('div');
+div.className = 'gallery-item';
+if(item.type === 'video'){
+  // video thumbnail with play icon
+  div.onclick = () => openModal(item);
+  div.innerHTML = `
+    <img src="${item.poster || item.src}" alt="${item.title}">
+    <div class="play-icon"><i class="fa fa-play-circle"></i></div>
+  `;
+} else {
+  div.onclick = () => openModal(item);
+  div.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
+}
+gallery.appendChild(div);
+});
+}
+
+function filterGallery(category, btnEl){
+loadGallery(category);
+document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+if(btnEl) btnEl.classList.add('active');
+}
+
+function openModal(item){
+const modal = document.getElementById('imageModal');
+const img = document.getElementById('modalImage');
+const vid = document.getElementById('modalVideo');
+
+// reset
+img.style.display = 'none';
+vid.style.display = 'none';
+try { vid.pause(); } catch(e){}
+vid.removeAttribute('src'); // stop previous video
+
+if(item.type === 'video'){
+  vid.src = item.videoSrc;
+  if(item.poster) vid.setAttribute('poster', item.poster);
+  vid.style.display = 'block';
+  // wait a tick to load
+  setTimeout(()=> { try{ vid.load(); }catch(e){} }, 50);
+} else {
+  img.src = item.src;
+  img.style.display = 'block';
+}
+
+modal.classList.add('active');
+}
+
+function closeModal(){
+const modal = document.getElementById('imageModal');
+const vid = document.getElementById('modalVideo');
+modal.classList.remove('active');
+if(vid){
+  vid.pause();
+  vid.removeAttribute('src');
+}
+}
+
+// ============= TEAM DATA =============
+const teamData = [
+{name: 'DJ Zeks', role: 'Head DJ & Founder', emoji: '🎧', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Sarah Johnson', role: 'Lead Photographer', emoji: '📸', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Marcus Design', role: 'Creative Director', emoji: '🎨', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}
+];
+
+function loadTeam(){
+const container = document.getElementById('teamContainer');
+container.innerHTML = '';
+teamData.forEach(member => {
+const card = document.createElement('div');
+card.className = 'team-card';
+card.innerHTML = `
+<div class="team-avatar">${member.emoji}</div>
+<h3>${member.name}</h3>
+<p>${member.role}</p>
+<div class="social-links">
+<a href="${member.instagram}" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="${member.tiktok}" title="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+<a href="${member.youtube}" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+`;
+container.appendChild(card);
+});
+}
+
+// ============= REVIEWS DATA =============
+const reviewsData = [
+{name: 'Alex Mwangi', rating: 5, text: 'Best DJ service in town! Amazing music selection and crowd engagement.'},
+{name: 'Lisa Kariuki', rating: 5, text: 'Professional photography team. Great quality photos from our event.'},
+{name: 'John Smith', rating: 4, text: 'Great graphic design work. Very creative and responsive team.'},
+{name: 'Diana Ochieng', rating: 5, text: 'Excellent cybersecurity consultation. Very knowledgeable.'}
+];
+
+function loadReviews(){
+const container = document.getElementById('reviewsContainer');
+container.innerHTML = '';
+reviewsData.forEach(review => {
+const card = document.createElement('div');
+card.className = 'review-card';
+card.innerHTML = `
+<div class="stars">${'⭐'.repeat(review.rating)}</div>
+<div class="review-text">"${review.text}"</div>
+<div class="reviewer-name">- ${review.name}</div>
+`;
+container.appendChild(card);
+});
+}
+
+// ============= NOTIFICATIONS =============
+function showNotification(message, type = 'success'){
+const notification = document.createElement('div');
+notification.className = `notification ${type}`;
+notification.textContent = message;
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 4000);
+}
+
+// ============= BOOKING SYSTEM =============
+function bookNow(){
+const name = document.getElementById('name').value.trim();
+const email = document.getElementById('email').value.trim();
+const phone = document.getElementById('phone').value.trim();
+const date = document.getElementById('date').value;
+const time = document.getElementById('time').value;
+const service = document.getElementById('service').value;
+const tier = document.getElementById('tier').value;
+const requirements = document.getElementById('requirements').value;
+const terms = document.getElementById('terms').checked;
+
+if(!name || !email || !phone || !date || !time || !service || !tier){
+showNotification('Please fill all required fields', 'error');
+return;
+}
+
+if(!terms){
+showNotification('Please agree to terms and conditions', 'error');
+return;
+}
+
+const price = pricingData[service][tier];
+const booking = {id: Date.now(), name, email, phone, date, time, service, tier, requirements, price, status: 'Pending', timestamp: new Date().toLocaleString()};
+let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+bookings.push(booking);
+localStorage.setItem('bookings', JSON.stringify(bookings));
+
+showNotification(`✅ Booking confirmed! Total: KES ${price.toLocaleString()}`, 'success');
+
+const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}%0DDate:${date}%0DTime:${time}%0DPrice:KES${price}%0DRequirements:${requirements}`;
+setTimeout(() => window.location.href = mailLink, 1500);
+
+document.getElementById('name').value = '';
+document.getElementById('email').value = '';
+document.getElementById('phone').value = '';
+document.getElementById('date').value = '';
+document.getElementById('time').value = '';
+document.getElementById('service').value = '';
+document.getElementById('tier').value = '';
+document.getElementById('requirements').value = '';
+document.getElementById('terms').checked = false;
+
+loadBookings();
+}
+
+// ============= DASHBOARD =============
+function toggleAdminDashboard(){
+const dashboard = document.getElementById('adminDashboard');
+dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
+if(dashboard.style.display === 'block') loadBookings();
+}
+
+function loadBookings(){
+const list = document.getElementById('bookingsList');
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+list.innerHTML = '';
+
+bookings.forEach(b => {
+const li = document.createElement('li');
+li.innerHTML = `
+<div>
+<strong>${b.name}</strong><br>
+${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
+</div>
+<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
+`;
+list.appendChild(li);
+});
+
+updateDashboardStats();
+}
+
+function deleteBooking(id){
+let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+bookings = bookings.filter(b => b.id !== id);
+localStorage.setItem('bookings', JSON.stringify(bookings));
+loadBookings();
+showNotification('Booking deleted', 'info');
+}
+
+function searchBookings(){
+const query = document.getElementById('searchBooking').value.toLowerCase();
+const list = document.getElementById('bookingsList');
+Array.from(list.children).forEach(li => {
+li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+});
+}
+
+function filterBookings(){
+const service = document.getElementById('filterService').value;
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+const list = document.getElementById('bookingsList');
+list.innerHTML = '';
+
+bookings.filter(b => !service || b.service === service).forEach(b => {
+const li = document.createElement('li');
+li.innerHTML = `
+<div>
+<strong>${b.name}</strong><br>
+${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+<small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
+</div>
+<button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
+`;
+list.appendChild(li);
+});
+}
+
+function updateDashboardStats(){
+const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+const today = new Date().toISOString().split('T')[0];
+const todayBookings = bookings.filter(b => b.date === today).length;
+const totalRevenue = bookings.reduce((sum, b) => sum + b.price, 0);
+
+document.getElementById('totalBookings').textContent = bookings.length;
+document.getElementById('todayBookings').textContent = todayBookings;
+document.getElementById('totalRevenue').textContent = `KES ${totalRevenue.toLocaleString()}`;
+}
+
+// ============= INIT =============
+window.addEventListener('load', () => {
+loadPricing();
+loadGallery();
+loadTeam();
+loadReviews();
+loadBookings();
+});
+</script>
+
+</body>
+</html>
