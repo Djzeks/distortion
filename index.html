@@ -1203,6 +1203,10 @@ padding:20px;
 .zmb{max-width:83%;padding:9px 13px;border-radius:16px;font-size:12.5px;line-height:1.5;color:#f1f0ff;white-space:pre-line;}
 .zmr.bot .zmb{background:#1a1a2e;border:1px solid rgba(168,85,247,0.2);border-bottom-left-radius:3px;}
 .zmr.user .zmb{background:linear-gradient(135deg,#7c3aed,#a855f7);border-bottom-right-radius:3px;color:#fff;}
+.zmimg{display:block;max-width:100%;width:220px;border-radius:10px;margin-top:8px;cursor:pointer;border:1px solid rgba(168,85,247,0.3);}
+.zmlink{display:inline-block;margin-top:8px;padding:7px 12px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;text-decoration:none;font-size:12px;font-weight:600;}
+.zmlink:hover{opacity:0.9;}
+.zgen-note{font-size:10px;color:#9ca3af;margin-top:4px;font-style:italic;}
 .zmg{display:flex;flex-direction:column;max-width:88%;}
 .zmr.user .zmg{align-items:flex-end;}
 .zmt{font-size:9px;color:#9ca3af;margin-top:2px;padding:0 3px;}
@@ -1256,22 +1260,25 @@ const ZKB = {
   services:{
     "Graphic Design":{icon:"🎨",detail:`We create professional, eye-catching designs for businesses and individuals.\n\nWHAT WE DESIGN:\n• Logo Design & Brand Identity\n• Business Cards & Letterheads\n• Flyers, Posters & Banners\n• Brochures & Company Profiles\n• Invitation Cards & Wedding Invitations\n• Social Media Graphics & Posters\n• Advertising & Promotional Designs\n• Event & Birthday Posters\n• Certificate, Menu & Calendar Design\n• T-Shirt & Apparel Designs\n• Billboard & Signage Designs\n• Album & Mixtape Covers\n• YouTube Thumbnails\n• Custom Digital Artwork\n• Motion Graphics & 3D Visuals`,opts:["Branding","Web Design","Book Graphic Design","All services"]},
     "Branding":{icon:"✨",detail:`We build strong, professional, recognizable brands.\n\nBRANDING SERVICES:\n• Logo Creation & Development\n• Brand Identity Packages\n• Brand Color & Typography Selection\n• Business Card & Letterhead Design\n• Company Profile Design\n• Social Media Branding\n• Brand Guidelines Document\n• Corporate Identity Packages\n• Rebranding & Personal Branding\n• Business Naming & Brand Concept`,opts:["Graphic Design","Web Design","Book Branding","All services"]},
-    "Web Design":{icon:"💻",detail:`Modern, mobile-friendly websites for businesses and individuals.\n\nWEB SERVICES:\n• Business & Portfolio Websites\n• E-Commerce & Landing Pages\n• Booking & Client Portal Systems\n• Custom Web Applications\n• Website Redesign & Maintenance\n• Domain & Hosting Assistance\n• Website Security & SEO Setup\n• WhatsApp, Maps & Payment Integration\n• Online Booking Systems`,opts:["Business Solutions","Graphic Design","Book Web Design","All services"]},
-    "DJ Services":{icon:"🎧",detail:`Professional DJ entertainment for any occasion.\n\nEVENTS WE COVER:\n• Weddings & Anniversaries\n• Birthday & Graduation Parties\n• Corporate Events & Functions\n• Private, House & Club Events\n• Product Launches & Concerts\n• Church & Community Events\n• Outdoor Events & Special Celebrations\n\nWHAT'S INCLUDED:\n• Professional DJ Performance & Music Mixing\n• Event Music Curation (genre-tailored)\n• MC & Event Hosting\n• Crowd Entertainment\n• Themed Music Sessions\n• Sound & Entertainment Coordination\n\nPRICING:\n• Basic — KES 5,000\n• Standard — KES 8,000\n• Premium — KES 12,000`,opts:["Photography","Event Solutions","Book DJ Services","All services"]},
+    "Web Design":{icon:"💻",detail:`Modern, mobile-friendly websites for businesses and individuals.\n\nWEB SERVICES:\n• Business & Portfolio Websites\n• E-Commerce & Landing Pages\n• Booking & Client Portal Systems\n• Custom Web Applications\n• Website Redesign & Maintenance\n• Domain & Hosting Assistance\n• Website Security & SEO Setup\n• WhatsApp, Maps & Payment Integration\n• Online Booking Systems`,opts:["Business Solutions","SEO & Online Growth","Book Web Design","All services"]},
+    "DJ Services":{icon:"🎧",detail:`Professional DJ entertainment for any occasion.\n\nEVENTS WE COVER:\n• Weddings & Anniversaries\n• Birthday & Graduation Parties\n• Corporate Events & Functions\n• Private, House & Club Events\n• Product Launches & Concerts\n• Church & Community Events\n• Outdoor Events & Special Celebrations\n\nWHAT'S INCLUDED:\n• Professional DJ Performance & Music Mixing\n• Event Music Curation (genre-tailored)\n• MC & Event Hosting\n• Crowd Entertainment\n• Themed Music Sessions\n• Sound & Entertainment Coordination\n\nPRICING:\n• Basic — KES 5,000\n• Standard — KES 8,000\n• Premium — KES 12,000`,opts:["Photography","Live Streaming","Book DJ Services","All services"]},
     "Photography":{icon:"📸",detail:`Creative, professional photography for all occasions.\n\nPHOTOGRAPHY TYPES:\n• Event & Wedding Photography\n• Birthday & Graduation Photography\n• Corporate & Business Photography\n• Portrait & Lifestyle Photography\n• Product & Brand Photography\n• Fashion & Family Photography\n• Social Media & Promotional Photography\n\nPRICING:\n• Basic — KES 3,000\n• Standard — KES 6,000\n• Premium — KES 10,000`,opts:["Videography","Event Solutions","Book Photography","All services"]},
-    "Videography":{icon:"🎬",detail:`Engaging video production for events, brands, and social media.\n\nVIDEO SERVICES:\n• Event & Wedding Videography\n• Promotional & Advertisement Videos\n• Social Media & YouTube Videos\n• Music Videos\n• Product & Brand Videos\n• Short-Form Video Content\n• Video Editing & Cinematic Production\n• Motion Graphics & Logo Animations`,opts:["Photography","Motion Graphics","Book Videography","All services"]},
+    "Videography":{icon:"🎬",detail:`Engaging video production for events, brands, and social media.\n\nVIDEO SERVICES:\n• Event & Wedding Videography\n• Promotional & Advertisement Videos\n• Social Media & YouTube Videos\n• Music Videos\n• Product & Brand Videos\n• Short-Form Video Content\n• Video Editing & Cinematic Production\n• Motion Graphics & Logo Animations`,opts:["Photography","Podcast Production","Book Videography","All services"]},
     "Cybersecurity":{icon:"🔒",detail:`We protect your digital assets, websites, apps, networks, and online identity from cyber threats.\n\nOUR 17 CYBERSECURITY SERVICES:\n• Website Security Audit\n• Web Application Security Testing\n• Network Security Assessment\n• Vulnerability Assessment\n• Penetration Testing\n• Cybersecurity Consulting\n• Security Hardening\n• Website Malware Scanning & Cleanup\n• Cyber Incident Response\n• Phishing & Social Engineering Awareness\n• Employee Cybersecurity Training\n• Password & Account Security\n• Cloud Security Assessment\n• API Security Assessment\n• Mobile App Security Testing\n• Digital Forensics & Cyber Investigation\n• Security Monitoring & Maintenance\n\nAsk me about any specific service for full details & pricing!\n\n⚠️ All testing done with proper written authorization only.`,opts:["Website Security Audit","Penetration Testing","Malware Scanning & Cleanup","Cybersecurity Packages","Web App Security","Network Security","Vulnerability Assessment","Incident Response","All services"]},
-    "Digital Marketing":{icon:"📣",detail:`Help businesses grow their online presence.\n\nSERVICES:\n• Social Media Graphics & Content Creation\n• Promotional Campaign Designs\n• Facebook, Instagram, TikTok & YouTube Content\n• Social Media Branding\n• Advertising Creative Design\n• Content Planning & Online Brand Promotion`,opts:["Graphic Design","Content Creation","Book Digital Marketing","All services"]},
+    "Digital Marketing":{icon:"📣",detail:`Help businesses grow their online presence.\n\nSERVICES:\n• Social Media Graphics & Content Creation\n• Promotional Campaign Designs\n• Facebook, Instagram, TikTok & YouTube Content\n• Social Media Branding\n• Advertising Creative Design\n• Content Planning & Online Brand Promotion`,opts:["SEO & Online Growth","Content Creation","Book Digital Marketing","All services"]},
     "Printing":{icon:"🖨️",detail:`Print-ready design for physical marketing materials.\n\nPRINTING SERVICES:\n• Business Cards & Stickers\n• Flyers, Posters & Brochures\n• Banners, Labels & Invitations\n• Certificates & Calendars\n• Menus & Branded Documents\n• Promotional & Event Materials\n\nFrom design concept to final print-ready artwork.`,opts:["Graphic Design","Branding","Book Printing","All services"]},
     "Motion Graphics":{icon:"⚡",detail:`Animated content to make your brand dynamic.\n\nMOTION SERVICES:\n• Logo Animation\n• Animated Advertisements\n• Social Media Animations\n• 2D Motion Graphics\n• Animated Intros & Outros\n• YouTube Intros\n• Event Screen & Brand Animations`,opts:["Videography","Graphic Design","Book Motion Graphics","All services"]},
     "Content Creation":{icon:"✍️",detail:`Professional digital content for all platforms.\n\nCONTENT SERVICES:\n• Social Media & Promotional Content\n• YouTube & TikTok Content\n• Short Videos & Advertising Content\n• Creative Campaigns & Brand Storytelling\n• Visual & Educational Content`,opts:["Digital Marketing","Videography","Book Content Creation","All services"]},
     "Business Solutions":{icon:"⚙️",detail:`Custom digital systems built around your business.\n\nSOLUTIONS:\n• Online Booking Systems\n• Client Management Portals\n• Business & Admin Dashboards\n• Online Payment Integration\n• Customer Support Systems\n• WhatsApp Business Integration\n• Automated Responses & Email Notifications\n• Custom Web Applications`,opts:["Web Design","Cybersecurity","Book a Solution","All services"]},
-    "Event Solutions":{icon:"🎉",detail:`Full creative and entertainment support for events.\n\nEVENT SERVICES:\n• DJ Entertainment & Event Music\n• Event Branding & Posters\n• Event Photography & Videography\n• Social Media Event Content\n• Promotional Campaigns\n• Digital Invitations\n• Entertainment Coordination`,opts:["DJ Services","Photography","Book Event Package","All services"]}
+    "Event Solutions":{icon:"🎉",detail:`Full creative and entertainment support for events.\n\nEVENT SERVICES:\n• DJ Entertainment & Event Music\n• Event Branding & Posters\n• Event Photography & Videography\n• Social Media Event Content\n• Promotional Campaigns\n• Digital Invitations\n• Entertainment Coordination`,opts:["DJ Services","Photography","Book Event Package","All services"]},
+    "Live Streaming":{icon:"📡",detail:`Professional live streaming for events, services, and online broadcasts.\n\nLIVE STREAMING SERVICES:\n• Church Service & Event Live Streaming\n• Wedding Live Streaming (for distant family)\n• Concert & Conference Streaming\n• Multi-camera Live Production\n• YouTube, Facebook & Instagram Live Setup\n• Live Streaming Equipment & Crew\n• Stream Recording & Highlight Editing\n\nWHAT'S INCLUDED:\n• On-site streaming crew & equipment\n• Stable internet/backup connection setup\n• Multi-platform simulcast (YouTube + Facebook + Instagram)\n• Post-event recording delivered\n\nPRICING:\n• Basic (single camera) — From KES 6,000\n• Standard (multi-camera) — From KES 12,000\n• Premium (full production + editing) — From KES 20,000`,opts:["DJ Services","Videography","Book Live Streaming","All services"]},
+    "Podcast Production":{icon:"🎙️",detail:`End-to-end podcast production so you can focus on the conversation.\n\nPODCAST SERVICES:\n• Podcast Recording (audio & video)\n• Studio & On-location Setup\n• Audio Editing & Mixing\n• Video Editing for YouTube/social clips\n• Intro/Outro & Sound Branding\n• Cover Art & Episode Thumbnails\n• Show Notes & Distribution Guidance\n\nWHAT'S INCLUDED:\n• Professional mic & camera setup\n• Multi-episode packages available\n• Short-form clips cut for TikTok/Reels/Shorts\n\nPRICING:\n• Single episode (audio only) — From KES 2,500\n• Single episode (audio + video) — From KES 5,000\n• Monthly package (4 episodes) — From KES 15,000`,opts:["Videography","Content Creation","Book Podcast Production","All services"]},
+    "SEO & Online Growth":{icon:"📈",detail:`Help your website and brand get found and grow online.\n\nSEO & GROWTH SERVICES:\n• On-Page SEO (titles, meta, keywords, structure)\n• Google Business Profile Setup & Optimization\n• Website Speed & Technical SEO Audit\n• Local SEO (rank for "near me" searches)\n• Keyword Research & Content Strategy\n• Backlink & Off-Page SEO Guidance\n• Monthly SEO Reporting\n\nWHAT'S INCLUDED:\n• SEO audit report with clear action items\n• Google Search Console & Analytics setup\n• Ongoing optimization (for monthly packages)\n\nPRICING:\n• SEO Audit — From KES 3,000\n• One-time Optimization — From KES 8,000\n• Monthly SEO Management — From KES 10,000/month`,opts:["Web Design","Digital Marketing","Book SEO Services","All services"]}
   }
 };
 
-const ZMAIN=["Graphic Design 🎨","DJ Services 🎷","Photography 📸","Cybersecurity 🔒","Have I Been Hacked? 🚨","Stay Safe Online 🛡️","Cyber Threats ⚠️","More services","Pricing","About us","Contact us"];
-const ZALL=["Graphic Design 🎨","Branding ✨","Web Design 💻","DJ Services 🎧","Photography 📸","Videography 🎬","Cybersecurity 🔒","Digital Marketing 📣","Printing 🖨️","Motion Graphics ⚡","Content Creation ✍️","Business Solutions ⚙️","Event Solutions 🎉","Main menu"];
+const ZMAIN=["Graphic Design 🎨","DJ Services 🎷","Photography 📸","Cybersecurity 🔒","Have I Been Hacked? 🚨","Stay Safe Online 🛡️","Cyber Threats ⚠️","More services","Pricing","About us","Contact us","FAQs"];
+const ZALL=["Graphic Design 🎨","Branding ✨","Web Design 💻","DJ Services 🎧","Photography 📸","Videography 🎬","Cybersecurity 🔒","Digital Marketing 📣","Printing 🖨️","Motion Graphics ⚡","Content Creation ✍️","Business Solutions ⚙️","Event Solutions 🎉","Live Streaming 📡","Podcast Production 🎙️","SEO & Online Growth 📈","Main menu"];
 
 let zOpened=false;
 
@@ -1291,11 +1298,25 @@ function toggleZeks(){
 
 function zTs(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
 
-function zAddMsg(text,type,opts){
+function zAddMsg(text,type,opts,extra){
   const msgs=document.getElementById('zmsgs');
   const row=document.createElement('div');row.className=`zmr ${type}`;
   const grp=document.createElement('div');grp.className='zmg';
   const bub=document.createElement('div');bub.className='zmb';bub.textContent=text;
+  if(extra&&extra.imageSrc){
+    const img=document.createElement('img');
+    img.src=extra.imageSrc;img.className='zmimg';img.alt=extra.imageAlt||'AI-generated sample';
+    img.onclick=()=>window.open(extra.imageSrc,'_blank');
+    bub.appendChild(document.createElement('br'));
+    bub.appendChild(img);
+  }
+  if(extra&&extra.linkHref){
+    const a=document.createElement('a');
+    a.href=extra.linkHref;a.target='_blank';a.rel='noopener noreferrer';
+    a.className='zmlink';a.textContent=extra.linkLabel||'Open';
+    bub.appendChild(document.createElement('br'));
+    bub.appendChild(a);
+  }
   grp.appendChild(bub);
   const tm=document.createElement('div');tm.className='zmt';tm.textContent=zTs();
   grp.appendChild(tm);
@@ -1319,9 +1340,9 @@ function zShowTyping(){
 }
 function zRmTyping(){const t=document.getElementById('ztyp');if(t)t.remove();}
 
-function zBot(text,opts,delay=750){
+function zBot(text,opts,delay=750,extra){
   zShowTyping();
-  setTimeout(()=>{zRmTyping();zAddMsg(text,'bot',opts);},delay);
+  setTimeout(()=>{zRmTyping();zAddMsg(text,'bot',opts,extra);},delay);
 }
 
 // ===== SPECIFIC DESIGN KNOWLEDGE BASE =====
@@ -1464,7 +1485,19 @@ const ZCYBER = {
   'prevent phishing':{title:"How to Protect Yourself from Phishing",detail:"Phishing is the number one way cybercriminals steal money and accounts.\n\nHOW TO SPOT PHISHING\n\u2022 Unexpected urgency: 'Act now or your account will be closed!'\n\u2022 Spelling errors and suspicious email addresses\n\u2022 Links that don't match the real website\n\u2022 Requests for your password, OTP, or card details\n\u2022 Attachments you didn't expect\n\nGOLDEN RULES\n\u2022 Never click links in unexpected emails or messages\n\u2022 Always type website addresses directly in your browser\n\u2022 Never share your OTP, PIN, or password with anyone\n\u2022 A real bank or company will NEVER ask for your password\n\u2022 When in doubt, call the company on their official number\n\nWHATSAPP & SMS PHISHING\n\u2022 'You've won a prize' messages are almost always scams\n\u2022 Never send money based on a WhatsApp message alone\n\u2022 Verify with a call before any financial action\n\nDistortion Entertainment offers Phishing Awareness Training from KES 5,000"},
   'prevent ransomware':{title:"How to Protect Yourself from Ransomware",detail:"Ransomware can lock all your files and demand payment. Prevention is the only real protection.\n\nTOP PREVENTION STEPS\n\u2022 Back up your data daily using the 3-2-1 rule\n  (3 copies, 2 different media, 1 offsite or in the cloud)\n\u2022 Never open email attachments from unknown senders\n\u2022 Keep all software, OS, and browsers updated\n\u2022 Use a reputable antivirus\n\u2022 Never click links in suspicious emails\n\nNETWORK PROTECTION\n\u2022 Segment your network so ransomware can't spread easily\n\u2022 Disable RDP if not needed\n\u2022 Use strong passwords on all network devices\n\nIF YOU GET HIT\n\u2022 Disconnect the infected device from the network IMMEDIATELY\n\u2022 Do NOT pay the ransom\n\u2022 Report to authorities\n\u2022 Restore from your clean backup\n\u2022 Contact Distortion Entertainment for Incident Response\n\nIncident Response from KES 15,000\nWhatsApp: 0717 140 103"},
   'prevent hacking':{title:"How to Stop Hackers",detail:"Your complete protection guide:\n\nTOP 10 PROTECTION STEPS\n1. Use strong unique passwords + a password manager\n2. Enable 2FA/MFA on every important account\n3. Keep ALL software and devices updated\n4. Think before clicking any link or attachment\n5. Use HTTPS websites only for sensitive activities\n6. Back up your data regularly\n7. Use a VPN on public Wi-Fi\n8. Monitor accounts for suspicious activity\n9. Train yourself and your team on cyber awareness\n10. Get a professional security assessment\n\nFOR INDIVIDUALS\n\u2022 Secure your phone, email, banking, and social media\n\u2022 Be careful what you share online\n\nFOR BUSINESSES\n\u2022 Conduct regular security audits\n\u2022 Train all employees\n\u2022 Have a written incident response plan\n\nFOR WEBSITES\n\u2022 Keep CMS and plugins updated\n\u2022 Use a Web Application Firewall (WAF)\n\u2022 Install SSL/HTTPS\n\nSecurity assessment from KES 5,000\nWhatsApp: 0717 140 103"},
-  'safe internet':{title:"Safe Internet & Online Safety Tips",detail:"Staying safe online requires good daily habits.\n\nBROWSING SAFELY\n\u2022 Only visit HTTPS websites (padlock in address bar)\n\u2022 Avoid clicking on pop-up ads or warnings\n\u2022 Download software only from official websites\n\u2022 Keep your browser updated\n\nPUBLIC WI-FI\n\u2022 Assume public Wi-Fi is not secure\n\u2022 Never do banking on public Wi-Fi\n\u2022 Use a VPN on public networks\n\u2022 Beware of fake hotspots\n\nSOCIAL MEDIA SAFETY\n\u2022 Use strong unique passwords for each platform\n\u2022 Enable 2FA on all social media accounts\n\u2022 Be careful about personal info you post publicly\n\u2022 Think before sharing or forwarding news and links\n\nONLINE SHOPPING\n\u2022 Shop only on trusted, verified websites\n\u2022 Use a separate card with limited funds for online purchases\n\u2022 Never save card details on websites\n\u2022 Check your bank statements regularly"}
+  'safe internet':{title:"Safe Internet & Online Safety Tips",detail:"Staying safe online requires good daily habits.\n\nBROWSING SAFELY\n\u2022 Only visit HTTPS websites (padlock in address bar)\n\u2022 Avoid clicking on pop-up ads or warnings\n\u2022 Download software only from official websites\n\u2022 Keep your browser updated\n\nPUBLIC WI-FI\n\u2022 Assume public Wi-Fi is not secure\n\u2022 Never do banking on public Wi-Fi\n\u2022 Use a VPN on public networks\n\u2022 Beware of fake hotspots\n\nSOCIAL MEDIA SAFETY\n\u2022 Use strong unique passwords for each platform\n\u2022 Enable 2FA on all social media accounts\n\u2022 Be careful about personal info you post publicly\n\u2022 Think before sharing or forwarding news and links\n\nONLINE SHOPPING\n\u2022 Shop only on trusted, verified websites\n\u2022 Use a separate card with limited funds for online purchases\n\u2022 Never save card details on websites\n\u2022 Check your bank statements regularly"},
+  'two factor authentication':{
+    title:"Two-Factor Authentication (2FA)",
+    detail:"2FA adds a second layer of proof beyond your password \u2014 even if a hacker gets your password, they still can't get in.\n\nTYPES OF 2FA:\n\u2022 SMS/text code (easiest, but least secure)\n\u2022 Authenticator app (Google Authenticator, Authy) \u2014 recommended\n\u2022 Hardware security key \u2014 most secure\n\u2022 Biometric (fingerprint/face) as a second factor\n\nWHERE TO ENABLE IT FIRST:\n\u2022 Email (this protects everything else via password resets)\n\u2022 Banking & M-Pesa-linked accounts\n\u2022 Social media (Instagram, Facebook, WhatsApp)\n\u2022 Any account with saved payment info\n\nWe can help set up and audit your 2FA across all your accounts.\nPRICING: From KES 2,000"
+  },
+  'public wifi':{
+    title:"Staying Safe on Public Wi-Fi",
+    detail:"Public Wi-Fi (caf\u00e9s, airports, hotels) is a favorite hunting ground for attackers.\n\nRISKS:\n\u2022 Man-in-the-middle attacks intercepting your traffic\n\u2022 Fake 'evil twin' hotspots mimicking real networks\n\u2022 Unencrypted data (passwords, messages) being sniffed\n\nSTAY SAFE:\n\u2022 Use a VPN whenever on public Wi-Fi\n\u2022 Avoid online banking or entering passwords on public networks\n\u2022 Confirm the network name with staff before connecting\n\u2022 Turn off auto-connect to open Wi-Fi networks\n\u2022 Make sure sites use HTTPS (padlock icon)"
+  },
+  'data backup':{
+    title:"Data Backup Best Practices",
+    detail:"Ransomware, theft, and hardware failure all have one fix in common: good backups.\n\nTHE 3-2-1 RULE:\n\u2022 3 copies of your data\n\u2022 2 different storage types (e.g. cloud + external drive)\n\u2022 1 copy stored off-site/offline\n\nWHAT TO BACK UP:\n\u2022 Business documents & financial records\n\u2022 Website & database files\n\u2022 Photos, videos & design source files\n\u2022 Customer/client data\n\nHOW OFTEN:\n\u2022 Critical business data \u2014 daily\n\u2022 Personal files \u2014 weekly\n\u2022 Full system backup \u2014 monthly\n\nWe can set up automated backup systems for your website or business.\nPRICING: From KES 3,000"
+  }
 };
 
 // Detect specific cyber topic
@@ -1521,35 +1554,41 @@ function zDetectCyber(lc){
   if(lc.includes('safe internet')||lc.includes('internet safety')||lc.includes('online safety')||lc.includes('safe browsing'))return'safe internet';
   if(lc.includes('how to stay safe')||lc.includes('how to be safe')||lc.includes('how to protect')||lc.includes('how can i protect')||lc.includes('how do i protect'))return'prevent attacks';
   if((lc.includes('tips')||lc.includes('advice')||lc.includes('guide'))&&(lc.includes('cyber')||lc.includes('security')||lc.includes('safe')||lc.includes('hack')))return'prevent attacks';
+  if(lc.includes('2fa')||lc.includes('two factor')||lc.includes('two-factor')||lc.includes('multi factor')||lc.includes('multi-factor')||lc.includes('authenticator app'))return'two factor authentication';
+  if(lc.includes('public wifi')||lc.includes('public wi-fi')||lc.includes('free wifi')||lc.includes('airport wifi')||lc.includes('cafe wifi')||lc.includes('hotel wifi'))return'public wifi';
+  if(lc.includes('backup')||lc.includes('back up')||lc.includes('data loss')||lc.includes('lost my data'))return'data backup';
   return null;
 }
 
-const ZCYBER_MENU = ["Have I Been Hacked?","Signs Your Website is Hacked","Signs Your Account is Hacked","Signs Your Phone is Hacked","What to Do If Hacked","How to Stay Safe Online","Protect Your Website","Protect Your Business","Protect Your Accounts","Protect Your Phone","Prevent Phishing","Prevent Ransomware","Stop Hackers","What is a Payload?","Cybersecurity Packages","Back to main menu"];
+const ZCYBER_MENU = ["Have I Been Hacked?","Signs Your Website is Hacked","Signs Your Account is Hacked","Signs Your Phone is Hacked","What to Do If Hacked","How to Stay Safe Online","Protect Your Website","Protect Your Business","Protect Your Accounts","Protect Your Phone","Prevent Phishing","Prevent Ransomware","Stop Hackers","Two-Factor Authentication","Public Wi-Fi Safety","Data Backup Best Practices","What is a Payload?","Cybersecurity Packages","Back to main menu"];
 
-const ZCYBER_THREATS = ["Have I Been Hacked?","Signs Your Website is Hacked","Signs Your Account is Hacked","Signs Your Phone is Hacked","What to Do If Hacked","How to Prevent Cyber Attacks","Prevent Phishing","Prevent Ransomware","What is a Payload?","Web Attack Payloads (XSS/SQLi)","Malware Payloads","Reverse Shell Payloads","Phishing Payloads","Back to Cybersecurity menu"];
+const ZCYBER_THREATS = ["Have I Been Hacked?","Signs Your Website is Hacked","Signs Your Account is Hacked","Signs Your Phone is Hacked","What to Do If Hacked","How to Prevent Cyber Attacks","Prevent Phishing","Prevent Ransomware","Two-Factor Authentication","Public Wi-Fi Safety","Data Backup Best Practices","What is a Payload?","Web Attack Payloads (XSS/SQLi)","Malware Payloads","Reverse Shell Payloads","Phishing Payloads","Back to Cybersecurity menu"];
 
 
 const ZDESIGNS = {
-  'logo':{title:"Logo Design",detail:"A logo is the face of your brand.\n\nWHAT'S INCLUDED:\n\u2022 Custom concept tailored to your brand\n\u2022 Multiple initial concepts\n\u2022 Unlimited revisions\n\u2022 Final files: PNG, JPG, SVG, PDF\n\u2022 Transparent background version\n\u2022 Black & white version\n\u2022 Print-ready & social media sizes\n\nSTYLES:\n\u2022 Minimalist & Modern\n\u2022 Vintage & Retro\n\u2022 3D & Gradient\n\u2022 Mascot & Illustrative\n\u2022 Lettermark & Wordmark\n\u2022 Combination Marks\n\nTURNAROUND: 1\u20133 business days\nPRICING: From KES 2,000",opts:["Brand Identity","Business Card Design","Book Logo Design","More Design Services"]},
-  'flyer':{title:"Flyer Design",detail:"Eye-catching flyers that grab attention and drive action.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout and design\n\u2022 Your logo, photos & text incorporated\n\u2022 Bold, attractive typography\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for WhatsApp & social media\n\u2022 Revisions included\n\nFLYER TYPES:\n\u2022 Event Flyers (parties, concerts, clubs)\n\u2022 Business Promotional Flyers\n\u2022 Product Launch Flyers\n\u2022 Church & Community Flyers\n\u2022 Sale & Discount Flyers\n\u2022 Job Vacancy Flyers\n\u2022 Double-sided Flyers\n\nSIZES: A4, A5, A6 or custom\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Poster Design","Banner Design","Book Flyer Design","More Design Services"]},
-  'poster':{title:"Poster Design",detail:"Bold, striking posters designed to make a statement.\n\nWHAT'S INCLUDED:\n\u2022 Professional creative layout\n\u2022 High-resolution print & digital versions\n\u2022 Custom color scheme\n\u2022 Typography selection\n\u2022 Photo editing if needed\n\u2022 Revisions included\n\nPOSTER TYPES:\n\u2022 Event Posters (concerts, parties, weddings)\n\u2022 Birthday & Graduation Posters\n\u2022 Business & Corporate Posters\n\u2022 Motivational & Quote Posters\n\u2022 Product Promotional Posters\n\u2022 Movie & Music Posters\n\u2022 Social Media Posters\n\nSIZES: A3, A2, A1 or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Flyer Design","Banner Design","Book Poster Design","More Design Services"]},
-  'banner':{title:"Banner Design",detail:"Professional banners for events, businesses, and online platforms.\n\nWHAT'S INCLUDED:\n\u2022 Custom design with your branding\n\u2022 High-resolution print file\n\u2022 Digital versions for social media & websites\n\u2022 Multiple size formats\n\u2022 Revisions included\n\nBANNER TYPES:\n\u2022 Outdoor Pull-Up / Roll-Up Banners\n\u2022 Event & Stage Banners\n\u2022 Birthday & Wedding Banners\n\u2022 Business Advertising Banners\n\u2022 Social Media Banners (Facebook, YouTube, Twitter)\n\u2022 Website Header Banners\n\u2022 Vinyl & Flex Banners\n\u2022 X-Stand Banners\n\nSIZES: 2x6ft, 3x6ft, 8x3ft or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,000",opts:["Poster Design","Flyer Design","Book Banner Design","More Design Services"]},
-  'business card':{title:"Business Card Design",detail:"Professional business cards that make a lasting first impression.\n\nWHAT'S INCLUDED:\n\u2022 Front and back design\n\u2022 Your logo, contact info & branding\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for sharing\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Standard Professional\n\u2022 Minimalist & Clean\n\u2022 Bold & Colorful\n\u2022 Premium Luxury Feel\n\u2022 QR Code Integration\n\nSIZE: 3.5 x 2 inches (85 x 55mm)\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Logo Design","Branding Package","Book Business Card","More Design Services"]},
-  'brochure':{title:"Brochure Design",detail:"Informative, professional brochures for businesses and organizations.\n\nWHAT'S INCLUDED:\n\u2022 Multi-page professional layout\n\u2022 Your content, images & branding\n\u2022 Print-ready PDF & digital version\n\u2022 Revisions included\n\nTYPES:\n\u2022 Bi-fold (4 panels)\n\u2022 Tri-fold (6 panels)\n\u2022 Z-fold Brochure\n\u2022 Company Profile Brochure\n\u2022 Product Catalog Brochure\n\u2022 Event Program Brochure\n\nTURNAROUND: 2\u20134 business days\nPRICING: From KES 2,500",opts:["Company Profile Design","Flyer Design","Book Brochure Design","More Design Services"]},
-  'invitation':{title:"Invitation Card Design",detail:"Beautiful custom invitation cards for any occasion.\n\nWHAT'S INCLUDED:\n\u2022 Custom design matching your event theme\n\u2022 Front & back design\n\u2022 Print-ready & digital versions\n\u2022 WhatsApp-ready digital invite\n\u2022 Revisions included\n\nTYPES:\n\u2022 Wedding Invitations\n\u2022 Birthday Party Invitations\n\u2022 Graduation Invitations\n\u2022 Corporate Event Invitations\n\u2022 Baby Shower Invitations\n\u2022 Anniversary Invitations\n\u2022 Church Event Invitations\n\u2022 Save-the-Date Cards\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Wedding Photography","Event Solutions","Book Invitation Design","More Design Services"]},
+  'logo':{title:"Logo Design",detail:"A logo is the face of your brand.\n\nWHAT'S INCLUDED:\n\u2022 Custom concept tailored to your brand\n\u2022 Multiple initial concepts\n\u2022 Unlimited revisions\n\u2022 Final files: PNG, JPG, SVG, PDF\n\u2022 Transparent background version\n\u2022 Black & white version\n\u2022 Print-ready & social media sizes\n\nSTYLES:\n\u2022 Minimalist & Modern\n\u2022 Vintage & Retro\n\u2022 3D & Gradient\n\u2022 Mascot & Illustrative\n\u2022 Lettermark & Wordmark\n\u2022 Combination Marks\n\nTURNAROUND: 1\u20133 business days\nPRICING: From KES 2,000",opts:["Generate Logo Sample","Brand Identity","Business Card Design","Book Logo Design"]},
+  'flyer':{title:"Flyer Design",detail:"Eye-catching flyers that grab attention and drive action.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout and design\n\u2022 Your logo, photos & text incorporated\n\u2022 Bold, attractive typography\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for WhatsApp & social media\n\u2022 Revisions included\n\nFLYER TYPES:\n\u2022 Event Flyers (parties, concerts, clubs)\n\u2022 Business Promotional Flyers\n\u2022 Product Launch Flyers\n\u2022 Church & Community Flyers\n\u2022 Sale & Discount Flyers\n\u2022 Job Vacancy Flyers\n\u2022 Double-sided Flyers\n\nSIZES: A4, A5, A6 or custom\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Generate Flyer Sample","Poster Design","Banner Design","Book Flyer Design"]},
+  'poster':{title:"Poster Design",detail:"Bold, striking posters designed to make a statement.\n\nWHAT'S INCLUDED:\n\u2022 Professional creative layout\n\u2022 High-resolution print & digital versions\n\u2022 Custom color scheme\n\u2022 Typography selection\n\u2022 Photo editing if needed\n\u2022 Revisions included\n\nPOSTER TYPES:\n\u2022 Event Posters (concerts, parties, weddings)\n\u2022 Birthday & Graduation Posters\n\u2022 Business & Corporate Posters\n\u2022 Motivational & Quote Posters\n\u2022 Product Promotional Posters\n\u2022 Movie & Music Posters\n\u2022 Social Media Posters\n\nSIZES: A3, A2, A1 or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Generate Poster Sample","Flyer Design","Banner Design","Book Poster Design"]},
+  'banner':{title:"Banner Design",detail:"Professional banners for events, businesses, and online platforms.\n\nWHAT'S INCLUDED:\n\u2022 Custom design with your branding\n\u2022 High-resolution print file\n\u2022 Digital versions for social media & websites\n\u2022 Multiple size formats\n\u2022 Revisions included\n\nBANNER TYPES:\n\u2022 Outdoor Pull-Up / Roll-Up Banners\n\u2022 Event & Stage Banners\n\u2022 Birthday & Wedding Banners\n\u2022 Business Advertising Banners\n\u2022 Social Media Banners (Facebook, YouTube, Twitter)\n\u2022 Website Header Banners\n\u2022 Vinyl & Flex Banners\n\u2022 X-Stand Banners\n\nSIZES: 2x6ft, 3x6ft, 8x3ft or custom\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,000",opts:["Generate Banner Sample","Poster Design","Flyer Design","Book Banner Design"]},
+  'business card':{title:"Business Card Design",detail:"Professional business cards that make a lasting first impression.\n\nWHAT'S INCLUDED:\n\u2022 Front and back design\n\u2022 Your logo, contact info & branding\n\u2022 Print-ready 300 DPI file\n\u2022 Digital version for sharing\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Standard Professional\n\u2022 Minimalist & Clean\n\u2022 Bold & Colorful\n\u2022 Premium Luxury Feel\n\u2022 QR Code Integration\n\nSIZE: 3.5 x 2 inches (85 x 55mm)\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Generate Business Card Sample","Logo Design","Branding Package","Book Business Card"]},
+  'brochure':{title:"Brochure Design",detail:"Informative, professional brochures for businesses and organizations.\n\nWHAT'S INCLUDED:\n\u2022 Multi-page professional layout\n\u2022 Your content, images & branding\n\u2022 Print-ready PDF & digital version\n\u2022 Revisions included\n\nTYPES:\n\u2022 Bi-fold (4 panels)\n\u2022 Tri-fold (6 panels)\n\u2022 Z-fold Brochure\n\u2022 Company Profile Brochure\n\u2022 Product Catalog Brochure\n\u2022 Event Program Brochure\n\nTURNAROUND: 2\u20134 business days\nPRICING: From KES 2,500",opts:["Generate Brochure Sample","Company Profile Design","Flyer Design","Book Brochure Design"]},
+  'invitation':{title:"Invitation Card Design",detail:"Beautiful custom invitation cards for any occasion.\n\nWHAT'S INCLUDED:\n\u2022 Custom design matching your event theme\n\u2022 Front & back design\n\u2022 Print-ready & digital versions\n\u2022 WhatsApp-ready digital invite\n\u2022 Revisions included\n\nTYPES:\n\u2022 Wedding Invitations\n\u2022 Birthday Party Invitations\n\u2022 Graduation Invitations\n\u2022 Corporate Event Invitations\n\u2022 Baby Shower Invitations\n\u2022 Anniversary Invitations\n\u2022 Church Event Invitations\n\u2022 Save-the-Date Cards\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 800",opts:["Generate Wedding Card Sample","Wedding Photography","Event Solutions","Book Invitation Design"]},
   'certificate':{title:"Certificate Design",detail:"Professional, elegant certificates for schools and organizations.\n\nWHAT'S INCLUDED:\n\u2022 Custom design with your branding\n\u2022 Editable template for multiple recipients\n\u2022 Print-ready & digital versions\n\u2022 Revisions included\n\nTYPES:\n\u2022 Academic Certificates\n\u2022 Completion & Achievement Certificates\n\u2022 Participation Certificates\n\u2022 Award Certificates\n\u2022 Corporate & Training Certificates\n\nTURNAROUND: 24 hours\nPRICING: From KES 1,000",opts:["More Design Services","Book Certificate Design","Main menu"]},
   'social media':{title:"Social Media Graphics",detail:"Consistent, eye-catching graphics that make your pages stand out.\n\nPLATFORMS:\n\u2022 Instagram (Posts, Stories, Reels covers)\n\u2022 Facebook (Posts, Cover photos, Ads)\n\u2022 TikTok (Thumbnails, Graphics)\n\u2022 YouTube (Thumbnails, Banners)\n\u2022 Twitter/X (Posts, Header)\n\u2022 WhatsApp Status\n\u2022 LinkedIn Posts & Banners\n\nPACKAGES:\n\u2022 Single post \u2014 From KES 300\n\u2022 5-post pack \u2014 From KES 1,200\n\u2022 Monthly package (20 posts) \u2014 From KES 4,000\n\nTURNAROUND: Same day \u2013 24 hours",opts:["Digital Marketing","YouTube Thumbnail","Book Social Media Graphics","More Design Services"]},
   'thumbnail':{title:"YouTube Thumbnail Design",detail:"Click-worthy thumbnails that boost your views.\n\nWHAT'S INCLUDED:\n\u2022 Custom thumbnail design\n\u2022 Bold text overlay\n\u2022 Attention-grabbing colors\n\u2022 Your photo/image incorporated\n\u2022 High resolution 1280x720px\n\u2022 Revisions included\n\nWHY OURS WORK:\n\u2022 Maximize click-through rate\n\u2022 Clear, readable at any size\n\u2022 Consistent branded style\n\u2022 Face + text + color contrast formula\n\nTURNAROUND: Same day\nPRICING: From KES 300\nBULK: 5 thumbnails from KES 1,200",opts:["Social Media Graphics","Content Creation","Book Thumbnail Design","More Design Services"]},
   'album cover':{title:"Album & Mixtape Cover Design",detail:"Professional covers that represent your music.\n\nWHAT'S INCLUDED:\n\u2022 Custom artwork for your genre\n\u2022 Streaming platform ready (3000x3000px)\n\u2022 Physical print-ready version\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Afrobeats / Afropop\n\u2022 Hip Hop & Trap\n\u2022 R&B & Soul\n\u2022 Gospel & Christian\n\u2022 Electronic & House\n\u2022 Custom artistic concept\n\nTURNAROUND: 1\u20132 business days\nPRICING: From KES 1,500",opts:["More Design Services","Book Album Cover Design","Main menu"]},
-  'tshirt':{title:"T-Shirt & Apparel Design",detail:"Creative, print-ready designs for branded merchandise.\n\nWHAT'S INCLUDED:\n\u2022 Custom design concept\n\u2022 Print-ready vector file (SVG/AI/PNG)\n\u2022 Multiple color versions\n\u2022 Front and back if needed\n\u2022 Revisions included\n\nWE DESIGN FOR:\n\u2022 Corporate Branded Uniforms\n\u2022 Event T-Shirts\n\u2022 Team & Group T-Shirts\n\u2022 Merchandise for Artists & Brands\n\u2022 School & Club T-Shirts\n\u2022 Promotional Giveaway Items\n\nTURNAROUND: 1\u20132 business days\nPRICING: From KES 1,500",opts:["Branding","More Design Services","Book Apparel Design","Main menu"]},
+  'tshirt':{title:"T-Shirt & Apparel Design",detail:"Creative, print-ready designs for branded merchandise.\n\nWHAT'S INCLUDED:\n\u2022 Custom design concept\n\u2022 Print-ready vector file (SVG/AI/PNG)\n\u2022 Multiple color versions\n\u2022 Front and back if needed\n\u2022 Revisions included\n\nWE DESIGN FOR:\n\u2022 Corporate Branded Uniforms\n\u2022 Event T-Shirts\n\u2022 Team & Group T-Shirts\n\u2022 Merchandise for Artists & Brands\n\u2022 School & Club T-Shirts\n\u2022 Promotional Giveaway Items\n\nTURNAROUND: 1\u20132 business days\nPRICING: From KES 1,500",opts:["Generate T-Shirt Sample","Branding","More Design Services","Book Apparel Design"]},
   'billboard':{title:"Billboard & Signage Design",detail:"Large-format, high-impact outdoor designs.\n\nWHAT'S INCLUDED:\n\u2022 Large-format print-ready file\n\u2022 High resolution for any size\n\u2022 Bold, readable from a distance\n\u2022 Your branding incorporated\n\u2022 Revisions included\n\nTYPES:\n\u2022 Roadside Billboards\n\u2022 Shop Signage & Fascia Boards\n\u2022 Wall Murals\n\u2022 Vehicle Wraps\n\u2022 Outdoor Advertising Boards\n\u2022 Directional Signage\n\u2022 Street Pole Ads\n\nTURNAROUND: 2\u20133 business days\nPRICING: From KES 3,000",opts:["Banner Design","More Design Services","Book Billboard Design","Main menu"]},
-  'web design':{title:"Web Design & Development",detail:"Modern, responsive, professional websites.\n\nWEBSITES WE BUILD:\n\u2022 Business & Company Websites\n\u2022 Portfolio & Personal Websites\n\u2022 E-Commerce & Online Stores\n\u2022 Landing Pages & Sales Pages\n\u2022 Event & Booking Websites\n\u2022 Client Portal Systems\n\u2022 Custom Web Applications\n\nFEATURES INCLUDED:\n\u2022 Mobile-responsive design\n\u2022 Contact forms & WhatsApp integration\n\u2022 Google Maps integration\n\u2022 Basic SEO setup\n\u2022 Fast loading & security\n\u2022 Domain & hosting guidance\n\nADVANCED OPTIONS:\n\u2022 M-Pesa & card payment integration\n\u2022 Admin dashboard\n\u2022 Booking management\n\u2022 Client login portals\n\u2022 Automated email notifications\n\nTURNAROUND: 3\u201314 days\n\nPRICING:\n\u2022 Basic website \u2014 from KES 8,000\n\u2022 Standard business site \u2014 from KES 15,000\n\u2022 E-commerce / advanced \u2014 from KES 25,000",opts:["Business Solutions","Cybersecurity","Book Web Design","Main menu"]},
+  'web design':{title:"Web Design & Development",detail:"Modern, responsive, professional websites.\n\nWEBSITES WE BUILD:\n\u2022 Business & Company Websites\n\u2022 Portfolio & Personal Websites\n\u2022 E-Commerce & Online Stores\n\u2022 Landing Pages & Sales Pages\n\u2022 Event & Booking Websites\n\u2022 Client Portal Systems\n\u2022 Custom Web Applications\n\nFEATURES INCLUDED:\n\u2022 Mobile-responsive design\n\u2022 Contact forms & WhatsApp integration\n\u2022 Google Maps integration\n\u2022 Basic SEO setup\n\u2022 Fast loading & security\n\u2022 Domain & hosting guidance\n\nADVANCED OPTIONS:\n\u2022 M-Pesa & card payment integration\n\u2022 Admin dashboard\n\u2022 Booking management\n\u2022 Client login portals\n\u2022 Automated email notifications\n\nTURNAROUND: 3\u201314 days\n\nPRICING:\n\u2022 Basic website \u2014 from KES 8,000\n\u2022 Standard business site \u2014 from KES 15,000\n\u2022 E-commerce / advanced \u2014 from KES 25,000",opts:["See Sample Website","Business Solutions","Cybersecurity","Book Web Design"]},
   'motion graphics':{title:"Motion Graphics & Animation",detail:"Dynamic animated content that makes your brand come alive.\n\nWHAT WE CREATE:\n\u2022 Logo Animations (2D & 3D)\n\u2022 Animated Intros & Outros\n\u2022 Social Media Animations\n\u2022 Promotional Animated Ads\n\u2022 Kinetic Typography\n\u2022 Event Screen Animations\n\u2022 Brand Story Animations\n\u2022 Product Demo Animations\n\nFORMATS: MP4, GIF, MOV\n\nPRICING:\n\u2022 Logo animation \u2014 from KES 2,500\n\u2022 Intro/Outro \u2014 from KES 2,000\n\u2022 Full promo animation \u2014 from KES 5,000\n\nTURNAROUND: 2\u20135 business days",opts:["Videography","More Design Services","Book Motion Graphics","Main menu"]},
-  'company profile':{title:"Company Profile Design",detail:"A professional profile that builds credibility and trust.\n\nWHAT'S INCLUDED:\n\u2022 Full multi-page document design\n\u2022 About, Services, Team, Portfolio sections\n\u2022 Your full branding throughout\n\u2022 Print-ready PDF & digital version\n\u2022 Editable version available\n\u2022 Revisions included\n\nTYPICAL SECTIONS:\n\u2022 Cover Page\n\u2022 About the Company\n\u2022 Mission, Vision & Values\n\u2022 Our Services\n\u2022 Why Choose Us\n\u2022 Our Team\n\u2022 Portfolio\n\u2022 Testimonials\n\u2022 Contact Information\n\nPAGES: 8\u201316 pages\nTURNAROUND: 3\u20135 business days\nPRICING: From KES 4,000",opts:["Branding","Brochure Design","Book Company Profile","Main menu"]},
-  'menu design':{title:"Menu Design",detail:"Professional, appetizing menus for restaurants, cafes, and events.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout matching your brand\n\u2022 Food categories well organized\n\u2022 Print-ready & digital versions\n\u2022 QR Code menu option\n\u2022 Revisions included\n\nTYPES:\n\u2022 Restaurant & Cafe Menus\n\u2022 Hotel & Bar Menus\n\u2022 Event Catering Menus\n\u2022 Digital Menus (for screens & WhatsApp)\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,500",opts:["More Design Services","Book Menu Design","Main menu"]}
+  'company profile':{title:"Company Profile Design",detail:"A professional profile that builds credibility and trust.\n\nWHAT'S INCLUDED:\n\u2022 Full multi-page document design\n\u2022 About, Services, Team, Portfolio sections\n\u2022 Your full branding throughout\n\u2022 Print-ready PDF & digital version\n\u2022 Editable version available\n\u2022 Revisions included\n\nTYPICAL SECTIONS:\n\u2022 Cover Page\n\u2022 About the Company\n\u2022 Mission, Vision & Values\n\u2022 Our Services\n\u2022 Why Choose Us\n\u2022 Our Team\n\u2022 Portfolio\n\u2022 Testimonials\n\u2022 Contact Information\n\nPAGES: 8\u201316 pages\nTURNAROUND: 3\u20135 business days\nPRICING: From KES 4,000",opts:["Generate Company Profile Sample","Branding","Brochure Design","Book Company Profile"]},
+  'menu design':{title:"Menu Design",detail:"Professional, appetizing menus for restaurants, cafes, and events.\n\nWHAT'S INCLUDED:\n\u2022 Custom layout matching your brand\n\u2022 Food categories well organized\n\u2022 Print-ready & digital versions\n\u2022 QR Code menu option\n\u2022 Revisions included\n\nTYPES:\n\u2022 Restaurant & Cafe Menus\n\u2022 Hotel & Bar Menus\n\u2022 Event Catering Menus\n\u2022 Digital Menus (for screens & WhatsApp)\n\nTURNAROUND: 24\u201348 hours\nPRICING: From KES 1,500",opts:["Generate Menu Sample","More Design Services","Book Menu Design"]},
+  'resume':{title:"Resume/CV Design",detail:"Stand out to employers with a professionally designed resume/CV.\n\nWHAT'S INCLUDED:\n\u2022 Custom modern layout\n\u2022 ATS-friendly formatting option\n\u2022 Editable Word/Canva version\n\u2022 PDF export for applications\n\u2022 Revisions included\n\nSTYLES:\n\u2022 Modern & Minimal\n\u2022 Creative/Portfolio-style (for designers, photographers)\n\u2022 Corporate/Professional\n\u2022 Academic CV (for further studies/scholarships)\n\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 500",opts:["Business Card Design","More Design Services","Book Resume Design","Main menu"]},
+  'sticker':{title:"Sticker Design",detail:"Custom stickers for branding, packaging, and promotions.\n\nWHAT'S INCLUDED:\n\u2022 Custom shape & size design\n\u2022 Print-ready vector file\n\u2022 Finish guidance (glossy/matte)\n\u2022 Revisions included\n\nTYPES:\n\u2022 Logo & Brand Stickers\n\u2022 Product Label Stickers\n\u2022 Laptop/Water Bottle Stickers\n\u2022 Event & Promotional Stickers\n\u2022 Die-cut Custom Shape Stickers\n\nSIZES: Custom, standard 2\\\"x2\\\" to 4\\\"x4\\\"\nTURNAROUND: Same day \u2013 24 hours\nPRICING: From KES 300",opts:["Generate Sticker Sample","Packaging Design","Branding","Book Sticker Design"]},
+  'packaging':{title:"Packaging Design",detail:"Eye-catching packaging that makes your product stand out on the shelf.\n\nWHAT'S INCLUDED:\n\u2022 Custom box/label/pouch design\n\u2022 Print-ready dieline templates\n\u2022 Brand-consistent design\n\u2022 Revisions included\n\nTYPES:\n\u2022 Product Boxes\n\u2022 Bottle & Jar Labels\n\u2022 Food & Beverage Packaging\n\u2022 Cosmetic & Skincare Packaging\n\u2022 Shipping/Mailer Box Design\n\nTURNAROUND: 2\u20134 business days\nPRICING: From KES 2,000",opts:["Sticker Design","Branding","Book Packaging Design","More Design Services"]}
 };
 
-const ZGFX_MENU=["Logo Design","Flyer Design","Poster Design","Banner Design","Business Card","Brochure Design","Invitation Card","Social Media Graphics","YouTube Thumbnail","Album/Mixtape Cover","T-Shirt Design","Billboard Design","Web Design","Motion Graphics","Company Profile","Back to main menu"];
+const ZGFX_MENU=["Logo Design","Flyer Design","Poster Design","Banner Design","Business Card","Brochure Design","Invitation Card","Social Media Graphics","YouTube Thumbnail","Album/Mixtape Cover","T-Shirt Design","Billboard Design","Web Design","Motion Graphics","Company Profile","Resume/CV Design","Sticker Design","Packaging Design","Back to main menu"];
 
 function zDetectDesign(lc){
   if(lc.includes('logo'))return 'logo';
@@ -1569,13 +1608,142 @@ function zDetectDesign(lc){
   if(lc.includes('motion graphic')||lc.includes('logo animation')||lc.includes('animated logo')||(lc.includes('animation')&&(lc.includes('logo')||lc.includes('intro')||lc.includes('brand'))))return 'motion graphics';
   if(lc.includes('company profile'))return 'company profile';
   if(lc.includes('menu design')||(lc.includes('menu')&&(lc.includes('restaurant')||lc.includes('cafe')||lc.includes('design'))))return 'menu design';
+  if(lc.includes('resume')||lc.includes('curriculum vitae')||lc.includes('cv design')||lc.includes('cv template')||lc==='cv')return 'resume';
+  if(lc.includes('sticker'))return 'sticker';
+  if(lc.includes('packaging')||lc.includes('product box')||lc.includes('box design')||lc.includes('label design'))return 'packaging';
   return null;
 }
 
 function zSvcKey(lc){
-  const map={'brand':['Branding'],'rebrand':['Branding'],'identity':['Branding'],'dj':['DJ Services'],'music':['DJ Services'],'wedding':['DJ Services'],'party':['DJ Services'],'event':['Event Solutions'],'concert':['DJ Services'],'photo':['Photography'],'portrait':['Photography'],'fashion':['Photography'],'graduation':['Photography'],'video':['Videography'],'film':['Videography'],'cinematic':['Videography'],'music video':['Videography'],'cyber':['Cybersecurity'],'security':['Cybersecurity'],'pentest':['Cybersecurity'],'penetration':['Cybersecurity'],'audit':['Cybersecurity'],'hack':['Cybersecurity'],'vulnerability':['Cybersecurity'],'marketing':['Digital Marketing'],'sticker':['Printing'],'content':['Content Creation'],'booking system':['Business Solutions'],'dashboard':['Business Solutions']};
+  const map={'brand':['Branding'],'rebrand':['Branding'],'identity':['Branding'],'dj':['DJ Services'],'music':['DJ Services'],'wedding':['DJ Services'],'party':['DJ Services'],'event':['Event Solutions'],'concert':['DJ Services'],'photo':['Photography'],'portrait':['Photography'],'fashion':['Photography'],'graduation':['Photography'],'video':['Videography'],'film':['Videography'],'cinematic':['Videography'],'music video':['Videography'],'cyber':['Cybersecurity'],'security':['Cybersecurity'],'pentest':['Cybersecurity'],'penetration':['Cybersecurity'],'audit':['Cybersecurity'],'hack':['Cybersecurity'],'vulnerability':['Cybersecurity'],'marketing':['Digital Marketing'],'content':['Content Creation'],'booking system':['Business Solutions'],'dashboard':['Business Solutions'],'stream':['Live Streaming'],'live stream':['Live Streaming'],'broadcast':['Live Streaming'],'podcast':['Podcast Production'],'seo':['SEO & Online Growth'],'search engine':['SEO & Online Growth'],'google ranking':['SEO & Online Growth'],'website traffic':['SEO & Online Growth']};
   for(const[k,v]of Object.entries(map)){if(lc.includes(k))return v[0];}
   return null;
+}
+
+// ===== FAQ KNOWLEDGE BASE =====
+const ZFAQ = {
+  'hours':{title:"Business Hours",detail:"We're available:\n\n🗓️ Monday – Saturday: 8:00 AM – 8:00 PM\n📵 Sunday: Closed (WhatsApp messages checked periodically)\n\nFor urgent cybersecurity incidents, message us on WhatsApp anytime and we'll respond as soon as possible.",opts:["Contact us","Where are you located","Main menu"]},
+  'location':{title:"Where We're Based",detail:"Distortion Entertainment operates out of Nairobi, Kenya, and serves clients across the country.\n\n📍 Most of our work — design, web, cybersecurity — is done remotely/online, so location isn't a barrier.\n📸 For DJ, Photography, Videography & Live Streaming bookings, we travel to your event venue anywhere in Kenya (travel fees may apply outside Nairobi).",opts:["Book a service","Contact us","Main menu"]},
+  'payment':{title:"Payment Methods",detail:"We keep payment simple and flexible:\n\n💳 ACCEPTED METHODS:\n• M-Pesa (Till, Paybill or Send Money)\n• Bank Transfer\n• Cash (in-person, Nairobi)\n\n💰 HOW IT WORKS:\n• A deposit (usually 50%) secures your booking date/slot\n• Balance is due on delivery or on the event day\n• Larger projects (web, branding, company profiles) may use milestone-based payments\n\nAsk about our deposit or cancellation policy anytime!",opts:["Deposit & Cancellation Policy","Book a service","Main menu"]},
+  'deposit':{title:"Deposit & Cancellation Policy",detail:"To protect both your booking and our time:\n\n📌 DEPOSITS\n• A 50% deposit is required to confirm and lock in your date/slot\n• Non-refundable once work has started or within 48 hours of an event\n\n📌 CANCELLATIONS\n• Cancel 72+ hours before: full deposit refund or credit toward a future booking\n• Cancel within 72 hours: deposit is forfeited (covers reserved time & prep)\n\n📌 RESCHEDULING\n• One free reschedule if requested at least 48 hours in advance\n• Subject to availability on the new date\n\nWe understand plans change — talk to us early and we'll always try to work with you.",opts:["Payment Methods","Contact us","Main menu"]}
+};
+
+function zDetectFAQ(lc){
+  if(lc.includes('hour')||lc.includes('what time')||lc.includes('when are you open')||lc.includes('when do you close'))return'hours';
+  if(lc.includes('located')||lc.includes('location')||lc.includes('where are you')||lc.includes('address')||lc.includes('based in')||lc.includes('do you travel'))return'location';
+  if(lc.includes('deposit')||lc.includes('cancel')||lc.includes('reschedule')||lc.includes('refund'))return'deposit';
+  if(lc.includes('payment method')||lc.includes('how do i pay')||lc.includes('mpesa')||lc.includes('m-pesa')||lc.includes('paybill')||lc.includes('till number')||lc.includes('bank transfer')||lc.includes('pay by'))return'payment';
+  return null;
+}
+const ZFAQ_MENU=["Business Hours","Where are you located","Payment Methods","Deposit & Cancellation Policy","Meet the Team","Our Portfolio","Contact us","Main menu"];
+
+function zTeamText(){return teamData.map(m=>`${m.emoji} ${m.name} — ${m.role}`).join('\n');}
+
+// ===== AI-GENERATED WORK SAMPLES =====
+// After deploying the backend (see zeks-backend/README.md), replace this
+// with your Cloudflare Worker URL, e.g. "https://zeks-ai-samples.you.workers.dev"
+const ZEKS_API_URL = "REPLACE_WITH_YOUR_WORKER_URL";
+
+const ZSAMPLE_TYPES = {
+  'poster':{label:"Poster",promptBase:"A bold, eye-catching event poster design for a creative agency portfolio. Strong typography hierarchy, vibrant color scheme, professional layout."},
+  'flyer':{label:"Flyer",promptBase:"A modern promotional flyer design (A5 size layout), eye-catching, professional graphic design, clean typography, vivid colors."},
+  'banner':{label:"Banner",promptBase:"A wide promotional banner design for an event or business, professional graphic design, bold colors, clean modern typography."},
+  'brochure':{label:"Brochure",promptBase:"A tri-fold brochure design front cover, professional corporate graphic design, elegant layout, clean typography, modern color palette."},
+  'business_card':{label:"Business Card",promptBase:"A sleek, modern business card design mockup lying flat, minimalist professional layout, elegant typography, tasteful color palette."},
+  'wedding_card':{label:"Wedding Invitation Card",promptBase:"An elegant wedding invitation card design, romantic and refined, gold and soft pastel color palette, ornamental floral details, beautiful typography."},
+  'company_profile':{label:"Company Profile Cover",promptBase:"A professional company profile document cover page design, corporate and polished, modern layout, confident color palette."},
+  'receipt':{label:"Receipt",promptBase:"A clean, modern printed receipt design layout for a small business, organized itemized list, professional branding header, minimalist style."},
+  'tshirt':{label:"T-Shirt Print",promptBase:"A trendy t-shirt design mockup on a plain shirt, bold modern graphic print, stylish streetwear-inspired design."},
+  'logo':{label:"Logo",promptBase:"A modern, minimalist logo design mockup on a plain background, clean geometric shapes, professional brand identity design."},
+  'sticker':{label:"Sticker",promptBase:"A fun die-cut sticker design mockup, bold outline, vibrant colors, playful modern illustration style."},
+  'menu':{label:"Menu",promptBase:"An appetizing restaurant menu design layout, elegant food-focused typography, warm inviting color palette, professional layout."}
+};
+
+const ZSTYLE_WORDS = ['minimalist','modern','vintage','elegant','bold','colorful','luxury','rustic','corporate','playful','dark','bright','floral','geometric'];
+const ZCOLOR_WORDS = ['red','blue','green','gold','black','white','pink','purple','yellow','orange','navy','maroon','teal','silver','beige'];
+
+function zDetectSampleType(lc){
+  if((lc.includes('sample')||lc.includes('example')||lc.includes('mockup')||lc.includes('show me')||lc.includes('can you make')||lc.includes('can you create')||lc.includes('generate')||lc.includes('see a')||lc.includes('what does')||lc.includes('design me'))){
+    if(lc.includes('wedding')&&(lc.includes('card')||lc.includes('invit')))return'wedding_card';
+    if(lc.includes('company profile'))return'company_profile';
+    if(lc.includes('business card'))return'business_card';
+    if(lc.includes('poster'))return'poster';
+    if(lc.includes('flyer')||lc.includes('flier'))return'flyer';
+    if(lc.includes('banner'))return'banner';
+    if(lc.includes('brochure'))return'brochure';
+    if(lc.includes('receipt'))return'receipt';
+    if(lc.includes('t-shirt')||lc.includes('tshirt')||lc.includes('t shirt'))return'tshirt';
+    if(lc.includes('logo'))return'logo';
+    if(lc.includes('sticker'))return'sticker';
+    if(lc.includes('menu'))return'menu';
+  }
+  return null;
+}
+
+function zDetectWebsiteSampleRequest(lc){
+  return (lc.includes('sample website')||lc.includes('example website')||lc.includes('website sample')||lc.includes('website example')||lc.includes('demo website')||lc.includes('build me a website')||(lc.includes('website')&&(lc.includes('show me')||lc.includes('can you make')||lc.includes('can you create')||lc.includes('generate'))));
+}
+
+function zBuildImagePrompt(type,rawText){
+  const cfg=ZSAMPLE_TYPES[type];
+  let prompt=cfg.promptBase;
+  const found=[];
+  ZSTYLE_WORDS.forEach(w=>{if(rawText.includes(w))found.push(w);});
+  ZCOLOR_WORDS.forEach(w=>{if(rawText.includes(w))found.push(w);});
+  if(found.length)prompt+=" Style/color notes from the client: "+found.join(', ')+".";
+  return prompt;
+}
+
+async function zRequestImageSample(type,rawText){
+  if(ZEKS_API_URL.includes('REPLACE_WITH')){
+    zBot("Our AI sample generator isn't switched on yet \u2014 our team is setting it up! In the meantime, I can show you real examples from our portfolio, or you can reach us directly:\n\nWhatsApp: 0717 140 103",["View our services","Contact us","Main menu"]);
+    return;
+  }
+  const cfg=ZSAMPLE_TYPES[type];
+  zShowTyping();
+  try{
+    const prompt=zBuildImagePrompt(type,rawText);
+    const res=await fetch(ZEKS_API_URL+'/generate-image',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type,prompt})
+    });
+    const data=await res.json();
+    zRmTyping();
+    if(data&&data.success&&data.image){
+      zAddMsg(`Here's an AI-generated ${cfg.label.toLowerCase()} sample \u2014 tap to view full size. Your real design would be fully custom to your brand!`,'bot',["Book this service","Try another design","Main menu"],{imageSrc:data.image,imageAlt:cfg.label+' sample'});
+    }else{
+      zAddMsg((data&&data.error)||"We couldn't generate that sample right now. Please try again shortly, or reach our team directly.",'bot',["Try again","Contact us","Main menu"]);
+    }
+  }catch(err){
+    zRmTyping();
+    zAddMsg("We couldn't reach the sample generator right now. Please try again shortly, or reach our team directly.",'bot',["Contact us","Main menu"]);
+  }
+}
+
+async function zRequestWebsiteSample(rawText){
+  if(ZEKS_API_URL.includes('REPLACE_WITH')){
+    zBot("Our AI website sample generator isn't switched on yet \u2014 our team is setting it up! Reach out and we'll walk you through examples of sites we've built:\n\nWhatsApp: 0717 140 103",["View our services","Contact us","Main menu"]);
+    return;
+  }
+  zShowTyping();
+  try{
+    const res=await fetch(ZEKS_API_URL+'/generate-website',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({businessType:rawText,details:''})
+    });
+    const data=await res.json();
+    zRmTyping();
+    if(data&&data.success&&data.html){
+      const blob=new Blob([data.html],{type:'text/html'});
+      const url=URL.createObjectURL(blob);
+      zAddMsg("Here's a sample website generated just now \u2014 tap below to preview it in a new tab. A real build would be fully custom, with your branding, content, and features.",'bot',["Book Web Design","Try another sample","Main menu"],{linkHref:url,linkLabel:'🌐 Preview Sample Website'});
+    }else{
+      zAddMsg((data&&data.error)||"We couldn't generate a website sample right now. Please try again shortly, or reach our team directly.",'bot',["Try again","Contact us","Main menu"]);
+    }
+  }catch(err){
+    zRmTyping();
+    zAddMsg("We couldn't reach the sample generator right now. Please try again shortly, or reach our team directly.",'bot',["Contact us","Main menu"]);
+  }
 }
 
 function zHandleOpt(opt){
@@ -1583,6 +1751,13 @@ function zHandleOpt(opt){
   const clean=opt.replace(/[^\x00-\x7F]/g,'');
   const lc=clean.toLowerCase().trim();
   if(lc.includes('main menu')||lc.includes('back to main')){zBot("What can I help you with?",ZMAIN);return;}
+  if(lc.includes('try another')||lc==='try again'){zBot("Sure! What would you like a sample of? Just tell me, e.g. \"show me a sample poster\" or \"can I see a sample logo\".\n\nWe can generate: Poster, Flyer, Banner, Brochure, Business Card, Wedding Card, Company Profile, Receipt, T-Shirt, Logo, Sticker, Menu, or a Sample Website.",["Main menu"]);return;}
+  {
+    const wsReq=zDetectWebsiteSampleRequest(lc);
+    if(wsReq){zRequestWebsiteSample(clean);return;}
+    const st=zDetectSampleType(lc);
+    if(st){zRequestImageSample(st,lc);return;}
+  }
   if(lc.includes('back to cyber')||lc.includes('cybersecurity menu')){zBot("Explore our cybersecurity services:",ZCYBER_MENU);return;}
   if(lc.includes('all services')||lc.includes('more services')){zBot("Here are all our services:",ZALL);return;}
   if(lc.includes('more design')||lc.includes('graphic design service')){zBot("Which specific design are you interested in?",ZGFX_MENU);return;}
@@ -1606,6 +1781,11 @@ function zHandleOpt(opt){
   if(lc.includes('malware payload')){const p=ZCYBER['malware payload'];zBot(p.title+'\n\n'+p.detail,["Phishing Payloads","Reverse Shell Payloads","Book Security Testing","Back to Cybersecurity menu"],900);return;}
   if(lc.includes('reverse shell')){const p=ZCYBER['reverse shell'];zBot(p.title+'\n\n'+p.detail,["Web Attack Payloads","Malware Payloads","Book Pen Test","Back to Cybersecurity menu"],900);return;}
   if(lc.includes('phishing payload')){const p=ZCYBER['phishing payload'];zBot(p.title+'\n\n'+p.detail,["Malware Payloads","Prevent Phishing","Employee Training","Back to Cybersecurity menu"],900);return;}
+  if(lc.includes('faq')||lc.includes('frequently asked')){zBot("Here are our frequently asked questions:",ZFAQ_MENU);return;}
+  const fk=zDetectFAQ(lc);
+  if(fk&&ZFAQ[fk]){const f=ZFAQ[fk];zBot(f.title+'\n\n'+f.detail,f.opts,900);return;}
+  if(lc.includes('meet the team')||lc.includes('our team')){zBot("Meet the Distortion Entertainment team:\n\n"+zTeamText()+"\n\nFollow us on social media (links in the Team section) for behind-the-scenes content!",["Our Portfolio","Book a service","Main menu"]);return;}
+  if(lc.includes('our portfolio')||lc.includes('portfolio')){zBot("Check out our portfolio! 📂 We've got real event photos, DJ sets, design samples and videos in the Gallery section above ⬆️ — filter by Photography, DJ, Design or Videography to see specific work.",["Meet the Team","View our services","Main menu"]);return;}
   if(lc.includes('book')||lc.includes('quote')){zBot("Ready to book? Reach us here:\n\n📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n🌐 "+ZKB.brand.website+"\n📲 WhatsApp: 0717 140 103\n\nMon-Sat, 8am-8pm.",["View our services","Main menu"]);return;}
   if(lc.includes('contact')){zBot("📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n🌐 "+ZKB.brand.website+"\n📲 WhatsApp: 0717 140 103",["Book a service","Main menu"]);return;}
   if(lc.includes('about')){zBot(ZKB.brand.about+'\n\n"'+ZKB.brand.tagline+'"',["View our services","Contact us","Main menu"]);return;}
@@ -1628,6 +1808,12 @@ function zHandleInput(){
   inp.value='';zAddMsg(text,'user');
   const lc=text.toLowerCase();
   if(lc.match(/^(hi|hello|hey|halo|habari|sasa|wassup|yo|sup)/)){zBot("Hey! 👋 Welcome to Distortion Entertainment.\n\n\""+ZKB.brand.tagline+"\"\n\nI'm Zeks, your digital assistant. How can I help you today?",ZMAIN);return;}
+  {
+    const wsReq=zDetectWebsiteSampleRequest(lc);
+    if(wsReq){zRequestWebsiteSample(text);return;}
+    const st=zDetectSampleType(lc);
+    if(st){zRequestImageSample(st,lc);return;}
+  }
   // Hacked detection first
   const ck=zDetectCyber(lc);
   if(ck&&ZCYBER[ck]){
@@ -1638,7 +1824,7 @@ function zHandleInput(){
     if(ck==='hacked account')fo=["What to Do If Hacked","Protect Your Accounts","Incident Response","Back to Cybersecurity menu"];
     if(ck==='hacked phone')fo=["What to Do If Hacked","Protect Your Phone","Incident Response","Back to Cybersecurity menu"];
     if(ck==='what to do hacked')fo=["Incident Response","Cybersecurity Packages","Contact us"];
-    if(['prevent attacks','prevent hacking'].includes(ck))fo=["Protect Your Website","Protect Your Business","Protect Your Accounts","Prevent Phishing","Prevent Ransomware"];
+    if(['prevent attacks','prevent hacking'].includes(ck))fo=["Protect Your Website","Protect Your Business","Protect Your Accounts","Prevent Phishing","Prevent Ransomware","Two-Factor Authentication"];
     if(ck==='protect website')fo=["Protect Your Business","Protect Your Accounts","Book Security Audit","Back to Cybersecurity menu"];
     if(ck==='protect business')fo=["Protect Your Website","Employee Training","Cybersecurity Packages","Back to Cybersecurity menu"];
     if(['protect phone','protect accounts'].includes(ck))fo=["Prevent Phishing","Safe Internet Tips","Protect Your Business","Back to Cybersecurity menu"];
@@ -1648,6 +1834,11 @@ function zHandleInput(){
     zBot(c.title+'\n\n'+c.detail,fo,900);return;
   }
   if(lc.includes('cybersecurity')||lc.includes('cyber security')||lc.includes('cyber threat')||(lc.includes('security')&&(lc.includes('service')||lc.includes('help')||lc.includes('protect')||lc.includes('website')))){zBot("Explore our cybersecurity services:",ZCYBER_MENU);return;}
+  if(lc.includes('faq')||lc.includes('frequently asked')){zBot("Here are our frequently asked questions:",ZFAQ_MENU);return;}
+  const fk=zDetectFAQ(lc);
+  if(fk&&ZFAQ[fk]){const f=ZFAQ[fk];zBot(f.title+'\n\n'+f.detail,f.opts,900);return;}
+  if(lc.includes('team')||lc.includes('founder')||lc.includes('who works')||lc.includes('who is behind')){zBot("Meet the Distortion Entertainment team:\n\n"+zTeamText()+"\n\nFollow us on social media (links in the Team section) for behind-the-scenes content!",["Our Portfolio","Book a service","Main menu"]);return;}
+  if(lc.includes('portfolio')||lc.includes('past work')||lc.includes('previous work')||lc.includes('samples')||lc.includes('gallery')||lc.includes('examples of your work')){zBot("Check out our portfolio! 📂 We've got real event photos, DJ sets, design samples and videos in the Gallery section above ⬆️ — filter by Photography, DJ, Design or Videography to see specific work.",["Meet the Team","View our services","Main menu"]);return;}
   const dk=zDetectDesign(lc);
   if(dk&&ZDESIGNS[dk]){const d=ZDESIGNS[dk];zBot(d.title+'\n\n'+d.detail,d.opts,900);return;}
   if((lc.includes('graphic design')||lc.includes('design service'))&&!dk){zBot("Which specific design are you interested in?",ZGFX_MENU);return;}
