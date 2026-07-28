@@ -1875,11 +1875,11 @@ async function zAskAI(text){
       if(zHistory.length>12)zHistory=zHistory.slice(-12);
       zAddMsg(data.reply,'bot',["View our services","Contact us","Main menu"]);
     }else{
-      zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com",'bot',["View our services","Main menu"]);
+      zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com\n\n[debug: "+((data&&data.error)||'no response')+"]",'bot',["View our services","Main menu"]);
     }
   }catch(err){
     zRmTyping();
-    zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com",'bot',["View our services","Main menu"]);
+    zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com\n\n[debug: "+err.message+"]",'bot',["View our services","Main menu"]);
   }
 }
 setTimeout(()=>{const t=document.getElementById('zeks-tooltip');if(t)setTimeout(()=>t.style.display='none',3500);},100);
