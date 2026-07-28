@@ -1851,7 +1851,36 @@ function zHandleInput(){
   for(const[name,svc]of Object.entries(ZKB.services)){
     if(name.toLowerCase().split(' ').some(w=>w.length>3&&lc.includes(w))){zBot(svc.icon+' '+name+'\n\n'+svc.detail,svc.opts,900);return;}
   }
-  zBot("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com\n\nWe're happy to answer anything!",["View our services","Cybersecurity Services","Main menu"]);
+  zAskAI(text);
+}
+
+let zHistory=[];
+
+async function zAskAI(text){
+  if(ZEKS_API_URL.includes('REPLACE_WITH')){
+    zBot("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com\n\nWe're happy to answer anything!",["View our services","Cybersecurity Services","Main menu"]);
+    return;
+  }
+  zShowTyping();
+  try{
+    const res=await fetch(ZEKS_API_URL+'/chat',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:text,history:zHistory})
+    });
+    const data=await res.json();
+    zRmTyping();
+    if(data&&data.success&&data.reply){
+      zHistory.push({role:'user',content:text});
+      zHistory.push({role:'assistant',content:data.reply});
+      if(zHistory.length>12)zHistory=zHistory.slice(-12);
+      zAddMsg(data.reply,'bot',["View our services","Contact us","Main menu"]);
+    }else{
+      zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com",'bot',["View our services","Main menu"]);
+    }
+  }catch(err){
+    zRmTyping();
+    zAddMsg("Hmm, I don't have specific info on that, but our team can help!\n\nWhatsApp: 0717 140 103\nPhone: 0742 438 180\nEmail: distortionentertainment1@gmail.com",'bot',["View our services","Main menu"]);
+  }
 }
 setTimeout(()=>{const t=document.getElementById('zeks-tooltip');if(t)setTimeout(()=>t.style.display='none',3500);},100);
 </script>
