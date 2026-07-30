@@ -1318,6 +1318,15 @@ function zAddMsg(text,type,opts,extra){
     bub.appendChild(document.createElement('br'));
     bub.appendChild(a);
   }
+  if(extra&&extra.links&&extra.links.length){
+    extra.links.forEach(lnk=>{
+      const a=document.createElement('a');
+      a.href=lnk.href;a.target='_blank';a.rel='noopener noreferrer';
+      a.className='zmlink';a.textContent=lnk.label||'Open';
+      bub.appendChild(document.createElement('br'));
+      bub.appendChild(a);
+    });
+  }
   grp.appendChild(bub);
   const tm=document.createElement('div');tm.className='zmt';tm.textContent=zTs();
   grp.appendChild(tm);
@@ -1634,7 +1643,10 @@ const ZFAQ = {
   'different':{title:"What Makes Us Different",detail:"Great question! A few things set Distortion Entertainment apart:\n\n✨ ALL-IN-ONE — We combine creative services (DJ, photography, design) with cybersecurity, which most agencies don't offer\n🎯 Personal touch — led directly by our founder, DJ Zeks, with a small dedicated team, not a faceless call center\n⚡ Fast turnaround without cutting corners on quality\n🤝 Honest, flexible pricing & payment plans that work for individuals, students and businesses alike\n💡 Our motto says it best: \"Making Ordinary Extra Ordinary.\"",opts:["Meet the Team","View our services","Main menu"]},
   'bundle discount':{title:"Multi-Service / Bundle Discounts",detail:"Yes! Booking multiple services together saves you money 📦\n\n• Combine DJ + Photography + Videography for an event and get a bundled rate\n• Pair Graphic Design (branding/logo) with Web Design for a discounted package\n• Cybersecurity packages can be bundled with website/design work for business clients\n\nThe more services you combine, the more we can flex on pricing — just tell us everything you need and we'll put together a custom quote.",opts:["Pricing","Book a service","Main menu"]},
   'drone':{title:"Drone Photography & Videography",detail:"We can arrange aerial/drone coverage for select events 🚁📸\n\n• Great for large outdoor events, weddings, corporate activations & venue establishing shots\n• Availability depends on venue permissions, safety regulations & weather on the day\n• Usually offered as an add-on to a full Photography/Videography booking rather than standalone\n\nLet us know your venue and event type when booking and we'll confirm if drone coverage is possible for it.",opts:["Photography","Videography","Book a service"]},
-  'branding vs design':{title:"Branding vs. Graphic Design",detail:"They're related but not the same thing:\n\n🏷️ BRANDING\n• The bigger picture — your business's identity, personality & how it's perceived\n• Includes: logo, color palette, fonts, tone of voice, brand guidelines, overall visual strategy\n• Answers: \"Who are you as a business?\"\n\n🎨 GRAPHIC DESIGN\n• The visual execution — individual pieces created using (or to fit) your brand\n• Includes: posters, flyers, social media graphics, business cards, packaging\n• Answers: \"What does this specific piece look like?\"\n\nIn short: branding is the strategy, graphic design is the output. We offer both — often starting with branding so every design piece afterward stays consistent.",opts:["Logo Design","Brand Identity","Main menu"]}
+  'branding vs design':{title:"Branding vs. Graphic Design",detail:"They're related but not the same thing:\n\n🏷️ BRANDING\n• The bigger picture — your business's identity, personality & how it's perceived\n• Includes: logo, color palette, fonts, tone of voice, brand guidelines, overall visual strategy\n• Answers: \"Who are you as a business?\"\n\n🎨 GRAPHIC DESIGN\n• The visual execution — individual pieces created using (or to fit) your brand\n• Includes: posters, flyers, social media graphics, business cards, packaging\n• Answers: \"What does this specific piece look like?\"\n\nIn short: branding is the strategy, graphic design is the output. We offer both — often starting with branding so every design piece afterward stays consistent.",opts:["Logo Design","Brand Identity","Main menu"]},
+  'founded':{title:"Our Story",detail:"Distortion Entertainment was founded on 9 June 2020 by our founder & CEO, DJ Zeks 🎉\n\nWhat started as creative and entertainment work has grown into a full digital solutions brand — bringing graphic design, branding, web development, DJ entertainment, photography, videography, and cybersecurity together under one roof.\n\nOur motto: \"Making Ordinary Extra Ordinary\"\nOur promise: \"We don't just design your future, we defend it.\"",opts:["Meet the Team","View our services","Main menu"]},
+  'human':{title:"Talk to Our Team",detail:"Of course! I can connect you directly with the Distortion Entertainment team 🙋\n\n📞 "+"0742 438 180"+"\n📧 distortionentertainment1@gmail.com\n📲 WhatsApp: 0717 140 103\n\nWe're available Mon–Sat, 8:00 AM – 8:00 PM, and WhatsApp messages are checked periodically on Sundays too. Reach out any time and a real person on our team will get back to you.",opts:["Book a service","Main menu"]},
+  'bulk printing':{title:"Bulk & Custom Printing Orders",detail:"Yes, we handle bulk print orders 🖨️\n\n• Business cards, stickers, flyers, posters, banners, certificates, calendars & menus can all be printed in bulk\n• Pricing depends on quantity, material, size & finishing — larger quantities bring the per-unit cost down\n• Standard turnaround is 24–48 hours; bigger bulk runs may need a bit more lead time depending on the printer's schedule\n\nSend us the quantity and material you need for a bulk quote.",opts:["Printing","Book a service","Main menu"]}
 };
 
 function zDetectFAQ(lc){
@@ -1650,16 +1662,19 @@ function zDetectFAQ(lc){
   if((lc.includes('discount')&&(lc.includes('multiple service')||lc.includes('book multiple')||lc.includes('combine service')||lc.includes('bundle')||lc.includes('together')))||lc.includes('bundle discount')||lc.includes('package discount'))return'bundle discount';
   if(lc.includes('drone'))return'drone';
   if((lc.includes('branding')&&lc.includes('graphic design'))||lc.includes('difference between branding')||(lc.includes('branding')&&lc.includes('difference')))return'branding vs design';
+  if(lc.includes('founded')||lc.includes('when was distortion')||lc.includes('how long have you been')||lc.includes('our story')||lc.includes('history of distortion'))return'founded';
+  if(lc.includes('speak to a human')||lc.includes('talk to a human')||lc.includes('speak to someone')||lc.includes('real person')||lc.includes('talk to a person')||lc.includes('speak to dj zeks')||lc.includes('talk to dj zeks'))return'human';
+  if(lc.includes('bulk')&&(lc.includes('print')||lc.includes('order')))return'bulk printing';
   return null;
 }
-const ZFAQ_MENU=["Business Hours","Where are you located","Payment Methods","Deposit & Cancellation Policy","Student Discounts","Multi-Service Discounts","Drone Photography","Meet the Team","Our Portfolio","Contact us","Main menu"];
+const ZFAQ_MENU=["Business Hours","Where are you located","Payment Methods","Deposit & Cancellation Policy","Student Discounts","Multi-Service Discounts","Drone Photography","Our Story","Meet the Team","Our Portfolio","Contact us","Main menu"];
 
 function zTeamText(){return teamData.map(m=>`${m.emoji} ${m.name} — ${m.role}`).join('\n');}
 
 // ===== AI-GENERATED WORK SAMPLES =====
 // After deploying the backend (see zeks-backend/README.md), replace this
 // with your Cloudflare Worker URL, e.g. "https://zeks-ai-samples.you.workers.dev"
-const ZEKS_API_URL = "https://zeks-ai-samples.deejayzeks3.workers.dev";
+const ZEKS_API_URL = "https://zeksaisamples.distortionentertainment1.workers.dev";
 
 const ZSAMPLE_TYPES = {
   'poster':{label:"Poster",promptBase:"A bold, eye-catching event poster design for a creative agency portfolio. Strong typography hierarchy, vibrant color scheme, professional layout."},
@@ -1754,6 +1769,87 @@ const ZREAL_SAMPLES = [
 ];
 
 let zLastSampleCategory=null, zLastSampleLabel=null, zLastSampleSrc=null;
+
+// ===== DIRECT BOOKING FLOW =====
+// Collects booking details in-chat and hands the visitor a one-tap
+// WhatsApp / email link pre-filled with everything, straight to the business.
+const ZBOOK_WHATSAPP_NUMBER='254717140103'; // 0717 140 103
+const ZBOOK_EMAIL='distortionentertainment1@gmail.com';
+let zBooking=null; // {step, data:{service,name,phone,date,details}}
+
+function zGuessServiceFromText(lc){
+  const dk=zDetectDesign(lc);
+  if(dk&&ZDESIGNS[dk])return ZDESIGNS[dk].title;
+  const ck=zDetectCyber(lc);
+  if(ck&&ZCYBER[ck])return ZCYBER[ck].title;
+  for(const name of Object.keys(ZKB.services)){
+    if(lc.includes(name.toLowerCase()))return name;
+  }
+  return '';
+}
+
+function zExtractBookedService(cleanOptText,lc){
+  let s=cleanOptText.replace(/^Book\s+/i,'').trim();
+  const sl=s.toLowerCase();
+  if(!s||sl==='a service'||sl==='this service'||sl==='a solution'||sl==='an event package'){
+    if(zLastSampleLabel)return zLastSampleLabel;
+    const guess=zGuessServiceFromText(lc);
+    if(guess)return guess;
+    return '';
+  }
+  return s;
+}
+
+function zStartBooking(serviceHint){
+  zBooking={step:serviceHint?'name':'service',data:{service:serviceHint||''}};
+  if(serviceHint){
+    zBot(`Great choice \u2014 let's get your ${serviceHint} booking sent over to us! \u{1F4DD}\n\nFirst, what's your full name?`,["Cancel booking"]);
+  }else{
+    zBot("Awesome, let's get you booked in! \u{1F4DD}\n\nWhich service would you like to book? (e.g. DJ Services, Photography, Logo Design, Cybersecurity...)",["Cancel booking"]);
+  }
+}
+
+function zCancelBooking(){
+  zBooking=null;
+  zBot("No problem, I've cancelled that booking request. Anything else I can help with?",ZMAIN);
+}
+
+function zBookingStep(raw){
+  const val=raw.trim();
+  const lc=val.toLowerCase();
+  if(lc.includes('cancel')||lc.includes('main menu')||lc==='stop'){zCancelBooking();return;}
+  const step=zBooking.step;
+  if(step==='service'){
+    zBooking.data.service=val;zBooking.step='name';
+    zBot("Got it \u2705 What's your full name?",["Cancel booking"]);return;
+  }
+  if(step==='name'){
+    zBooking.data.name=val;zBooking.step='phone';
+    zBot(`Thanks, ${val.split(' ')[0]}! What's the best phone number to reach you on (WhatsApp preferred)?`,["Cancel booking"]);return;
+  }
+  if(step==='phone'){
+    zBooking.data.phone=val;zBooking.step='date';
+    zBot("Perfect. What date do you need this for? (or say \"ASAP\" / \"flexible\" if there's no fixed date)",["Cancel booking"]);return;
+  }
+  if(step==='date'){
+    zBooking.data.date=val;zBooking.step='details';
+    zBot("Almost done! Briefly describe what you need \u2014 event type, location, style/colors, quantity, or any other details.",["Cancel booking"]);return;
+  }
+  if(step==='details'){
+    zBooking.data.details=val;
+    zFinishBooking();
+    return;
+  }
+}
+
+function zFinishBooking(){
+  const d=zBooking.data;
+  const summary=`New Booking Request \u2014 Distortion Entertainment\n\nService: ${d.service}\nName: ${d.name}\nPhone: ${d.phone}\nDate needed: ${d.date}\nDetails: ${d.details}`;
+  const waLink=`https://wa.me/${ZBOOK_WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
+  const mailLink=`mailto:${ZBOOK_EMAIL}?subject=${encodeURIComponent('New Booking Request - '+d.service)}&body=${encodeURIComponent(summary)}`;
+  zBooking=null;
+  zBot("Here's your booking summary:\n\n"+summary+"\n\nTap a button below to send it straight to us \u2014 WhatsApp is fastest (one tap to send), or use email if you prefer. We'll confirm availability and next steps shortly!",["Main menu"],900,{links:[{href:waLink,label:'\u{1F4F2} Send via WhatsApp'},{href:mailLink,label:'\u{1F4E7} Send via Email'}]});
+}
 
 function zPickRealSample(category){
   const pool=ZREAL_SAMPLES.filter(s=>s.category===category);
@@ -1858,6 +1954,7 @@ function zHandleOpt(opt){
   zAddMsg(opt,'user');
   const clean=opt.replace(/[^\x00-\x7F]/g,'');
   const lc=clean.toLowerCase().trim();
+  if(zBooking){zBookingStep(clean);return;}
   if(lc.includes('main menu')||lc.includes('back to main')){zBot("What can I help you with?",ZMAIN);return;}
   if(lc.includes('try another')||lc==='try again'){
     if(zLastSampleCategory){zShowRealSample(zLastSampleCategory,zLastSampleLabel);return;}
@@ -1899,7 +1996,7 @@ function zHandleOpt(opt){
   if(fk&&ZFAQ[fk]){const f=ZFAQ[fk];zBot(f.title+'\n\n'+f.detail,f.opts,900);return;}
   if(lc.includes('meet the team')||lc.includes('our team')){zBot("Meet the Distortion Entertainment team:\n\n"+zTeamText()+"\n\nFollow us on social media (links in the Team section) for behind-the-scenes content!",["Our Portfolio","Book a service","Main menu"]);return;}
   if(lc.includes('our portfolio')||lc.includes('portfolio')){zBot("Check out our portfolio! 📂 We've got real event photos, DJ sets, design samples and videos in the Gallery section above ⬆️ — filter by Photography, DJ, Design or Videography to see specific work.",["Meet the Team","View our services","Main menu"]);return;}
-  if(lc.includes('book')||lc.includes('quote')){zBot("Ready to book? Reach us here:\n\n📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n🌐 "+ZKB.brand.website+"\n📲 WhatsApp: 0717 140 103\n\nMon-Sat, 8am-8pm.",["View our services","Main menu"]);return;}
+  if(lc.includes('book')||lc.includes('quote')){zStartBooking(zExtractBookedService(clean,lc));return;}
   if(lc.includes('contact')){zBot("📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n🌐 "+ZKB.brand.website+"\n📲 WhatsApp: 0717 140 103",["Book a service","Main menu"]);return;}
   if(lc.includes('about')){zBot(ZKB.brand.about+'\n\n"'+ZKB.brand.tagline+'"',["View our services","Contact us","Main menu"]);return;}
   if(lc.includes('pricing')){zBot("Our pricing:\n\n🎧 DJ Services: Basic 5K - Standard 8K - Premium 12K\n📸 Photography: Basic 3K - Standard 6K - Premium 10K\n🎨 Graphic Design: Logos from 2K - Flyers from 500\n🔒 Cybersecurity: Starter 15K - Business 50K - Advanced 100K+\n💻 Web Design: Basic from 8K\n\nContact us for a custom quote!",["Book a service","Cybersecurity Packages","Main menu"]);return;}
@@ -1920,6 +2017,7 @@ function zHandleInput(){
   const text=inp.value.trim();if(!text)return;
   inp.value='';zAddMsg(text,'user');
   const lc=text.toLowerCase();
+  if(zBooking){zBookingStep(text);return;}
   if(lc.match(/^(hi|hello|hey|halo|habari|sasa|wassup|yo|sup)/)){zBot("Hey! 👋 Welcome to Distortion Entertainment.\n\n\""+ZKB.brand.tagline+"\"\n\nI'm Zeks, your digital assistant. How can I help you today?",ZMAIN);return;}
   {
     const wsReq=zDetectWebsiteSampleRequest(lc);
@@ -1960,7 +2058,8 @@ function zHandleInput(){
   if(lc.includes('service')||lc.includes('what do you offer')){zBot("Here are all our services:",ZALL);return;}
   if(lc.includes('about')||lc.includes('who are you')){zBot(ZKB.brand.about,["View our services","Contact us"]);return;}
   if(lc.includes('contact')||lc.includes('phone')||lc.includes('email')||lc.includes('reach')||lc.includes('number')){zBot("📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n🌐 "+ZKB.brand.website+"\n📲 WhatsApp: 0717 140 103",["Book a service","Main menu"]);return;}
-  if(lc.includes('book')||lc.includes('hire')||lc.includes('price')||lc.includes('cost')||lc.includes('how much')||lc.includes('quote')||lc.includes('bei')){zBot("Get in touch for a free quote!\n\n📞 "+ZKB.brand.phone+"\n📧 "+ZKB.brand.email+"\n📲 WhatsApp: 0717 140 103",["View our services","Main menu"]);return;}
+  if(lc.includes('pricing')||lc.includes('price')||lc.includes('cost')||lc.includes('how much')||lc.includes('bei')){zBot("Our pricing:\n\n🎧 DJ Services: Basic 5K - Standard 8K - Premium 12K\n📸 Photography: Basic 3K - Standard 6K - Premium 10K\n🎨 Graphic Design: Logos from 2K - Flyers from 500\n🔒 Cybersecurity: Starter 15K - Business 50K - Advanced 100K+\n💻 Web Design: Basic from 8K\n\nContact us for a custom quote!",["Book a service","Cybersecurity Packages","Main menu"]);return;}
+  if(lc.includes('book')||lc.includes('hire')||lc.includes('quote')){zStartBooking(zGuessServiceFromText(lc));return;}
   const match=zSvcKey(lc);
   if(match&&ZKB.services[match]){const s=ZKB.services[match];zBot(s.icon+' '+match+'\n\n'+s.detail,s.opts,900);return;}
   for(const[name,svc]of Object.entries(ZKB.services)){
@@ -2419,9 +2518,11 @@ if(vid){
 
 // ============= TEAM DATA =============
 const teamData = [
+{name: 'Maureen Mutinda', role: 'Company Manager', emoji: '👤', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}, 
 {name: 'DJ Zeks', role: 'Head DJ & Founder', emoji: '🎧', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
-{name: 'Sarah Johnson', role: 'Lead Photographer', emoji: '📸', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
-{name: 'Marcus Design', role: 'Creative Director', emoji: '🎨', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}
+{name: 'Kendhive Kioko', role: 'Lead Photographer', emoji: '📸', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Kendry Wairimu', role: 'Creative Director', emoji: '🎨', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'},
+{name: 'Kendra Mutheu', role: 'Cyber security Director', emoji: '🌍', instagram: 'https://instagram.com', tiktok: 'https://tiktok.com', youtube: 'https://youtube.com'}
 ];
 
 function loadTeam(){
@@ -2480,7 +2581,7 @@ setTimeout(() => notification.remove(), 4000);
 function bookNow(){
 const name = document.getElementById('name').value.trim();
 const email = document.getElementById('email').value.trim();
-const phone = document.getElementById('phone').value.trim();
+const phone = documet.getElementById('phone').value.trim();
 const date = document.getElementById('date').value;
 const time = document.getElementById('time').value;
 const service = document.getElementById('service').value;
