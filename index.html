@@ -911,6 +911,7 @@ padding:20px;
 }
 }
 </style>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 
 <body>
@@ -1113,7 +1114,7 @@ padding:20px;
 <label for="terms">I agree to the terms and conditions</label>
 </div>
 </div>
-<button onclick="continueToPortal()">🔒 Continue to Client Portal</button>
+<button onclick="payWithPaystack()">💳 Book + Pay via Paystack</button>
 </div>
 
 <!-- ADMIN DASHBOARD -->
@@ -2583,9 +2584,9 @@ setTimeout(() => notification.remove(), 4000);
 }
 
 // ============= BOOKING SYSTEM =============
-const CLIENT_PORTAL_URL = 'https://distortion-client-portal.djzeks4.workers.dev/';
+const PAYSTACK_PUBLIC_KEY = 'pk_live_c11176183a2409ba74f96a8b2cfed2a27c0fba77';
 
-function continueToPortal(){
+function payWithPaystack(){
 const name = document.getElementById('name').value.trim();
 const email = document.getElementById('email').value.trim();
 const phone = document.getElementById('phone').value.trim();
@@ -2608,27 +2609,48 @@ return;
 
 const price = pricingData[service][tier];
 
-// Booking + payment now happen inside the Client Portal (requires a
-// portal account). We hand off the details the customer already
-// entered here as URL params so the portal can prefill/create the
-// booking once they're logged in.
-const params = new URLSearchParams({
-presetService: service,
-presetTier: tier,
-presetAmount: price,
-presetDate: date,
-presetTime: time,
-presetPhone: phone,
-presetRequirements: requirements || '',
-presetName: name,
-presetEmail: email
+const handler = PaystackPop.setup({
+key: PAYSTACK_PUBLIC_KEY,
+email: email,
+amount: price * 100, // Paystack expects the smallest currency unit
+currency: 'KES',
+ref: 'DE-' + Date.now(),
+metadata: {
+custom_fields: [
+{display_name: "Name", variable_name: "name", value: name},
+{display_name: "Phone", variable_name: "phone", value: phone},
+{display_name: "Service", variable_name: "service", value: service},
+{display_name: "Tier", variable_name: "tier", value: tier}
+]
+},
+callback: function(response){
+const booking = {id: Date.now(), name, email, phone, date, time, service, tier, requirements, price, status: 'Paid (Paystack)', reference: response.reference, timestamp: new Date().toLocaleString()};
+let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+bookings.push(booking);
+localStorage.setItem('bookings', JSON.stringify(bookings));
+
+showNotification(`✅ Payment successful! Ref: ${response.reference}`, 'success');
+
+const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}%0DDate:${date}%0DTime:${time}%0DPrice:KES${price}%0DReference:${response.reference}%0DRequirements:${requirements}`;
+setTimeout(() => window.location.href = mailLink, 1500);
+
+document.getElementById('name').value = '';
+document.getElementById('email').value = '';
+document.getElementById('phone').value = '';
+document.getElementById('date').value = '';
+document.getElementById('time').value = '';
+document.getElementById('service').value = '';
+document.getElementById('tier').value = '';
+document.getElementById('requirements').value = '';
+document.getElementById('terms').checked = false;
+
+loadBookings();
+},
+onClose: function(){
+showNotification('Payment window closed', 'info');
+}
 });
-
-showNotification('Redirecting you to the Client Portal to complete booking + payment...', 'info');
-
-setTimeout(() => {
-window.location.href = `${CLIENT_PORTAL_URL}?${params.toString()}`;
-}, 1200);
+handler.openIframe();
 }
 
 // ============= DASHBOARD =============
