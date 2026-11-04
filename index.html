@@ -1118,10 +1118,12 @@ padding:20px;
 <div class="form-group">
 <input type="tel" id="phone" placeholder="Your Phone Number" required>
 </div>
-<div class="form-group">
+<div class="form-group" id="dateGroup">
+<label for="date" id="dateLabel" style="display:block;font-size:13px;opacity:.8;margin:0 0 4px 2px">Event date</label>
 <input type="date" id="date" required>
 </div>
-<div class="form-group">
+<div class="form-group" id="timeGroup">
+<label for="time" style="display:block;font-size:13px;opacity:.8;margin:0 0 4px 2px">Time</label>
 <input type="time" id="time" required>
 </div>
 <div class="form-group">
@@ -2622,6 +2624,25 @@ setTimeout(() => notification.remove(), 4000);
 // ============= BOOKING SYSTEM =============
 const PAYSTACK_PUBLIC_KEY = 'pk_live_c11176183a2409ba74f96a8b2cfed2a27c0fba77';
 
+// Which services are tied to a specific event date and time. The others only get an optional deadline.
+const EVENT_SERVICES = ['DJ Services','Photography'];
+function bookingNeedsEvent(service){ return !service || EVENT_SERVICES.includes(service); }
+function syncBookingDateFields(){
+  const svc = document.getElementById('service'); if(!svc) return;
+  const need = bookingNeedsEvent(svc.value);
+  const d = document.getElementById('date'), t = document.getElementById('time');
+  document.getElementById('dateLabel').textContent = need ? 'Event date' : 'Preferred deadline (optional)';
+  document.getElementById('timeGroup').style.display = need ? '' : 'none';
+  d.required = need; t.required = need;
+  if(!need) t.value = '';
+}
+(function(){ var s=document.getElementById('service'); if(s){ s.addEventListener('change', syncBookingDateFields); syncBookingDateFields(); } })();
+// Text shown in the admin list for a booking's date/time
+function bkWhen(b){
+  if(!b.date) return 'Date not set';
+  return (EVENT_SERVICES.includes(b.service) ? '' : 'Deadline ') + b.date + (b.time ? ' ' + b.time : '');
+}
+
 function payWithPaystack(){
 const name = document.getElementById('name').value.trim();
 const email = document.getElementById('email').value.trim();
@@ -2633,7 +2654,8 @@ const tier = document.getElementById('tier').value;
 const requirements = document.getElementById('requirements').value;
 const terms = document.getElementById('terms').checked;
 
-if(!name || !email || !phone || !date || !time || !service || !tier){
+const needsEvent = bookingNeedsEvent(service);
+if(!name || !email || !phone || (needsEvent && (!date || !time)) || !service || !tier){
 showNotification('Please fill all required fields', 'error');
 return;
 }
@@ -2660,14 +2682,14 @@ custom_fields: [
 ]
 },
 callback: function(response){
-const booking = {id: Date.now(), name, email, phone, date, time, service, tier, requirements, price, status: 'Paid (Paystack)', reference: response.reference, timestamp: new Date().toLocaleString()};
+const booking = {id: Date.now(), name, email, phone, date, time: needsEvent ? time : '', service, tier, requirements, price, status: 'Paid (Paystack)', reference: response.reference, timestamp: new Date().toLocaleString()};
 let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
 bookings.push(booking);
 localStorage.setItem('bookings', JSON.stringify(bookings));
 
 showNotification(`✅ Payment successful! Ref: ${response.reference}`, 'success');
 
-const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}%0DDate:${date}%0DTime:${time}%0DPrice:KES${price}%0DReference:${response.reference}%0DRequirements:${requirements}`;
+const mailLink = `mailto:deejayzeks3@gmail.com?subject=New Booking - ${service}&body=Name:${name}%0DEmail:${email}%0DPhone:${phone}%0DService:${service}%0DTier:${tier}${date ? (needsEvent ? '%0DDate:' : '%0DPreferred deadline:') + date : ''}${needsEvent && time ? '%0DTime:' + time : ''}%0DPrice:KES${price}%0DReference:${response.reference}%0DRequirements:${requirements}`;
 setTimeout(() => window.location.href = mailLink, 1500);
 
 document.getElementById('name').value = '';
@@ -2677,6 +2699,7 @@ document.getElementById('date').value = '';
 document.getElementById('time').value = '';
 document.getElementById('service').value = '';
 document.getElementById('tier').value = '';
+syncBookingDateFields();
 document.getElementById('requirements').value = '';
 document.getElementById('terms').checked = false;
 
@@ -2706,7 +2729,7 @@ const li = document.createElement('li');
 li.innerHTML = `
 <div>
 <strong>${b.name}</strong><br>
-${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+${b.service} - ${b.tier} | ${bkWhen(b)}<br>
 <small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
 </div>
 <button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
@@ -2744,7 +2767,7 @@ const li = document.createElement('li');
 li.innerHTML = `
 <div>
 <strong>${b.name}</strong><br>
-${b.service} - ${b.tier} | ${b.date} ${b.time}<br>
+${b.service} - ${b.tier} | ${bkWhen(b)}<br>
 <small>KES ${b.price.toLocaleString()} | ${b.timestamp}</small>
 </div>
 <button class="delete-btn" onclick="deleteBooking(${b.id})">Delete</button>
@@ -2756,7 +2779,7 @@ list.appendChild(li);
 function updateDashboardStats(){
 const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
 const today = new Date().toISOString().split('T')[0];
-const todayBookings = bookings.filter(b => b.date === today).length;
+const todayBookings = bookings.filter(b => b.date && b.date === today).length;
 const totalRevenue = bookings.reduce((sum, b) => sum + b.price, 0);
 
 document.getElementById('totalBookings').textContent = bookings.length;
